@@ -6,16 +6,16 @@ export default function HeaderIndex() {
       <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] font-bold">
         {/* Venstre side */}
         <nav className="flex gap-8">
-          <a href="#produkter">
+          <a href="#produkter" className="z-50">
             Produkter
           </a>
-          <a href="#omos">
+          <a href="#omos" className="z-50">
             Om os
           </a>
         </nav>
 
         {/* Højre side */}
-        <div>
+        <div className="z-50">
           LOGO
         </div>
       </div>
