@@ -10,31 +10,51 @@ export default function TextToHeader() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Fade-in animation (efter 2.5s)
     gsap.fromTo(
       h1Ref.current,
-      { y: "60vh",
-        scale: 10,
-        color: "#6E22D7"
-      }, // starter længere nede (midten-ish)
       {
-        y: "2.5vh", // bevæger sig op til top
-        scale: 1.2,
-        color: "#000000",
-        ease: "none",
-        scrollTrigger: {
-          trigger: h1Ref.current,
-          start: "top center",
-          end: "top top",
-          scrub: true,
-        },
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        delay: 2.3, // <-- matcher Hero-timeline
+        duration: 1,
+        ease: "power2.out",
       }
     );
-  }, []);
+
+  // Vent lidt med at sætte startpositionen (for at undgå at scrollede sider fejlplacerer)
+  requestAnimationFrame(() => {
+    gsap.set(h1Ref.current, {
+      y: "30rem",
+      scale: 10,
+      color: "#6DFFB9",
+    });
+
+    gsap.to(h1Ref.current, {
+      y: "1rem",
+      scale: 1.2,
+      color: "#000000",
+      ease: "none",
+      scrollTrigger: {
+        trigger: h1Ref.current,
+        start: "top center",
+        end: "top top",
+        scrub: true,
+      },
+    });
+
+    // Tving ScrollTrigger til at opdatere
+    ScrollTrigger.refresh();
+  });
+}, []);
+
 
   return (
     <h1
       ref={h1Ref}
-      className="sticky top-0 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-20"
+      className="sticky top-0 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-50 opacity-0"
     >
       Spotter.
     </h1>

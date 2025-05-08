@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -37,15 +38,26 @@ export default function TextAnimation() {
   }, []);
 
   return (
-    <main>
-        <section className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)] border-b border-black">
-        </section>
-        
-        <section className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)]">
-        <p className="reveal-type text-[clamp(2rem,5vw,8rem)]">
-          Systematically ushering in a new generation of amazing designers from across the globe.
-        </p>
-        </section>
+    <main>      
+       <section className="relative h-[150vh]">
+  {/* Sticky billede */}
+  <div className="sticky top-[100px] h-[500px] flex justify-center z-0">
+    <div
+      className="w-[90%] h-full bg-cover bg-center bg-no-repeat rounded-xl shadow-lg"
+      style={{
+        backgroundImage: "url('https://picsum.photos/1000/500?grayscale&random=4')",
+      }}
+    />
+  </div>
+
+  {/* Tekst der ruller ind over billedet */}
+  <div className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)] relative z-10 bg-white">
+    <p className="reveal-type text-[clamp(2rem,5vw,8rem)] text-black">
+      Systematically ushering in a new generation of amazing designers from across the globe.
+    </p>
+    
+  </div>
+</section>
         
         <section className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)] bg-yellow-400">
         <p className="reveal-type text-[clamp(2rem,5vw,8rem)]">
