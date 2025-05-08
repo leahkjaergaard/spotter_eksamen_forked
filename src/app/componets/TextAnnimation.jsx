@@ -28,7 +28,6 @@ export default function TextAnimation() {
         start: "top+=100 center",
         end: "top-=100 top",
         scrub: true,
-        markers: true,
       },
     });
 
