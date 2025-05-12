@@ -1,7 +1,7 @@
-import HeaderIndex from "./componets/HeaderIndex";
-import TextAnimation from "../app/componets/TextAnnimation";
-import Hero from "../app/componets/Hero";
-import TextToHeader from "./componets/TextToHeader";
+import HeaderIndex from "./components/HeaderIndex";
+import TextAnimation from "./components/TextAnnimation";
+import Hero from "./components/Hero";
+import TextToHeader from "./components/TextToHeader";
 
 export default function Page() {
   return (
@@ -11,6 +11,5 @@ export default function Page() {
       <Hero />
       <TextAnimation />
     </main>
-  )
+  );
 }
-
