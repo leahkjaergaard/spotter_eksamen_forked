@@ -2,10 +2,10 @@
 
 export default function HeaderIndex() {
   return (
-    <header className="w-full bg-white text-black px-6 py-4 fixed z-40">
+    <header className="w-full bg-white text-black px-6 py-4 fixed">
       <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] font-bold">
         {/* Venstre side */}
-        <nav className="flex gap-8">
+        <nav className="flex gap-8 z-50">
           <a href="#produkter" className="z-50">
             Produkter
           </a>
