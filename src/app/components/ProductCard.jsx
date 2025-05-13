@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { gsap } from "gsap";
+import Link from "next/link";
 
 export default function ProductCard({ product, openBasket }) {
   const cardRef = useRef();
@@ -26,7 +27,7 @@ export default function ProductCard({ product, openBasket }) {
     clone.style.pointerEvents = "none";
     clone.style.margin = 0;
     clone.style.transformOrigin = "top left";
-    clone.classList.add("bg-white", "rounded", "shadow"); // tilføj evt. styling
+    clone.classList.add("bg-white", "rounded", "shadow");
     document.body.appendChild(clone);
 
     gsap.to(clone, {
@@ -37,33 +38,42 @@ export default function ProductCard({ product, openBasket }) {
       ease: "power2.inOut",
       onComplete: () => {
         document.body.removeChild(clone);
-        openBasket?.(); // Åbn kurven efter animation
+        openBasket?.();
       },
     });
   };
 
   return (
-    <div ref={cardRef} className="relative border p-4 rounded shadow hover:shadow-lg transition-all bg-white">
-      {isSoldOut && <div className="absolute top-2 left-2 bg-red-800 text-white text-xs px-2 py-1 rounded">UDSOLGT</div>}
+    <div ref={cardRef} className="relative">
+      <Link href={`/product/${product.slug}`} className="block">
+        <div className="border p-4 rounded shadow hover:shadow-lg transition-all bg-white">
+          {isSoldOut && <div className="absolute top-2 left-2 bg-red-800 text-white text-xs px-2 py-1 rounded">UDSOLGT</div>}
 
-      {product.sale && <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded font-semibold">{typeof product.sale === "string" ? product.sale : "TILBUD"}</div>}
+          {product.sale && <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded font-semibold">{typeof product.sale === "string" ? product.sale : "TILBUD"}</div>}
 
-      <div className="flex justify-center items-center h-[200px] mb-4">
-        <Image src={product.image} alt={product.name} width={300} height={150} className="object-contain" />
-      </div>
+          <div className="flex justify-center items-center h-[200px] mb-4">
+            <Image src={product.image} alt={product.name} width={300} height={150} className="object-contain" />
+          </div>
 
-      <div className="text-center">
-        <h3 className="font-bold uppercase text-sm mb-1">{product.name}</h3>
-        <p className="text-xs text-gray-500 mb-1">{product.category}</p>
+          <div className="text-center">
+            <h3 className="font-bold uppercase text-sm mb-1">{product.name}</h3>
+            <p className="text-xs text-gray-500 mb-1">{product.category}</p>
+            {isSoldOut ? <p className="text-red-600 font-semibold">Ikke på lager</p> : <p className="text-base font-semibold">{product.price},–</p>}
+          </div>
+        </div>
+      </Link>
 
-        {isSoldOut ? <p className="text-red-600 font-semibold">Ikke på lager</p> : <p className="text-base font-semibold">{product.price},–</p>}
-
-        {!isSoldOut && (
-          <button className="mt-2 bg-black text-white px-4 py-1 text-sm rounded hover:bg-gray-800 transition-all" onClick={handleAddToCart}>
-            Læg i kurv
-          </button>
-        )}
-      </div>
+      {!isSoldOut && (
+        <button
+          className="absolute bottom-4 right-4 bg-black text-white px-4 py-1 text-sm rounded hover:bg-gray-800 transition-all z-10"
+          onClick={(e) => {
+            e.preventDefault();
+            handleAddToCart();
+          }}
+        >
+          Læg i kurv
+        </button>
+      )}
     </div>
   );
 }

@@ -5,19 +5,19 @@ import GetProducts from "../components/GetProducts";
 
 export default function ProductListPage() {
   const basketRef = useRef();
-  const [openBasketFn, setOpenBasketFn] = useState(null);
+  const [basketReady, setBasketReady] = useState(false);
 
   useEffect(() => {
-    // Når ref'en er tilgængelig, sæt openBasket-funktionen
-    if (basketRef.current) {
-      setOpenBasketFn(() => basketRef.current.openBasket);
-    }
-  }, [basketRef.current]);
+    const timer = setTimeout(() => {
+      setBasketReady(true);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
       <Basket ref={basketRef} />
-      {openBasketFn && <GetProducts openBasket={openBasketFn} />}
+      {basketReady && basketRef.current && <GetProducts openBasket={basketRef.current.openBasket} addToBasket={basketRef.current.addItem} />}
     </>
   );
 }
