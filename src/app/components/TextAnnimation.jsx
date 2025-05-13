@@ -69,9 +69,8 @@ export default function TextAnimation() {
 
   ScrollTrigger.create({
     trigger: imageRef.current,
-    start: "top-=90",
-    end: "bottom+=50 top",
-    markers: true, // du kan slå dette fra nu
+    start: "top-=140",
+    end: "bottom+=70 top",
     onEnter: () => gsap.set(bg, { opacity: 0 }),
     onLeave: () => gsap.set(bg, { opacity: 1 }),
     onEnterBack: () => gsap.set(bg, { opacity: 0 }),

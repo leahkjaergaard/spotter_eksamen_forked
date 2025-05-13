@@ -1,11 +1,11 @@
 import HeaderIndex from "./components/HeaderIndex";
 import TextToHeader from "./components/TextToHeader";
 import Hero from "./components/Hero";
-import ProduktGuide from "./componets/ProduktGuide";
-import RunningClub from "./componets/RunningClub";
+import ProduktGuide from "./components/ProduktGuide";
+import RunningClub from "./components/RunningClub";
 import TextAnimation from "./components/TextAnnimation";
-import SoMeCarousel from "./componets/SoMeCarrussel";
-import Footer from "./componets/Footer";
+import SoMeCarousel from "./components/SoMeCarrussel";
+import Footer from "./components/Footer";
 
 export default function Page() {
   return (
