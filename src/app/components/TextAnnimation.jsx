@@ -6,7 +6,8 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function TextAnimation() {
-  const imageRef = useRef(null); // ⬅️ ref til billedet
+  const imageRef = useRef(null);
+  const secondTextRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -31,7 +32,7 @@ export default function TextAnimation() {
       },
     });
 
-    // SplitType animation på tekst
+    // SplitType animation
     const splitTypes = document.querySelectorAll(".reveal-type");
 
     splitTypes.forEach((char) => {
@@ -41,49 +42,71 @@ export default function TextAnimation() {
         scrollTrigger: {
           trigger: char,
           start: "top 80%",
-          end: "top 20%",
+          end: "top-=250 top",
           scrub: true,
-          markers: false,
         },
         opacity: 0.2,
         stagger: 0.1,
       });
     });
+
+    // Fade-in tekst 2
+    gsap.from(secondTextRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: secondTextRef.current,
+        start: "top 70%",
+        end: "bottom",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+ if (typeof window !== "undefined" && window.spotterHeader) {
+  const bg = document.getElementById("header-bg");
+
+  ScrollTrigger.create({
+    trigger: imageRef.current,
+    start: "top-=90",
+    end: "bottom+=50 top",
+    markers: true, // du kan slå dette fra nu
+    onEnter: () => gsap.set(bg, { opacity: 0 }),
+    onLeave: () => gsap.set(bg, { opacity: 1 }),
+    onEnterBack: () => gsap.set(bg, { opacity: 0 }),
+    onLeaveBack: () => gsap.set(bg, { opacity: 1 }),
+  });
+}
   }, []);
 
   return (
-    <main>
-      <section className="relative h-[187vh]">
+    <section>
+      <section className="relative">
         {/* Sticky billede */}
-        <div className="sticky top-0 h-screen flex justify-center z-40">
+        <div className="sticky top-0 h-[97vh] flex justify-center z-10">
           <div
             ref={imageRef}
-            className="w-[80%] h-full bg-cover bg-center bg-no-repeat rounded-xl shadow-lg transform"
+            className="w-[80%] h-[85%] bg-cover bg-center bg-no-repeat rounded-xl transform"
             style={{
               backgroundImage: "url('https://picsum.photos/1000/600?grayscale&random=4')",
             }}
           />
         </div>
 
-        {/* Tekst der ruller ind over billedet */}
-        <div className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)] relative z-50 bg-white">
-          <p className="reveal-type text-[clamp(2rem,5vw,8rem)] text-black">
-            Hver gang du køber Spotter, er du med til at støtte psykiatrifondens arbejde for bedre mental sundhed.
+        {/* Tekst */}
+        <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative bg-white gap-10 pt-50 z-20">
+          <p className="reveal-type text-[clamp(2rem,5vw,8rem)] text-[#4D6A4E] leading-tight italic text-center font-bold">
+            Hver gang du køber Spotter, er du med til at støtte <span className="text-black">Psykiatrifonden.</span>
+          </p>
+          <p
+            ref={secondTextRef}
+            className="text-[clamp(1rem,3.2vw,6rem)] text-center"
+          >
+            Når du køber et produkt ved spotter, støtter du psykiatrifonden, Når du køber et produkt ved spotter, støtter du psykiatrifonden, Når du køber et produkt ved spotter, støtter du psykiatrifonden
           </p>
         </div>
       </section>
-
-      <section className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)] bg-yellow-400">
-        <p className="reveal-type text-[clamp(2rem,5vw,8rem)]">
-          Modern UI designers will expand their skillsets to include frontend.
-        </p>
-      </section>
-
-      <section className="h-screen grid place-content-center px-[clamp(4rem,12vw,20rem)] bg-neutral-900 text-white">
-        <p className="reveal-type text-[clamp(2rem,5vw,8rem)]">
-          The web isn't static anymore, interactivity and motion now dominate.
-        </p>
-      </section>
-    </main>
+    </section>
   );
 }

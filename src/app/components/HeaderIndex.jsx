@@ -1,23 +1,34 @@
 "use client";
-import Link from "next/link";
+import { useRef, useEffect } from "react";
 
 export default function HeaderIndex() {
-  return (
-    <header className="w-full bg-white text-black px-6 py-4 fixed z-40">
-      <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] font-bold">
-        {/* Venstre side */}
-        <nav className="flex gap-8">
-          <Link href="/productlist" className="z-50">
-            Produkter
-          </Link>
-          <a href="#omos" className="z-50">
-            Om os
-          </a>
-        </nav>
+  const headerRef = useRef(null);
 
-        {/* Højre side */}
-        <div className="z-50">LOGO</div>
-      </div>
-    </header>
+  useEffect(() => {
+    // Gør ref'en globalt tilgængelig, så du kan tilgå den i TextAnimation
+    if (typeof window !== "undefined") {
+      window.spotterHeader = headerRef.current;
+    }
+  }, []);
+
+  return (
+    <header
+  ref={headerRef}
+  className="w-full text-black px-6 py-4 fixed z-30"
+>
+  {/* BAGGRUND-overlay der bliver transparent */}
+  <div
+    id="header-bg"
+    className="absolute inset-0 bg-white z-[-1] transition-opacity duration-0"
+  />
+
+  <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] font-bold relative z-10">
+    <nav className="flex gap-8">
+      <a href="#produkter">Produkter</a>
+      <a href="#omos">Om os</a>
+    </nav>
+    <div>LOGO</div>
+  </div>
+</header>
   );
 }

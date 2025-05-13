@@ -59,7 +59,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="h-screen relative px-[clamp(4rem,12vw,20rem)] border-black flex items-center justify-center">
+    <section className="h-screen relative px-[clamp(4rem,12vw,20rem)] flex items-center justify-center">
       <div
         ref={containerRef}
         className="relative w-full max-w-[1600px] h-[600px]"
@@ -99,12 +99,6 @@ export default function Hero() {
           height={300}
           className="absolute top-0 left-87.5 z-0 object-cover collage-img"
         />
-       
-        
-        
-        
-        
-        
       </div>
     </section>
   );
