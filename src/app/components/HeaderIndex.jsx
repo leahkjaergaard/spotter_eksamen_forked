@@ -24,7 +24,7 @@ export default function HeaderIndex() {
 
   <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] font-bold relative z-10">
     <nav className="flex gap-8">
-      <a href="#produkter">Produkter</a>
+      <a href="/productlist">Produkter</a>
       <a href="#omos">Om os</a>
     </nav>
     <div>LOGO</div>
