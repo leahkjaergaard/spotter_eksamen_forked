@@ -5,6 +5,7 @@ import TextToHeader from "./componets/TextToHeader";
 import RunningClub from "./componets/RunningClub";
 import ProduktGuide from "./componets/ProduktGuide";
 import SoMeCarrussel from "./componets/SoMeCarrussel"
+import Footer from "./componets/Footer";
 
 export default function Page() {
   return (
@@ -19,7 +20,8 @@ export default function Page() {
       <div className="w-full">
         <SoMeCarrussel />
       </div>
-    </section>  
+      </section>
+      <Footer />
     </main>
   )
 }
