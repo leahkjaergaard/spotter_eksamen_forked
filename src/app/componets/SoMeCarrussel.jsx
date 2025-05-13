@@ -10,7 +10,7 @@ export default function SoMeCarousel() {
     { type: "image", src: "https://picsum.photos/300/400?grayscale&random=5" },
   ];
 
-  const duplicatedItems = [...items, ...items, ...items];
+  const duplicatedItems = [...items, ...items, ...items, ...items];
 
   return (
     <div className="overflow-hidden w-full pt-20 bg-white">

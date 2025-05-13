@@ -45,10 +45,10 @@ tl.from(titleRef.current, {
   }, []);
 
   return (
-    <section className="h-screen relative px-[clamp(4rem,12vw,20rem)] flex items-center">
-      <div ref={containerRef} className="flex w-full gap-8">
+    <section className="h-screen relative px-[clamp(4rem,10vw,20rem)] flex items-center">
+      <div ref={containerRef} className="flex flex-col lg:flex-row w-full gap-8 items-center">
         {/* Højre billeder + kort */}
-        <div className="w-[50%] relative p-8">
+        <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
             <Image
                 src={`https://picsum.photos/500/500?grayscale&random=1`}
                 alt={"Random1"}
@@ -67,14 +67,14 @@ tl.from(titleRef.current, {
             </h2>
         </div>
         {/* Venstre tekst */}
-        <div className="flex flex-col w-[50%] justify-evenly relative">
-            <h1 ref={titleRef} className="text-[clamp(1.5rem,4vw,2.5rem)] text-black font-bold tracking-tighter">
+        <div className="flex flex-col w-[99%] md:w-[74%] lg:w-[50%] relative">
+            <h1 ref={titleRef} className="text-[clamp(2rem,3.3vw,5rem)] text-black font-bold tracking-tighter pt-[6%] lg:pt-0">
               Hvorfor tager man kreatin?
             </h1>
 
           <p
             ref={descRef}
-            className="text-[clamp(0.2rem,4vw,1.2rem)]"
+            className="text-[clamp(0.2rem,4vw,1.2rem)] pt-[5%] pb-[5%] lg:pt-[10%] lg:pb-[10%]"
           >
             Hver tirsdag kl. 7:30 løber vi fra vores butik på Nørrebrogade 26.
             Alle niveauer er velkomne – uanset om du er nybegynder eller erfaren

@@ -45,22 +45,22 @@ tl.from(titleRef.current, {
   }, []);
 
   return (
-    <section className="h-screen relative px-[clamp(4rem,12vw,20rem)] flex items-center">
-      <div ref={containerRef} className="flex w-full gap-8">
+    <section className="relative px-[clamp(4rem,10vw,20rem)] items-center py-[clamp(4rem,10vw,20rem)]">
+      <div ref={containerRef} className="flex flex-col lg:flex-row w-full gap-8 items-center">
         {/* Venstre tekst */}
-        <div className="flex flex-col w-[50%] justify-evenly">
+        <div className="w-[99%] md:w-[74%] lg:w-[50%] flex flex-col order-2 lg:order-1">
           <div ref={titleRef}>
-            <h1 className="text-[clamp(1.5rem,4vw,2.5rem)] text-black font-bold tracking-tighter">
+            <h1 className="text-[clamp(2rem,3.3vw,5rem)] text-black font-bold tracking-tighter">
               Mangler du en løbeklub?
             </h1>
-            <h2 className="opacity-70 text-[clamp(0.2rem,4vw,1.5rem)]">
+            <h2 className="opacity-70 text-[clamp(1rem,2.3vw,1.5rem)]">
               Tirsdage kl. 7:30, Nørrebrogade 26
             </h2>
           </div>
 
           <p
             ref={descRef}
-            className="text-[clamp(0.2rem,4vw,1.2rem)]"
+            className="text-[clamp(0.2rem,4vw,1.2rem)] lg:text-[clamp(0.2rem,4vw,1.2rem)] pt-[5%] pb-[5%] lg:pt-[10%] lg:pb-[10%]"
           >
             Hver tirsdag kl. 7:30 løber vi fra vores butik på Nørrebrogade 26.
             Alle niveauer er velkomne – uanset om du er nybegynder eller erfaren
@@ -77,7 +77,7 @@ tl.from(titleRef.current, {
         </div>
 
         {/* Højre billeder + kort */}
-        <div className="w-[50%] grid grid-cols-2">
+        <div className="w-[99%] md:w-[74%] lg:w-[50%] grid grid-cols-2 order-1 lg:order-2">
           {[1, 2, 3].map((n, i) => (
             <Image
               key={n}
@@ -91,15 +91,15 @@ tl.from(titleRef.current, {
 
           <div
             ref={cardRef}
-            className="max-w-[287.28px] max-h-[287.28px] bg-[#4D6A4E] text-white flex flex-col justify-between font-sans"
+            className="aspect-square w-full bg-[#4D6A4E] text-white flex flex-col justify-between font-sans"
           >
-            <div className="text-right leading-tight text-[clamp(1rem,2.5vw,2rem)] font-extrabold uppercase pr-2">
+            <div className="text-right leading-tight text-[clamp(1.5rem,2vw,2rem)] md:text-[clamp(1.5rem,3vw,4rem)] lg:text-[clamp(1.5rem,2vw,2rem)] font-extrabold uppercase pr-[5%]">
               <p className="italic">Spotter</p>
               <p className="-mt-3 italic">Runner</p>
               <p className="-mt-3 italic">Club</p>
             </div>
 
-            <div className="text-left text-sm font-semibold flex pt-3 pr-3 pl-3 justify-between">
+            <div className="text-left text-[clamp(0.5rem,1.5vw,1rem)] md:text-[clamp(0.5rem,2vw,2rem)] lg:text-[clamp(0.5rem,1vw,1rem)] font-semibold flex pt-[3%] pr-[5%] pl-[5%] justify-between">
               <div>
                 <p>Tuesdays</p>
                 <p>7:15am</p>
@@ -107,11 +107,11 @@ tl.from(titleRef.current, {
               <p className="text-base italic font-semibold">@Spotter</p>
             </div>
 
-            <div className="pt-3">
-              <h2 className="text-[clamp(1.5rem,5vw,8rem)] font-extrabold leading-none italic">
+            <div className="pt-[1%]">
+              <h2 className="text-[clamp(3rem,10vw,15rem)] md:text-[clamp(2rem,7vw,10rem)] lg:text-[clamp(1.5rem,5vw,4.5rem)] font-extrabold leading-none italic">
                 RUN
               </h2>
-              <h2 className="text-[clamp(1.5rem,5vw,8rem)] font-extrabold leading-none italic -mt-4.5 text-right pr-2">
+              <h2 className="text-[clamp(3rem,10vw,15rem)] md:text-[clamp(2rem,7vw,10rem)] lg:text-[clamp(1.5rem,5vw,4.5rem)] font-extrabold leading-none italic -mt-[6%] text-right pr-[5%]">
                 CLUB
               </h2>
             </div>

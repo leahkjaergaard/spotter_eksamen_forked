@@ -67,13 +67,13 @@ export default function TextAnimation() {
   }, []);
 
   return (
-    <main>
-      <section className="relative h-[187vh]">
+    <section>
+      <section className="relative">
         {/* Sticky billede */}
-        <div className="sticky top-0 h-screen flex justify-center">
+        <div className="sticky top-0 h-[97vh] flex justify-center">
           <div
             ref={imageRef}
-            className="w-[80%] h-full bg-cover bg-center bg-no-repeat rounded-xl shadow-lg transform"
+            className="w-[80%] h-[85%] bg-cover bg-center bg-no-repeat rounded-xl transform"
             style={{
               backgroundImage: "url('https://picsum.photos/1000/600?grayscale&random=4')",
             }}
@@ -81,18 +81,18 @@ export default function TextAnimation() {
         </div>
 
         {/* Tekst der ruller ind over billedet */}
-        <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative z-30 bg-white gap-10 pt-60 pb-30">
+        <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative z-30 bg-white gap-10 pt-50">
           <p className="reveal-type text-[clamp(2rem,5vw,8rem)] text-[#4D6A4E] leading-tight italic text-center font-bold">
             Hver gang du køber Spotter, er du med til at støtte <span className="text-black">Psykiatrifonden.</span>
           </p>
           <p
             ref={secondTextRef}
-            className="text-[clamp(2rem,3vw,5rem)] text-center"
+            className="text-[clamp(1rem,3.2vw,6rem)] text-center"
           >
             Når du køber et produkt ved spotter, støtter du psykiatrifonden, Når du køber et produkt ved spotter, støtter du psykiatrifonden, Når du køber et produkt ved spotter, støtter du psykiatrifonden
           </p>
         </div>
       </section>
-    </main>
+    </section>
   );
 }
