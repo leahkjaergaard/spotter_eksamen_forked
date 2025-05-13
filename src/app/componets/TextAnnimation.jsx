@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function TextAnimation() {
   const imageRef = useRef(null);
-  const secondTextRef = useRef(null); // 👈 ref til den anden tekst
+  const secondTextRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +20,7 @@ export default function TextAnimation() {
     }
     requestAnimationFrame(raf);
 
-    // Skalering af billedet ved scroll
+    // Scroll-triggered skalering af billedet
     gsap.to(imageRef.current, {
       scale: 1.26,
       ease: "none",
@@ -32,7 +32,7 @@ export default function TextAnimation() {
       },
     });
 
-    // Reveal-type animation (SplitType)
+    // SplitType animation
     const splitTypes = document.querySelectorAll(".reveal-type");
 
     splitTypes.forEach((char) => {
@@ -44,14 +44,13 @@ export default function TextAnimation() {
           start: "top 80%",
           end: "top-=250 top",
           scrub: true,
-          markers: false,
         },
         opacity: 0.2,
         stagger: 0.1,
       });
     });
 
-    // Fade-ind animation på anden tekst
+    // Fade-in tekst 2
     gsap.from(secondTextRef.current, {
       opacity: 0,
       y: 50,
@@ -64,13 +63,28 @@ export default function TextAnimation() {
         toggleActions: "play reverse play reverse",
       },
     });
+
+ if (typeof window !== "undefined" && window.spotterHeader) {
+  const bg = document.getElementById("header-bg");
+
+  ScrollTrigger.create({
+    trigger: imageRef.current,
+    start: "top-=90",
+    end: "bottom+=50 top",
+    markers: true, // du kan slå dette fra nu
+    onEnter: () => gsap.set(bg, { opacity: 0 }),
+    onLeave: () => gsap.set(bg, { opacity: 1 }),
+    onEnterBack: () => gsap.set(bg, { opacity: 0 }),
+    onLeaveBack: () => gsap.set(bg, { opacity: 1 }),
+  });
+}
   }, []);
 
   return (
     <section>
       <section className="relative">
         {/* Sticky billede */}
-        <div className="sticky top-0 h-[97vh] flex justify-center">
+        <div className="sticky top-0 h-[97vh] flex justify-center z-10">
           <div
             ref={imageRef}
             className="w-[80%] h-[85%] bg-cover bg-center bg-no-repeat rounded-xl transform"
@@ -80,8 +94,8 @@ export default function TextAnimation() {
           />
         </div>
 
-        {/* Tekst der ruller ind over billedet */}
-        <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative z-30 bg-white gap-10 pt-50">
+        {/* Tekst */}
+        <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative bg-white gap-10 pt-50 z-20">
           <p className="reveal-type text-[clamp(2rem,5vw,8rem)] text-[#4D6A4E] leading-tight italic text-center font-bold">
             Hver gang du køber Spotter, er du med til at støtte <span className="text-black">Psykiatrifonden.</span>
           </p>
