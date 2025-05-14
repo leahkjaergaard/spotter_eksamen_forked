@@ -6,6 +6,7 @@ import RunningClub from "./components/RunningClub";
 import TextAnimation from "./components/TextAnnimation";
 import SoMeCarousel from "./components/SoMeCarrussel";
 import Footer from "./components/Footer";
+import ProductCard from "./components/ProductCard";
 
 export default function Page() {
   return (
@@ -17,9 +18,9 @@ export default function Page() {
       <RunningClub />
       <TextAnimation />
       <section className="min-h-screen flex items-center justify-center">
-      <div className="w-full">
-        <SoMeCarousel />
-      </div>
+        <div className="w-full">
+          <SoMeCarousel />
+        </div>
       </section>
       <Footer />
     </main>

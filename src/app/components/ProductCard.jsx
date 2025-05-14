@@ -44,7 +44,7 @@ export default function ProductCard({ product, openBasket }) {
   };
 
   return (
-    <div ref={cardRef} className="relative">
+    <div ref={cardRef} className="relative product-card">
       <Link href={`/product/${product.slug}`} className="block">
         <div className="border p-4 rounded shadow hover:shadow-lg transition-all bg-white">
           {isSoldOut && <div className="absolute top-2 left-2 bg-red-800 text-white text-xs px-2 py-1 rounded">UDSOLGT</div>}
