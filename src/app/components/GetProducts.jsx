@@ -24,7 +24,6 @@ export default function GetProducts({ openBasket }) {
     fetchData();
   }, []);
 
-  // 🔁 Scroll animation
   useEffect(() => {
     const cards = gsap.utils.toArray(".product-card");
     cards.forEach((card) => {
