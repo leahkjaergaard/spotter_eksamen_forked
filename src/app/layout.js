@@ -4,7 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import { BasketProvider } from "./components/BasketProvider";
 
-const dmSans = DM_Sans({
+const DMSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-dm-sans",

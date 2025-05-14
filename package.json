@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^14.2.15",
     "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.49.4",
     "gsap": "^3.13.0",
