@@ -47,16 +47,13 @@ export default function BurgerMenu() {
 
   return (
     <>
-      {/* Burger button */}
-      <button onClick={() => setIsOpen(true)} className="fixed top-6 right-6 z-[999]">
+      <button onClick={() => setIsOpen(true)} className="fixed top-6 right-6 z-[999] md:hidden">
         <div className="w-8 h-[2px] bg-black mb-2"></div>
         <div className="w-8 h-[2px] bg-black mb-2"></div>
         <div className="w-8 h-[2px] bg-black"></div>
       </button>
 
-      {/* Overlay menu */}
-      <div ref={menuRef} className="fixed top-0 right-0 w-full h-screen bg-black text-white z-[9999] px-12 pt-32 opacity-0 pointer-events-none" style={{ transform: "translateX(100%)" }}>
-        {/* Luk-knap */}
+      <div ref={menuRef} className="fixed top-0 right-0 w-full h-screen bg-black text-white z-[9999] px-12 pt-32 opacity-0 pointer-events-none md:hidden" style={{ transform: "translateX(100%)" }}>
         <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-white text-sm uppercase tracking-widest">
           Luk
         </button>

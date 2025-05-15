@@ -1,22 +1,21 @@
 "use client";
 import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
+import { FiShoppingCart } from "react-icons/fi";
 
 const Basket = forwardRef(function Basket(_, ref) {
   const basketRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState([]);
 
-  // Gør openBasket og addItem tilgængelig udefra
   useImperativeHandle(ref, () => ({
     openBasket: () => setIsOpen(true),
     addItem: (item) => {
       setItems((prev) => [...prev, item]);
-      animateCartButton(); // trigger bounce
+      animateCartButton();
     },
   }));
 
-  // Åbn/luk animation
   useEffect(() => {
     if (basketRef.current) {
       gsap.to(basketRef.current, {
@@ -27,7 +26,6 @@ const Basket = forwardRef(function Basket(_, ref) {
     }
   }, [isOpen]);
 
-  // GSAP bounce animation af kurv-knap
   const animateCartButton = () => {
     const cartButton = document.getElementById("cart-button");
     if (cartButton) {
@@ -37,8 +35,11 @@ const Basket = forwardRef(function Basket(_, ref) {
 
   return (
     <>
-      <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="fixed top-6 right-6 z-50 bg-black text-white px-4 py-2 rounded">
-        🛒 Kurv ({items.length})
+      <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="fixed top-6 right-6 z-50 text-black">
+        <div className="relative text-3xl">
+          <FiShoppingCart />
+          {items.length > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{items.length}</span>}
+        </div>
       </button>
 
       <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-40 translate-x-[400px]">
@@ -49,7 +50,7 @@ const Basket = forwardRef(function Basket(_, ref) {
           <ul className="space-y-2">
             {items.map((item, i) => (
               <li key={i} className="text-sm">
-                🧃 {item.name} – {item.price},–
+                {item.name} – {item.price},–
               </li>
             ))}
           </ul>
