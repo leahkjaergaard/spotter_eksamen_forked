@@ -58,7 +58,7 @@ export default function RunningClub() {
         {/* Venstre tekst */}
         <div className="w-[99%] md:w-[74%] lg:w-[50%] flex flex-col order-2 lg:order-1">
           <div ref={titleRef}>
-            <h1 className="text-[clamp(2rem,3.3vw,5rem)] text-black font-bold tracking-tighter">Mangler du en løbeklub?</h1>
+            <h1 className="text-[clamp(2rem,3.2vw,5rem)] text-black font-bold tracking-tighter">Mangler du en løbeklub?</h1>
             <h2 className="opacity-70 text-[clamp(1rem,2.3vw,1.5rem)]">Tirsdage kl. 7:30, Nørrebrogade 26</h2>
           </div>
 

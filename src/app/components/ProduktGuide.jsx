@@ -68,7 +68,7 @@ tl.from(titleRef.current, {
         </div>
         {/* Venstre tekst */}
         <div className="flex flex-col w-[99%] md:w-[74%] lg:w-[50%] relative">
-            <h1 ref={titleRef} className="text-[clamp(2rem,3.3vw,5rem)] text-black font-bold tracking-tighter pt-[6%] lg:pt-0">
+            <h1 ref={titleRef} className="text-[clamp(2rem,3.2vw,4rem)] text-black font-bold tracking-tighter pt-[6%] lg:pt-0">
               Hvorfor tager man kreatin?
             </h1>
 

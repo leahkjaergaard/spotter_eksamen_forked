@@ -1,5 +1,6 @@
 "use client";
 
+import "../../app/globals.css";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -54,7 +55,7 @@ export default function TextToHeader() {
   return (
     <h1
       ref={h1Ref}
-      className="sticky top-0 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-50 opacity-0"
+      className="sticky top-0 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-50 opacity-0 italic tracking-[-0.08em]"
     >
       Spotter.
     </h1>
