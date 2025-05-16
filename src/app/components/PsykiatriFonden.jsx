@@ -1,26 +1,69 @@
 "use client";
+import { useEffect } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PsykiatriFonden() {
+  useEffect(() => {
+    const sections = gsap.utils.toArray(".psy-section");
+    sections.forEach((section) => {
+      gsap.fromTo(
+        section,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 92%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+  }, []);
+
   return (
-    <section className="w-full">
-      {/* Hero-billede med overlay tekst */}
-      <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
-        <Image
-          src="/psykiatrifonden-hero.jpg" // Du skal lægge dette billede i din public-mappe
-          alt="Psykiatrifonden hero"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <h1 className="text-white text-4xl md:text-6xl font-bold tracking-wide">Psykiatrifonden</h1>
+    <section className="bg-[#f9f6f0] text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 psy-section">
+        <div>
+          <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={800} height={600} className="w-full h-auto object-cover" />
+        </div>
+        <div>
+          <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
+          <h1 className="text-4xl font-bold mb-6">Spotter x Psykiatrifonden</h1>
+          <p className="text-base leading-relaxed mb-6">Psykiatrifonden arbejder for et samfund, hvor alle har mulighed for et godt liv uanset psykisk sygdom. De tilbyder rådgivning, oplysning og undervisning for at nedbryde fordomme og skabe bedre forståelse for mental sundhed.</p>
+          <button className="border border-black px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
         </div>
       </div>
 
-      {/* Indhold */}
-      <div className="max-w-4xl mx-auto py-16 px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6">Vi støtter mental sundhed</h2>
-        <p className="text-lg leading-8 text-gray-700">Psykiatrifonden arbejder for at udbrede viden om mental sundhed og nedbryde tabuer om psykisk sygdom. Med oplysning, rådgivning og støtte hjælper de tusindvis af danskere hvert år. Vi samarbejder med Psykiatrifonden for at gøre en forskel i hverdagen.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 psy-section">
+        <div className="order-2 md:order-1">
+          <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
+          <h1 className="text-4xl font-semibold mb-4">Workshops & Oplysning</h1>
+          <p className="text-base leading-relaxed mb-6">Gennem undervisning og oplysningskampagner arbejder Psykiatrifonden på at udbrede viden om psykisk sundhed, så vi sammen kan skabe en mere inkluderende fremtid.</p>
+          <button className="border border-black px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
+        </div>
+        <div className="order-1 md:order-2">
+          <Image src="https://picsum.photos/800/600?random=2" alt="Workshop billede" width={800} height={600} className="w-full h-auto object-cover" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center psy-section">
+        <div>
+          <Image src="https://picsum.photos/800/600?random=4" alt="Mentalt helbred billede" width={800} height={600} className="w-full h-auto object-cover" />
+        </div>
+        <div>
+          <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
+          <h1 className="text-4xl font-semibold mb-4">Støt arbejdet</h1>
+          <p className="text-base leading-relaxed mb-6">Vil du støtte Psykiatrifondens arbejde for bedre mental trivsel i Danmark? Din støtte går direkte til rådgivning, kampagner og undervisning.</p>
+          <button className="border border-black px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
+        </div>
       </div>
     </section>
   );
