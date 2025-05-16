@@ -9,7 +9,7 @@ export default function Header() {
         <Link href="/productlist" className="hover:underline">
           Produkter
         </Link>
-        <Link href="/om-os" className="hover:underline">
+        <Link href="/omos" className="hover:underline">
           Om os
         </Link>
         <Link href="/psykiatrifonden" className="hover:underline">
