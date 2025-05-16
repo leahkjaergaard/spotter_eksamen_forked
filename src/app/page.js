@@ -13,7 +13,6 @@ export default function Page() {
       <HeaderIndex />
       <TextToHeader />
       <Hero />
-      <ProductCard />
       <ProduktGuide />
       <RunningClub />
       <TextAnimation />

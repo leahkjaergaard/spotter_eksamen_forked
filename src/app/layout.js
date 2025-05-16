@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="da" className={`${dmSans.variable} ${roboto.variable}`}>
+    <html lang="da" className={`${dmSans.variable}`}>
       <head>
         <Script src="https://unpkg.com/split-type" strategy="beforeInteractive" />
       </head>
