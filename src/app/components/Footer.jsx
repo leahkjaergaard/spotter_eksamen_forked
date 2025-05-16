@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="mt-12">
       <div className="overflow-hidden">
-        <h1 className="text-[clamp(2rem,21vw,20rem)] font-bold text-center leading-none">SPOTTER</h1>
+        <h1 className="text-[clamp(2rem,21vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em]">Spotter</h1>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-12 px-6 max-w-[1200px] mx-auto text-sm">

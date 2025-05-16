@@ -16,10 +16,12 @@ export default function HeaderIndex() {
       {/* BAGGRUND-overlay der bliver transparent */}
       <div id="header-bg" className="absolute inset-0 bg-white z-[-1] transition-opacity duration-0" />
 
-      <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] font-bold relative z-10">
-        <nav className="flex gap-8">
+      <div className="mx-auto flex justify-between items-center text-[clamp(1rem,4vw,1.5rem)] relative z-10">
+        <nav className="flex gap-8 text-lg">
           <a href="/productlist">Produkter</a>
-          <a href="#omos">Om os</a>
+          <a href="omos">Om os</a>
+          <a href="psykiatrifonden">Psykiatrifonden</a>
+          <a href="contact">Kontakt</a>
         </nav>
       </div>
     </header>

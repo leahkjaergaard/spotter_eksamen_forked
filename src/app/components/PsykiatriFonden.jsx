@@ -29,7 +29,7 @@ export default function PsykiatriFonden() {
   }, []);
 
   return (
-    <section className="bg-[#f9f6f0] text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16">
+    <section className="bg-white text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 psy-section">
         <div>
           <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={800} height={600} className="w-full h-auto object-cover" />
