@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="w-full py-6 px-6 flex justify-between items-center text-black font-medium text-lg">
+    <header className="hidden md:flex w-full py-6 px-6 justify-between items-center text-black font-medium text-lg">
       {/* Venstre links */}
       <div className="flex gap-6">
         <Link href="/productlist" className="hover:underline">

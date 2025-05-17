@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
+import { PiShoppingCartSimple } from "react-icons/pi";
 
 export default function ProductCard({ product, openBasket }) {
   const cardRef = useRef();
@@ -18,62 +19,84 @@ export default function ProductCard({ product, openBasket }) {
     const originalRect = originalCard.getBoundingClientRect();
     const targetRect = cartButton.getBoundingClientRect();
 
+    // Fjern direkte styling
     clone.style.position = "fixed";
-    clone.style.top = `${originalRect.top}px`;
-    clone.style.left = `${originalRect.left}px`;
-    clone.style.width = `${originalRect.width}px`;
-    clone.style.height = `${originalRect.height}px`;
+    clone.style.top = 0;
+    clone.style.left = 0;
+    clone.style.margin = 0;
     clone.style.zIndex = 1000;
     clone.style.pointerEvents = "none";
-    clone.style.margin = 0;
-    clone.style.transformOrigin = "top left";
-    clone.classList.add("bg-white", "rounded", "shadow");
+    clone.style.transformOrigin = "center center";
     document.body.appendChild(clone);
 
-    gsap.to(clone, {
-      top: targetRect.top,
-      left: targetRect.left,
-      scale: 0.1,
-      duration: 0.8,
-      ease: "power2.inOut",
-      onComplete: () => {
-        document.body.removeChild(clone);
-        openBasket?.();
-      },
+    const dx = targetRect.left + targetRect.width / 2 - (originalRect.left + originalRect.width / 2);
+    const dy = targetRect.top + targetRect.height / 2 - (originalRect.top + originalRect.height / 2);
+
+    // Sæt startposition
+    gsap.set(clone, {
+      x: originalRect.left,
+      y: originalRect.top,
+      scale: 1,
+      width: originalRect.width,
+      height: originalRect.height,
     });
+
+    // Animation
+    gsap
+      .timeline({
+        onComplete: () => {
+          document.body.removeChild(clone);
+          openBasket?.();
+        },
+      })
+      .to(clone, {
+        duration: 0.8,
+        x: `+=${dx}`,
+        y: `+=${dy}`,
+        scale: 0.1,
+        ease: "power2.inOut",
+      })
+      .to(clone, {
+        duration: 0.3,
+        scale: 0,
+        opacity: 0,
+        ease: "back.in(1.4)",
+      });
   };
 
   return (
-    <div ref={cardRef} className="relative product-card">
-      <Link href={`/product/${product.slug}`} className="block">
-        <div className="border p-4 rounded shadow hover:shadow-lg transition-all bg-white">
-          {isSoldOut && <div className="absolute top-2 left-2 bg-red-800 text-white text-xs px-2 py-1 rounded">UDSOLGT</div>}
-
-          {product.sale && <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded font-semibold">{typeof product.sale === "string" ? product.sale : "TILBUD"}</div>}
-
-          <div className="flex justify-center items-center h-[200px] mb-4">
-            <Image src={product.image} alt={product.name} width={300} height={150} className="object-contain" />
+    <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-white flex flex-col justify-between w-full max-w-[px] mx-auto">
+      <Link href={`/product/${product.slug}`}>
+        <div className="mb-4">
+          <div className="w-full h-[400px] relative mb-4 overflow-hidden rounded">
+            <Image src={product.image} alt={product.name} fill className="object-cover" />
           </div>
+        </div>
 
-          <div className="text-center">
-            <h3 className="font-bold uppercase text-sm mb-1">{product.name}</h3>
-            <p className="text-xs text-gray-500 mb-1">{product.category}</p>
-            {isSoldOut ? <p className="text-red-600 font-semibold">Ikke på lager</p> : <p className="text-base font-semibold">{product.price},–</p>}
-          </div>
+        <div className="text-left">
+          <h3 className="font-bold uppercase text-base mb-1">{product.name}</h3>
+          <p className="text-xs text-gray-500 mb-1">{product.category}</p>
+          {isSoldOut ? <p className="text-red-600 font-semibold">Ikke på lager</p> : <p className="text-base font-semibold">{product.price},–</p>}
         </div>
       </Link>
 
-      {!isSoldOut && (
-        <button
-          className="absolute bottom-4 right-4 bg-black text-white px-4 py-1 text-sm rounded hover:bg-gray-800 transition-all z-10"
-          onClick={(e) => {
-            e.preventDefault();
-            handleAddToCart();
-          }}
-        >
-          Læg i kurv
-        </button>
-      )}
+      <div className="flex justify-between items-center mt-4">
+        {!isSoldOut && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToCart();
+            }}
+            className="text-xl text-black hover:text-gray-700"
+            aria-label="Læg i kurv"
+          >
+            <PiShoppingCartSimple />
+          </button>
+        )}
+        <Link href={`/product/${product.slug}`} className="text-sm border-b-2 border-black hover:opacity-70">
+          Læs mere
+        </Link>
+      </div>
     </div>
   );
 }
