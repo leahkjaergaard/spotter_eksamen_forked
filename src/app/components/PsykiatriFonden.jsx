@@ -30,15 +30,17 @@ export default function PsykiatriFonden() {
 
   return (
     <section className="bg-[#f9f6f0] text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16">
+      <h1 className="text-9xl font-bold mb-6">Psykiatrifonden</h1>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 psy-section">
         <div>
           <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={800} height={600} className="w-full h-auto object-cover" />
         </div>
         <div>
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
-          <h1 className="text-4xl font-bold mb-6">Spotter x Psykiatrifonden</h1>
+          <h1 className="text-4xl font-bold mb-6">Psykiatrifondens arbejde</h1>
           <p className="text-base leading-relaxed mb-6">Psykiatrifonden arbejder for et samfund, hvor alle har mulighed for et godt liv uanset psykisk sygdom. De tilbyder rådgivning, oplysning og undervisning for at nedbryde fordomme og skabe bedre forståelse for mental sundhed.</p>
-          <button className="border border-black px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
+          <button className="border border-pink-700 px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
         </div>
       </div>
 
