@@ -40,7 +40,7 @@ export default function PsykiatriFonden() {
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
           <h1 className="text-4xl font-bold mb-6">Psykiatrifondens arbejde</h1>
           <p className="text-base leading-relaxed mb-6">Psykiatrifonden arbejder for et samfund, hvor alle har mulighed for et godt liv uanset psykisk sygdom. De tilbyder rådgivning, oplysning og undervisning for at nedbryde fordomme og skabe bedre forståelse for mental sundhed.</p>
-          <button className="border border-pink-700 px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
+          <button className="border bg-black text-white px-6 py-2 text-sm tracking-wider hover:bg-white hover:text-black transition rounded-xl w-32">LÆS MERE</button>
         </div>
       </div>
 
@@ -49,7 +49,7 @@ export default function PsykiatriFonden() {
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
           <h1 className="text-4xl font-semibold mb-4">Workshops & Oplysning</h1>
           <p className="text-base leading-relaxed mb-6">Gennem undervisning og oplysningskampagner arbejder Psykiatrifonden på at udbrede viden om psykisk sundhed, så vi sammen kan skabe en mere inkluderende fremtid.</p>
-          <button className="border border-black px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
+          <button className="border bg-black text-white px-6 py-2 text-sm tracking-wider hover:bg-white hover:text-black transition rounded-xl w-32">LÆS MERE</button>
         </div>
         <div className="order-1 md:order-2">
           <Image src="https://picsum.photos/800/600?random=2" alt="Workshop billede" width={800} height={600} className="w-full h-auto object-cover" />
@@ -64,7 +64,7 @@ export default function PsykiatriFonden() {
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">PSYKIATRIFONDEN</h2>
           <h1 className="text-4xl font-semibold mb-4">Støt arbejdet</h1>
           <p className="text-base leading-relaxed mb-6">Vil du støtte Psykiatrifondens arbejde for bedre mental trivsel i Danmark? Din støtte går direkte til rådgivning, kampagner og undervisning.</p>
-          <button className="border border-black px-6 py-2 text-sm tracking-wider hover:bg-black hover:text-white transition rounded-xl w-32">LÆS MERE</button>
+          <button className="border bg-black text-white px-6 py-2 text-sm tracking-wider hover:bg-white hover:text-black transition rounded-xl w-32">LÆS MERE</button>
         </div>
       </div>
     </section>
