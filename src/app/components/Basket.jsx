@@ -44,6 +44,7 @@ const Basket = forwardRef(function Basket(_, ref) {
 
   return (
     <>
+      {/* Kurv ikon */}
       <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="fixed top-6 right-6 z-50 text-black">
         <div className="relative text-3xl">
           <FiShoppingCart />
@@ -51,8 +52,15 @@ const Basket = forwardRef(function Basket(_, ref) {
         </div>
       </button>
 
-      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-40 translate-x-[400px]">
-        <h2 className="text-xl font-bold mb-4">Din kurv</h2>
+      {/* Selve kurven */}
+      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-40 translate-x-[400px] overflow-y-auto">
+        {/* Luk knap */}
+        <button onClick={() => setIsOpen(false)} className="absolute top-2 left-4 text-gray-500 hover:text-black text-sm">
+          Luk ✕
+        </button>
+
+        <h2 className="text-xl font-bold mb-6">Din kurv</h2>
+
         {items.length === 0 ? (
           <p className="text-sm text-gray-500">Kurven er tom.</p>
         ) : (
