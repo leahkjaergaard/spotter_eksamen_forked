@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import { PiShoppingCartSimple } from "react-icons/pi";
 
-export default function ProductCard({ product, openBasket }) {
+export default function ProductCard({ product, openBasket, addToBasket }) {
   const cardRef = useRef();
   const isSoldOut = product.sold_out === true;
 
@@ -19,53 +19,34 @@ export default function ProductCard({ product, openBasket }) {
     const originalRect = originalCard.getBoundingClientRect();
     const targetRect = cartButton.getBoundingClientRect();
 
-    // Fjern direkte styling
     clone.style.position = "fixed";
-    clone.style.top = 0;
-    clone.style.left = 0;
-    clone.style.margin = 0;
+    clone.style.top = `${originalRect.top}px`;
+    clone.style.left = `${originalRect.left}px`;
+    clone.style.width = `${originalRect.width}px`;
+    clone.style.height = `${originalRect.height}px`;
     clone.style.zIndex = 1000;
     clone.style.pointerEvents = "none";
-    clone.style.transformOrigin = "center center";
+    clone.style.margin = 0;
+    clone.style.transformOrigin = "top left";
+    clone.classList.add("bg-white", "rounded", "shadow");
     document.body.appendChild(clone);
 
-    const dx = targetRect.left + targetRect.width / 2 - (originalRect.left + originalRect.width / 2);
-    const dy = targetRect.top + targetRect.height / 2 - (originalRect.top + originalRect.height / 2);
-
-    // Sæt startposition
-    gsap.set(clone, {
-      x: originalRect.left,
-      y: originalRect.top,
-      scale: 1,
-      width: originalRect.width,
-      height: originalRect.height,
+    gsap.to(clone, {
+      top: targetRect.top,
+      left: targetRect.left,
+      scale: 0.1,
+      duration: 0.8,
+      ease: "power2.inOut",
+      onComplete: () => {
+        document.body.removeChild(clone);
+        openBasket?.();
+        addToBasket?.(product); // 🔥 Her opdateres kurven
+      },
     });
-
-    // Animation
-    gsap
-      .timeline({
-        onComplete: () => {
-          document.body.removeChild(clone);
-          openBasket?.();
-        },
-      })
-      .to(clone, {
-        duration: 0.8,
-        x: `+=${dx}`,
-        y: `+=${dy}`,
-        scale: 0.1,
-        ease: "power2.inOut",
-      })
-      .to(clone, {
-        duration: 0.3,
-        scale: 0,
-        opacity: 0,
-        ease: "back.in(1.4)",
-      });
   };
 
   return (
-    <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-white flex flex-col justify-between w-full max-w-[px] mx-auto">
+    <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-white flex flex-col justify-between w-full max-w-[500px] mx-auto">
       <Link href={`/product/${product.slug}`}>
         <div className="mb-4">
           <div className="w-full h-[400px] relative mb-4 overflow-hidden rounded">

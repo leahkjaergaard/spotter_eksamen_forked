@@ -11,7 +11,13 @@ const Basket = forwardRef(function Basket(_, ref) {
   useImperativeHandle(ref, () => ({
     openBasket: () => setIsOpen(true),
     addItem: (item) => {
-      setItems((prev) => [...prev, item]);
+      setItems((prevItems) => {
+        const existing = prevItems.find((p) => p.id === item.id);
+        if (existing) {
+          return prevItems.map((p) => (p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p));
+        }
+        return [...prevItems, { ...item, quantity: 1 }];
+      });
       animateCartButton();
     },
   }));
@@ -33,12 +39,15 @@ const Basket = forwardRef(function Basket(_, ref) {
     }
   };
 
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = items.reduce((acc, item) => acc + item.quantity * item.price, 0);
+
   return (
     <>
       <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="fixed top-6 right-6 z-50 text-black">
         <div className="relative text-3xl">
           <FiShoppingCart />
-          {items.length > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{items.length}</span>}
+          {totalItems > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{totalItems}</span>}
         </div>
       </button>
 
@@ -47,13 +56,19 @@ const Basket = forwardRef(function Basket(_, ref) {
         {items.length === 0 ? (
           <p className="text-sm text-gray-500">Kurven er tom.</p>
         ) : (
-          <ul className="space-y-2">
-            {items.map((item, i) => (
-              <li key={i} className="text-sm">
-                {item.name} – {item.price},–
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className="space-y-2">
+              {items.map((item) => (
+                <li key={item.id} className="text-sm flex justify-between">
+                  <span>
+                    {item.name} × {item.quantity}
+                  </span>
+                  <span>{item.price * item.quantity},–</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 font-semibold text-right">Total: {totalPrice},–</div>
+          </>
         )}
       </div>
     </>
