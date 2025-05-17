@@ -50,11 +50,18 @@ export default function GetProducts({ openBasket }) {
 
   return (
     <section className="px-6 py-8">
-      <h2 className="text-9xl font-black mb-6">Produkter</h2>
-      <div className="flex gap-8">
-        <ProductFilter categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+      <h2 className="text-9xl font-black mb-6 mt-20">Produkter</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6">{filteredProducts.length === 0 ? <p>Ingen produkter fundet.</p> : filteredProducts.map((product) => <ProductCard key={product.id} product={product} openBasket={openBasket} />)}</div>
+      <div className="flex gap-8 mt-10">
+        {/* Sidebar */}
+        <div className="w-52 shrink-0">
+          <ProductFilter categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+        </div>
+
+        {/* Produkter */}
+        <div className="flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">{filteredProducts.length === 0 ? <p>Ingen produkter fundet.</p> : filteredProducts.map((product) => <ProductCard key={product.id} product={product} openBasket={openBasket} />)}</div>
+        </div>
       </div>
     </section>
   );
