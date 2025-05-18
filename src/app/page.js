@@ -23,7 +23,6 @@ export default function Page() {
           <SoMeCarousel />
         </div>
       </section>
-      <Footer />
     </main>
   );
 }

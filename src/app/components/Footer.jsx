@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="pt-10">
       <div className="overflow-hidden">
-        <h1 className="text-[clamp(2rem,21vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em]">Spotter</h1>
+        <h1 className="text-[clamp(2rem,30.5vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em] -ml-[8.5%]">Spotter</h1>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-12 px-[clamp(4rem,10vw,20rem)] text-sm pt-20">
