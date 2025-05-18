@@ -5,15 +5,6 @@
   --foreground: #171717;
 }
 
-@keyframes scroll-loop {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
