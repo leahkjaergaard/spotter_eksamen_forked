@@ -6,14 +6,15 @@ import RunningClub from "./components/RunningClub";
 import TextAnimation from "./components/TextAnnimation";
 import SoMeCarousel from "./components/SoMeCarrussel";
 import Footer from "./components/Footer";
+import StickyMascot from "./components/StickyMascot";
 
 export default function Page() {
   return (
     <main>
       <HeaderIndex />
       <TextToHeader />
+      <StickyMascot />
       <Hero />
-      <ProductCard />
       <ProduktGuide />
       <RunningClub />
       <TextAnimation />
