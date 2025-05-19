@@ -47,13 +47,13 @@ export default function BurgerMenu() {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)} className="fixed top-6 right-6 z-[999] md:hidden">
+      <button onClick={() => setIsOpen(true)} className="z-[98] lg:hidden">
         <div className="w-8 h-[2px] bg-black mb-2"></div>
         <div className="w-8 h-[2px] bg-black mb-2"></div>
         <div className="w-8 h-[2px] bg-black"></div>
       </button>
 
-      <div ref={menuRef} className="fixed top-0 right-0 w-full h-screen bg-black text-white z-[9999] px-12 pt-32 opacity-0 pointer-events-none md:hidden" style={{ transform: "translateX(100%)" }}>
+      <div ref={menuRef} className="fixed top-0 right-0 w-full h-screen bg-black text-white z-[1000] px-12 pt-32 opacity-0 pointer-events-none lg:hidden" style={{ transform: "translateX(100%)" }}>
         <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 text-white text-sm uppercase tracking-widest">
           Luk
         </button>

@@ -44,18 +44,10 @@ const Basket = forwardRef(function Basket(_, ref) {
 
   return (
     <>
-      {/* Kurv ikon */}
-      <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="fixed top-6 right-6 z-50 text-black">
-        <div className="relative text-3xl">
-          <FiShoppingCart />
-          {totalItems > 0 && <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{totalItems}</span>}
-        </div>
-      </button>
-
       {/* Selve kurven */}
-      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-40 translate-x-[400px] overflow-y-auto">
+      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-50 translate-x-[400px] overflow-y-auto">
         {/* Luk knap */}
-        <button onClick={() => setIsOpen(false)} className="absolute top-2 left-4 text-gray-500 hover:text-black text-sm">
+        <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-black text-sm">
           Luk ✕
         </button>
 
@@ -79,6 +71,14 @@ const Basket = forwardRef(function Basket(_, ref) {
           </>
         )}
       </div>
+
+      {/* Kurv ikon */}
+      <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="z-50 text-black">
+        <div className="relative text-3xl">
+          <FiShoppingCart />
+          {totalItems > 0 && <span className="bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{totalItems}</span>}
+        </div>
+      </button>
     </>
   );
 });
