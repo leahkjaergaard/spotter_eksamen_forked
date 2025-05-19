@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import { BasketProvider } from "./components/BasketProvider";
 import { DM_Sans, Roboto } from "next/font/google";
+import Footer from "./components/Footer";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <BasketProvider>{children}</BasketProvider>
+        <Footer />
       </body>
     </html>
   );
