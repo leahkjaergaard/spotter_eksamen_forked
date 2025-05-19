@@ -31,35 +31,51 @@ export default function ProductSlugPage() {
   if (!product) return <p className="p-6">Produkt ikke fundet.</p>;
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-16">
       <div>
-        <Image src={product.image} alt={product.name} width={800} height={800} className="w-full object-contain rounded" />
+        <Image src={product.image} alt={product.name} width={800} height={800} className="w-full h-auto object-cover rounded" />
+        <div className="mt-4 flex gap-4">
+          <Image src={product.image} alt="thumb" width={100} height={100} className="object-cover rounded cursor-pointer border" />
+          <Image src={product.image} alt="thumb" width={100} height={100} className="object-cover rounded cursor-pointer border" />
+        </div>
       </div>
 
-      <div>
+      <div className="flex flex-col justify-start">
         <Breadcrumbs product={product} />
-
         <h1 className="text-4xl font-bold mb-2">{product.name}</h1>
-        <p className="text-gray-500 text-sm mb-4">{product.category}</p>
+        <p className="text-sm text-gray-500 mb-6">{product.category}</p>
 
-        <p className="text-2xl font-semibold mb-4">{product.price},–</p>
+        <p className="text-lg text-gray-700 mb-6 leading-relaxed">Proteinbar med peanut og banan. Den nyeste bar på markedet, som allerede har solgt mange eksemplarer.</p>
 
-        <div className="mb-4">
-          <label htmlFor="variant" className="block text-sm font-medium mb-1">
+        <hr className="mb-6" />
+
+        <div className="mb-6">
+          <label htmlFor="variant" className="block text-sm font-medium mb-2 text-gray-700">
             Vælg variant:
           </label>
-          <select id="variant" value={selectedVariant} onChange={(e) => setSelectedVariant(e.target.value)} className="border px-3 py-2 rounded w-full">
+          <select id="variant" value={selectedVariant} onChange={(e) => setSelectedVariant(e.target.value)} className="border border-gray-300 px-4 py-2 rounded w-full">
             <option>Jordbær 1</option>
             <option>Jordbær 2</option>
             <option>Jordbær 3</option>
           </select>
         </div>
 
-        {product.sold_out ? <p className="text-red-600 font-bold">Ikke på lager</p> : <button className="bg-black text-white px-6 py-3 rounded text-sm hover:bg-gray-800 transition-all">Læg i kurv</button>}
+        <div className="mb-4">
+          <p className="text-3xl font-semibold mb-2">{product.price},–</p>
+          {product.sold_out ? (
+            <p className="text-red-600 font-semibold">Ikke på lager</p>
+          ) : (
+            <>
+              <button className="w-full bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition mb-3">Læg i kurv</button>{" "}
+            </>
+          )}
+        </div>
 
-        <div className="mt-10">
-          <h3 className="text-lg font-semibold mb-2">Produktinfo</h3>
-          <p className="text-sm text-gray-600 leading-relaxed">Dette er en placeholder beskrivelse. Du kan tilføje et "description"-felt i Supabase og erstatte denne tekst.</p>
+        <hr className="my-6" />
+
+        <div>
+          <h3 className="text-md font-semibold mb-2">Spotters råd til dig</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">Det er vigtigt for os at nævne, at en proteinbar ikke skal erstatte anden form for kost, men skal stå som et suplement til en sund og nærende kost. Hvis du er det mindste i tvivl om noget, så tøv ikke med at komme ned i butikken og snak med os, eller send os en mail på kontakt@spotter.com </p>
         </div>
       </div>
     </div>
