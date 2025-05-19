@@ -19,11 +19,9 @@ export default function ProductListPage() {
 
   return (
     <>
-      <Header />
       <Basket ref={basketRef} />
       {basketReady && basketRef.current && <GetProducts openBasket={basketRef.current.openBasket} addToBasket={basketRef.current.addItem} />}
       <BurgerMenu />
-      <Footer />
     </>
   );
 }

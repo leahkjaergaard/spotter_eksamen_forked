@@ -96,7 +96,7 @@ export default function TextAnimation() {
 
         {/* Tekst */}
         <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative bg-white gap-10 pt-50 z-20">
-          <p className="reveal-type text-[clamp(2rem,5vw,8rem)] text-[#4D6A4E] leading-tight italic text-center font-bold">
+          <p className="reveal-type text-[clamp(2rem,4.9vw,8rem)] text-[#4D6A4E] leading-tight italic text-center font-bold">
             Hver gang du køber Spotter, er du med til at støtte <span className="text-black">Psykiatrifonden.</span>
           </p>
           <p

@@ -3,6 +3,7 @@ import Script from "next/script";
 import { BasketProvider } from "./components/BasketProvider";
 import { DM_Sans, Roboto } from "next/font/google";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -28,7 +29,8 @@ export default function RootLayout({ children }) {
         <Script src="https://unpkg.com/split-type" strategy="beforeInteractive" />
       </head>
       <body className="antialiased">
-        <BasketProvider>{children}</BasketProvider>
+        <Header />
+        {children}
         <Footer />
       </body>
     </html>
