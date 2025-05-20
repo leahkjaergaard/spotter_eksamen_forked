@@ -40,7 +40,7 @@ export default function ProductCard({ product, openBasket, addToBasket }) {
       onComplete: () => {
         document.body.removeChild(clone);
         openBasket?.();
-        addToBasket?.(product); // 🔥 Her opdateres kurven
+        addToBasket?.(product);
       },
     });
   };
