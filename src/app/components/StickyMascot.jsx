@@ -150,10 +150,10 @@ export default function StickyMascot() {
       {/* Klikbar mascot */}
       <button
         onClick={toggleChat}
-        className="w-16 h-16 rounded-full overflow-hidden shadow-lg border-2 border-white"
+        className="w-16 h-16 overflow-hidden"
       >
         <Image
-          src="https://picsum.photos/350/480?grayscale&random=1"
+          src="/photos/spottermaskot.png"
           alt="Sticky mascot"
           width={64}
           height={64}
