@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export const useCartStore = create((set, get) => ({
   items: [],
-  isOpen: false, // 🆕 kurv åben/lukket
+  isOpen: false,
 
   addItem: (item) => {
     const existing = get().items.find((p) => p.id === item.id);

@@ -58,9 +58,14 @@ export default function ProductCard({ product }) {
     <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-white flex flex-col justify-between w-full max-w-[500px] mx-auto">
       <Link href={`/product/${product.slug}`}>
         <div className="mb-4">
-          <div className="w-full h-[400px] relative mb-4 overflow-hidden rounded">
-            <Image src={product.image} alt={product.name} fill className="object-cover" />
-          </div>
+        <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
+        <Image
+        src={product.image}
+        alt={product.name}
+        fill
+        className="object-cover"
+        />
+    </div>
         </div>
 
         <div className="text-left">
