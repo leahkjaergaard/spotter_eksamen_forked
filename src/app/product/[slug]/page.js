@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { supabase } from "../../lib/supabase";
 import Image from "next/image";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import BackButton from "@/app/components/BackButton";
 
 export default function ProductSlugPage() {
   const { slug } = useParams();
@@ -31,7 +32,9 @@ export default function ProductSlugPage() {
   if (!product) return <p className="p-6">Produkt ikke fundet.</p>;
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <div className="max-w-7xl mx-auto px-6 py-12 pt-[15%] lg:pt-[10%]">
+      <BackButton />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-5">
       <div>
         <Image src={product.image} alt={product.name} width={800} height={800} className="w-full h-auto object-cover rounded" />
         <div className="mt-4 flex gap-4">
@@ -78,6 +81,7 @@ export default function ProductSlugPage() {
           <p className="text-sm text-gray-600 leading-relaxed">Det er vigtigt for os at nævne, at en proteinbar ikke skal erstatte anden form for kost, men skal stå som et suplement til en sund og nærende kost. Hvis du er det mindste i tvivl om noget, så tøv ikke med at komme ned i butikken og snak med os, eller send os en mail på kontakt@spotter.com </p>
         </div>
       </div>
+    </div>
     </div>
   );
 }
