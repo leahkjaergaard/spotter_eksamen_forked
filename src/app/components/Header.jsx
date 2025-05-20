@@ -62,26 +62,13 @@ export default function Header() {
   }, [isIndex]);
 
   return (
-    <header
-      ref={isIndex ? headerRef : null}
-      className={`w-full px-6 py-5 fixed z-30 text-black ${
-        !isIndex ? "bg-white" : ""
-      }`}
-    >
+    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-30 text-black ${!isIndex ? "bg-white" : ""}`}>
       {/* Transparent overlay til index */}
-      {isIndex && (
-        <div
-          id="header-bg"
-          className="absolute inset-0 bg-white z-[-1] transition-opacity duration-0"
-        />
-      )}
+      {isIndex && <div id="header-bg" className="absolute inset-0 bg-white z-[-1] transition-opacity duration-0" />}
 
       {/* TextToHeader animation (kun på index) */}
       {isIndex && (
-        <h1
-          ref={textRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-30 opacity-0 italic tracking-[-0.08em] pointer-events-none"
-        >
+        <h1 ref={textRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-30 opacity-0 italic tracking-[-0.08em] pointer-events-none">
           Spotter.
         </h1>
       )}
@@ -111,15 +98,12 @@ export default function Header() {
 
         {/* CENTER logo – kun hvis ikke på index */}
         {!isIndex && (
-  <div className="absolute left-1/2 -translate-x-1/2">
-    <Link
-      href="/"
-      className="font-bold italic tracking-[-0.08em] text-[clamp(1rem,4vw,1.5rem)] scale-[1.2]"
-    >
-      Spotter.
-    </Link>
-  </div>
-)}
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Link href="/" className="font-bold italic tracking-[-0.08em] text-[clamp(1rem,4vw,1.5rem)] scale-[1.2]">
+              Spotter.
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Mobile */}

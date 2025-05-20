@@ -49,11 +49,19 @@ export default function GetProducts({ openBasket, addToBasket }) {
   const filteredProducts = selectedCategory === "Alle" ? products : products.filter((p) => p.category === selectedCategory);
 
   return (
-    <section className="px-6 py-8">
-      <h2 className="text-9xl font-black mb-6">Produkter</h2>
-      <div className="flex gap-8">
+    <section className="px-6 py-10">
+      {/* Hero-lignende billede og overskrift */}
+      <div className="grid md:grid-cols-2 items-center gap-8 mb-16">
+        <div>
+          <h1 className="text-9xl font-black mt-10">Produkter</h1>
+        </div>
+      </div>
+
+      {/* Indhold */}
+      <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-10">
         <ProductFilter categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-3 gap-12 flex-1">{filteredProducts.length === 0 ? <p>Ingen produkter fundet.</p> : filteredProducts.map((product) => <ProductCard key={product.id} product={product} openBasket={openBasket} addToBasket={addToBasket} />)}</div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">{filteredProducts.length === 0 ? <p>Ingen produkter fundet.</p> : filteredProducts.map((product) => <ProductCard key={product.id} product={product} openBasket={openBasket} addToBasket={addToBasket} />)}</div>
       </div>
     </section>
   );
