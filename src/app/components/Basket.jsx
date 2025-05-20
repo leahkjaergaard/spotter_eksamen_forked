@@ -1,26 +1,15 @@
 "use client";
-import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { FiShoppingCart } from "react-icons/fi";
+import { useCartStore } from "../lib/useCartStore";
 
-const Basket = forwardRef(function Basket(_, ref) {
+export default function Basket() {
   const basketRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [items, setItems] = useState([]);
-
-  useImperativeHandle(ref, () => ({
-    openBasket: () => setIsOpen(true),
-    addItem: (item) => {
-      setItems((prevItems) => {
-        const existing = prevItems.find((p) => p.id === item.id);
-        if (existing) {
-          return prevItems.map((p) => (p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p));
-        }
-        return [...prevItems, { ...item, quantity: 1 }];
-      });
-      animateCartButton();
-    },
-  }));
+  const items = useCartStore((state) => state.items);
+  const isOpen = useCartStore((state) => state.isOpen);
+  const toggleCart = useCartStore((state) => state.toggleCart);
+  const closeCart = useCartStore((state) => state.closeCart);
 
   useEffect(() => {
     if (basketRef.current) {
@@ -32,22 +21,14 @@ const Basket = forwardRef(function Basket(_, ref) {
     }
   }, [isOpen]);
 
-  const animateCartButton = () => {
-    const cartButton = document.getElementById("cart-button");
-    if (cartButton) {
-      gsap.fromTo(cartButton, { scale: 1 }, { scale: 1.2, duration: 0.2, yoyo: true, repeat: 1, ease: "power1.inOut" });
-    }
-  };
-
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = items.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
   return (
     <>
-      {/* Selve kurven */}
-      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-50 translate-x-[400px] overflow-y-auto">
-        {/* Luk knap */}
-        <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-black text-sm">
+      {/* Kurven */}
+      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-[999] translate-x-[400px] overflow-y-auto">
+        <button onClick={closeCart} className="text-gray-500 hover:text-black text-sm">
           Luk ✕
         </button>
 
@@ -73,14 +54,16 @@ const Basket = forwardRef(function Basket(_, ref) {
       </div>
 
       {/* Kurv ikon */}
-      <button id="cart-button" onClick={() => setIsOpen((prev) => !prev)} className="z-50 text-black">
+      <button id="cart-button" onClick={toggleCart} className="z-50 text-black">
         <div className="relative text-3xl">
           <FiShoppingCart />
-          {totalItems > 0 && <span className="bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{totalItems}</span>}
+          {totalItems > 0 && (
+            <span className="bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center absolute -top-1 -right-2">
+              {totalItems}
+            </span>
+          )}
         </div>
       </button>
     </>
   );
-});
-
-export default Basket;
+}

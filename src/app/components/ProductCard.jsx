@@ -4,16 +4,27 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { PiShoppingCartSimple } from "react-icons/pi";
+import { useCartStore } from "../lib/useCartStore"; // 🆕 Zustand import
 
-export default function ProductCard({ product, openBasket, addToBasket }) {
+export default function ProductCard({ product }) {
   const cardRef = useRef();
   const isSoldOut = product.sold_out === true;
+  const addItem = useCartStore((state) => state.addItem);
+  const openCart = useCartStore((state) => state.openCart);
 
   const handleAddToCart = () => {
     const originalCard = cardRef.current;
     const cartButton = document.getElementById("cart-button");
 
     if (!originalCard || !cartButton) return;
+
+    // 🛒 Add to cart
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+    });
 
     const clone = originalCard.cloneNode(true);
     const originalRect = originalCard.getBoundingClientRect();
@@ -39,8 +50,6 @@ export default function ProductCard({ product, openBasket, addToBasket }) {
       ease: "power2.inOut",
       onComplete: () => {
         document.body.removeChild(clone);
-        openBasket?.();
-        addToBasket?.(product);
       },
     });
   };

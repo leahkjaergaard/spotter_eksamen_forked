@@ -85,7 +85,7 @@ export default function StickyMascot() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-row items-end gap-2">
+    <div className="fixed bottom-4 right-4 z-40 flex flex-row items-end gap-2">
       {/* Taleboble */}
       {showBubble && (
         <div

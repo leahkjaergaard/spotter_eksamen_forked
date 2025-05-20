@@ -62,7 +62,7 @@ export default function Header() {
   }, [isIndex]);
 
   return (
-    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-30 text-black ${!isIndex ? "bg-white" : ""}`}>
+    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-50 text-black ${!isIndex ? "bg-white" : ""}`}>
       {/* Transparent overlay til index */}
       {isIndex && <div id="header-bg" className="absolute inset-0 bg-white z-[-1] transition-opacity duration-0" />}
 

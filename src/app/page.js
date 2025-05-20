@@ -3,12 +3,10 @@ import ProduktGuide from "./components/ProduktGuide";
 import RunningClub from "./components/RunningClub";
 import TextAnimation from "./components/TextAnnimation";
 import SoMeCarousel from "./components/SoMeCarrussel";
-import StickyMascot from "./components/StickyMascot";
 
 export default function Page() {
   return (
     <main>
-      <StickyMascot />
       <Hero />
       <ProduktGuide />
       <RunningClub />
