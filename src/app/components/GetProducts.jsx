@@ -53,7 +53,7 @@ export default function GetProducts({ openBasket, addToBasket }) {
       {/* Hero + Overskrift */}
       <div className="grid md:grid-cols-2 items-center gap-8 mb-16">
         <div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mt-10">Produkter</h1>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-7xl mt-25 font-black">Alle produkter</h1>
         </div>
       </div>
 
