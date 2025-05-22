@@ -61,7 +61,7 @@ export default function BestSellers() {
     <section ref={sectionRef} className="px-4 sm:px-6 lg:px-16 py-10">
       <h1
         ref={titleRef}
-        className="text-[clamp(2rem,3.2vw,5rem)] text-black font-bold tracking-tighter mb-8"
+        className="text-[clamp(2rem,3.2vw,5rem)] text-[var(--black)] font-bold tracking-tighter mb-8"
       >
         Bestsellers
       </h1>

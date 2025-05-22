@@ -91,9 +91,9 @@ export default function StickyMascot() {
         <div
           ref={bubbleRef}
           style={{ opacity: 0 }}
-          className="bg-white text-black px-4 py-2 rounded-lg shadow-lg text-sm relative"
+          className="bg-[var(--white)] text-[var(--black)] px-4 py-2 rounded-lg shadow-lg text-sm relative"
         >
-          <span className="absolute right-[-6px] transform -translate-y-1/2 w-0 h-0 border-t-8 border-b-8 border-l-8 border-transparent border-l-white" />
+          <span className="absolute right-[-6px] transform -translate-y-1/2 w-0 h-0 border-t-8 border-b-8 border-l-8 border-transparent border-l-[var(--white)]" />
           Klik på mig hvis du har brug for hjælp
         </div>
       )}
@@ -103,7 +103,7 @@ export default function StickyMascot() {
         <div
           ref={chatRef}
           style={{ opacity: 0 }}
-          className="bg-white text-black w-64 p-4 rounded-lg shadow-xl text-sm space-y-2 flex flex-col relative"
+          className="bg-[var(--white)] text-[var(--black)] w-64 p-4 rounded-lg shadow-xl text-sm space-y-2 flex flex-col relative"
         >
           <button
             onClick={closeChat}
@@ -139,7 +139,7 @@ export default function StickyMascot() {
             />
             <button
               type="submit"
-              className="bg-[#4D6A4E] text-white px-3 py-1 rounded text-xs"
+              className="bg-[var(--spotter-green)] text-[var(--white)] px-3 py-1 rounded text-xs"
             >
               Send
             </button>

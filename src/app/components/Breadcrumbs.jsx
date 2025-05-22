@@ -17,7 +17,7 @@ export default function Breadcrumbs({ product }) {
           </Link>
         </li>
         <li>/</li>
-        <li className="text-black font-semibold">{product.name}</li>
+        <li className="text-[var(--black)] font-semibold">{product.name}</li>
       </ol>
     </nav>
   );

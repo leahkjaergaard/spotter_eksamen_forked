@@ -69,7 +69,7 @@ export default function ProductSlugPage() {
             <p className="text-red-600 font-semibold">Ikke på lager</p>
           ) : (
             <>
-              <button className="w-full bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition mb-3">Læg i kurv</button>{" "}
+              <button className="w-full bg-[var(--black)] text-[var(--white)] px-6 py-3 rounded hover:bg-gray-800 transition mb-3">Læg i kurv</button>{" "}
             </>
           )}
         </div>

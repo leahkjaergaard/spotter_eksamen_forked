@@ -58,7 +58,7 @@ export default function RunningClub() {
         {/* Venstre tekst */}
         <div className="w-[99%] md:w-[74%] lg:w-[50%] flex flex-col order-2 lg:order-1">
           <div ref={titleRef}>
-            <h1 className="text-[clamp(2rem,3.2vw,5rem)] text-black font-bold tracking-tighter">Mangler du en løbeklub?</h1>
+            <h1 className="text-[clamp(2rem,3.2vw,5rem)] text-[var(--black)] font-bold tracking-tighter">Mangler du en løbeklub?</h1>
             <h2 className="opacity-70 text-[clamp(1rem,2.3vw,1.5rem)]">Tirsdage kl. 7:30, Nørrebrogade 26</h2>
           </div>
 
@@ -66,7 +66,7 @@ export default function RunningClub() {
             Hver tirsdag kl. 7:40 løber vi fra vores butik på Nørrebrogade 26. Alle niveauer er velkomne – uanset om du er nybegynder eller erfaren løber. Vi deler os op i tempo-grupper, så alle kan være med. Efter løbet byder vi på en kop kaffe og god stemning i butikken.
           </p>
 
-          <button ref={btnRef} className="bg-black text-white font-bold text-lg px-6 py-2 rounded-xl w-28">
+          <button ref={btnRef} className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-28">
             Tilmeld
           </button>
         </div>
@@ -77,7 +77,7 @@ export default function RunningClub() {
             <Image key={n} ref={(el) => (imagesRef.current[i] = el)} src={`https://picsum.photos/300/300?grayscale&random=${n}`} alt={`Random ${n}`} width={300} height={300} />
           ))}
 
-          <div ref={cardRef} className="aspect-square w-full bg-[#4D6A4E] text-white flex flex-col justify-between font-sans">
+          <div ref={cardRef} className="aspect-square w-full bg-[var(--spotter-green)] text-[var(--white)] flex flex-col justify-between font-sans">
             <div className="text-right leading-tight text-[clamp(1.5rem,2vw,2rem)] md:text-[clamp(1.5rem,3vw,4rem)] lg:text-[clamp(1.5rem,2vw,2rem)] font-extrabold uppercase pr-[5%]">
               <p className="italic">Spotter</p>
               <p className="-mt-3 italic">Runner</p>

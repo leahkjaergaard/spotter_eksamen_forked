@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
     clone.style.pointerEvents = "none";
     clone.style.margin = 0;
     clone.style.transformOrigin = "top left";
-    clone.classList.add("bg-white", "rounded", "shadow");
+    clone.classList.add("bg-[var(--white)]", "rounded", "shadow");
     document.body.appendChild(clone);
 
     gsap.to(clone, {
@@ -55,7 +55,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-white flex flex-col justify-between w-full max-w-[500px] mx-auto">
+    <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-[var(--white)] flex flex-col justify-between w-full max-w-[500px] mx-auto">
       <Link href={`/product/${product.slug}`}>
         <div className="mb-4">
         <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
@@ -82,13 +82,13 @@ export default function ProductCard({ product }) {
               e.preventDefault();
               handleAddToCart();
             }}
-            className="text-xl text-black hover:text-gray-700"
+            className="text-xl text-[var(--black)] hover:text-gray-700"
             aria-label="Læg i kurv"
           >
             <PiShoppingCartSimple />
           </button>
         )}
-        <Link href={`/product/${product.slug}`} className="text-sm border-b-2 border-black hover:opacity-70">
+        <Link href={`/product/${product.slug}`} className="text-sm border-b-2 border-[var(--black)] hover:opacity-70">
           Læs mere
         </Link>
       </div>

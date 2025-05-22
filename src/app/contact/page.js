@@ -7,7 +7,7 @@ export default function concact() {
     return (
       <main>
         <Header />
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 lg:px-32 py-16 bg-white">
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 lg:px-32 py-16 bg-[var(--white)]">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-6xl">
         {/* Venstre billede */}
         <div className="relative w-full lg:w-1/2">
@@ -37,18 +37,18 @@ export default function concact() {
   <input
     type="email"
     placeholder="Email"
-    className="w-full border border-black rounded px-4 py-2 text-sm focus:outline-none"
+    className="w-full border border-[var(--black)] rounded px-4 py-2 text-sm focus:outline-none"
     required
   />
   <textarea
     placeholder="Besked"
     rows="4"
-    className="w-full border border-black rounded px-4 py-2 text-sm focus:outline-none resize-none min-h-[120px]"
+    className="w-full border border-[var(--black)] rounded px-4 py-2 text-sm focus:outline-none resize-none min-h-[120px]"
     required
   ></textarea>
   <button
     type="submit"
-    className="bg-black text-white font-bold px-6 py-2 rounded-lg"
+    className="bg-[var(--black)] [var(--white)] font-bold px-6 py-2 rounded-lg"
   >
     Send
   </button>

@@ -27,8 +27,8 @@ export default function Basket() {
   return (
     <>
       {/* Kurven */}
-      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-white shadow-lg p-6 z-[999] translate-x-[400px] overflow-y-auto">
-        <button onClick={closeCart} className="text-gray-500 hover:text-black text-sm">
+      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-[var(--white)] shadow-lg p-6 z-[999] translate-x-[400px] overflow-y-auto">
+        <button onClick={closeCart} className="text-gray-500 hover:text-[var(--black)] text-sm">
           Luk ✕
         </button>
 
@@ -54,11 +54,11 @@ export default function Basket() {
       </div>
 
       {/* Kurv ikon */}
-      <button id="cart-button" onClick={toggleCart} className="z-50 text-black">
+      <button id="cart-button" onClick={toggleCart} className="z-50 text-[var(--black)]">
         <div className="relative text-3xl">
           <FiShoppingCart />
           {totalItems > 0 && (
-            <span className="bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center absolute -top-1 -right-2">
+            <span className="bg-red-500 text-[var(--white)] text-xs w-5 h-5 rounded-full flex items-center justify-center absolute -top-1 -right-2">
               {totalItems}
             </span>
           )}

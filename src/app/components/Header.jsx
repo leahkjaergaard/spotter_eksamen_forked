@@ -62,13 +62,13 @@ export default function Header() {
   }, [isIndex]);
 
   return (
-    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-50 text-black ${!isIndex ? "bg-white" : ""}`}>
+    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${!isIndex ? "bg-[var(--white)]" : ""}`}>
       {/* Transparent overlay til index */}
-      {isIndex && <div id="header-bg" className="absolute inset-0 bg-white z-[-1] transition-opacity duration-0" />}
+      {isIndex && <div id="header-bg" className="absolute inset-0 bg-[var(--white)] z-[-1] transition-opacity duration-0" />}
 
       {/* TextToHeader animation (kun på index) */}
       {isIndex && (
-        <h1 ref={textRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1rem,4vw,1.5rem)] font-bold text-center z-30 opacity-0 italic tracking-[-0.08em] pointer-events-none">
+        <h1 ref={textRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1rem,4vw,1.5rem)] text-center z-30 opacity-0 italic tracking-[-0.08em] pointer-events-none">
           Spotter.
         </h1>
       )}
@@ -80,11 +80,11 @@ export default function Header() {
           <Link href="/productlist" className="hover:underline">
             Produkter
           </Link>
-          <Link href="/omos" className="hover:underline">
-            Om os
-          </Link>
           <Link href="/psykiatrifonden" className="hover:underline">
             Psykiatrifonden
+          </Link>
+          <Link href="/omos" className="hover:underline">
+            Om os
           </Link>
           <Link href="/contact" className="hover:underline">
             Kontakt

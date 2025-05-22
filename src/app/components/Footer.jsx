@@ -21,13 +21,13 @@ export default function Footer() {
           <p>CVR: 81818181</p>
           <p>
             Tlf:{" "}
-            <a href="tel:+4522384220" className="underline hover:text-black">
+            <a href="tel:+4522384220" className="underline hover:text-[var(--black)]">
               +45 22 38 42 20
             </a>
           </p>
           <p>
             Email:{" "}
-            <a href="mailto:kontakt@spotter.com" className="underline hover:text-black">
+            <a href="mailto:kontakt@spotter.com" className="underline hover:text-[var(--black)]">
               kontakt@spotter.com
             </a>
           </p>
@@ -56,10 +56,10 @@ export default function Footer() {
         <div>
           <h3 className="font-bold pb-2 min-w-[175px] lg:min-w-fit">FØLG MED</h3>
           <div className="flex gap-4 mt-2">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-black text-lg">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[var(--black)] text-lg">
               <FaInstagram />
             </a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="hover:text-black text-lg">
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="hover:text-[var(--black)] text-lg">
               <FaTiktok />
             </a>
           </div>

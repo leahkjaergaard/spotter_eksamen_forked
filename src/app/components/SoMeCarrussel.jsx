@@ -13,7 +13,7 @@ export default function SoMeCarousel() {
   const duplicatedItems = [...items, ...items, ...items, ...items];
 
   return (
-    <div className="overflow-hidden w-full pt-20 bg-white">
+    <div className="overflow-hidden w-full pt-20 bg-[var(--white)]">
       <style>
         {`
           @keyframes scroll {
@@ -33,9 +33,9 @@ export default function SoMeCarousel() {
             className="flex-shrink-0 w-[350px] px-2"
           >
             {item.type === "box" ? (
-              <div className="w-full h-[250px] bg-[#4D6A4E] flex flex-col items-center justify-center text-white text-center p-4">
+              <div className="w-full h-[250px] bg-[var(--spotter-green)] flex flex-col items-center justify-center text-[var(--white)] text-center p-4">
                 <h2 className="text-3xl font-bold leading-tight">JOIN THE<br />FAMILY</h2>
-                <div className="mt-6 border border-white px-6 py-2">
+                <div className="mt-6 border border-[var(--white)] px-6 py-2">
                   <p className="text-lg italic font-semibold">@ Spotter</p>
                 </div>
               </div>

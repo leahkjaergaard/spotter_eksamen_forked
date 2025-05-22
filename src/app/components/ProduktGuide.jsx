@@ -62,13 +62,13 @@ tl.from(titleRef.current, {
                 height={200}
                 className="absolute -bottom-10 right-0 w-[40%] h-auto"
             />
-            <h2 className="absolute top-1/3 left-0 translate-y-1/2 rotate-90 text-[#4D6A4E] text-[clamp(2.5rem,7vw,5rem)] font-bold tracking-tight italic w-fit">
+            <h2 className="absolute top-1/3 left-0 translate-y-1/2 rotate-90 text-[var(--spotter-green)] text-[clamp(2.5rem,7vw,5rem)] font-bold tracking-tight italic w-fit">
                 KREATIN
             </h2>
         </div>
         {/* Venstre tekst */}
         <div className="flex flex-col w-[99%] md:w-[74%] lg:w-[50%] relative">
-            <h1 ref={titleRef} className="text-[clamp(2rem,3.2vw,4rem)] text-black font-bold tracking-tighter pt-[6%] lg:pt-0">
+            <h1 ref={titleRef} className="text-[clamp(2rem,3.2vw,4rem)] text-[var(--black)] font-bold tracking-tighter pt-[6%] lg:pt-0">
               Hvorfor tager man kreatin?
             </h1>
 
@@ -84,7 +84,7 @@ tl.from(titleRef.current, {
 
           <button
             ref={btnRef}
-            className="bg-black text-white font-bold text-lg px-6 py-2 rounded-xl w-32"
+            className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-32"
           >
             Køb her
           </button>
