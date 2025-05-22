@@ -9,6 +9,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 export default function TextAnimation() {
   const imageRef = useRef(null);
   const secondTextRef = useRef(null);
+  const btnRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -65,6 +66,21 @@ export default function TextAnimation() {
       },
     });
 
+    // Fade-in button
+    gsap.from(btnRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: btnRef.current,
+        start: "top 80%",
+        end: "bottom",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+    
+
  if (typeof window !== "undefined" && window.spotterHeader) {
   const bg = document.getElementById("header-bg");
 
@@ -95,16 +111,24 @@ export default function TextAnimation() {
         </div>
 
         {/* Tekst */}
-        <div className="grid place-content-center px-[clamp(4rem,9vw,20rem)] relative bg-[var(--white)] gap-10 pt-50 z-20">
+        <div className="grid place-content-center px-[clamp(4rem,11vw,20rem)] relative bg-[var(--white)] gap-10 pt-50 z-20">
           <p className="reveal-type text-[clamp(2rem,4.9vw,8rem)] text-[var(--spotter-green)] leading-tight italic text-center font-bold">
-            Hver gang du køber Spotter, er du med til at støtte <span className="text-[var(--black]">Psykiatrifonden.</span>
+            Hver gang du køber Spotter, er du med til at støtte <span className="text-black">Psykiatrifonden.</span>
           </p>
           <p
             ref={secondTextRef}
-            className="text-[clamp(1rem,3.2vw,6rem)] text-center"
+            className="text-[clamp(1rem,2.5vw,5rem)] text-center"
           >
-            Når du køber et produkt ved spotter, støtter du psykiatrifonden, Når du køber et produkt ved spotter, støtter du psykiatrifonden, Når du køber et produkt ved spotter, støtter du psykiatrifonden
+           Når du vælger Spotter, støtter du mere end din egen sundhed. En del af vores overskud går direkte til Psykiatrifondens arbejde med at fremme mental trivsel og støtte mennesker i sårbare livssituationer.
           </p>
+          <div className="flex justify-center">
+          <button
+            ref={btnRef}
+            className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-36"
+          >
+            Læs mere
+          </button>
+          </div>
         </div>
       </section>
     </section>
