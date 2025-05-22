@@ -58,7 +58,7 @@ export default function BestSellers() {
   }, [products]);
 
   return (
-    <section ref={sectionRef} className="px-4 sm:px-6 lg:px-16 py-10">
+    <section ref={sectionRef} className="px-[clamp(4rem,10vw,20rem)] py-10 flex flex-col items-center">
       <h1
         ref={titleRef}
         className="text-[clamp(2rem,3.2vw,5rem)] text-[var(--black)] font-bold tracking-tighter mb-8"
