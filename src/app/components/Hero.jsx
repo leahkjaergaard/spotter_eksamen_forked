@@ -71,7 +71,7 @@ export default function Hero() {
           height={480}
           className="absolute top-15 left-0 z-0 object-cover collage-img"
         />
-        <Image
+         <Image
           src="https://picsum.photos/430/280?grayscale&random=5"
           alt="Random 5"
           width={430}
@@ -90,14 +90,14 @@ export default function Hero() {
           alt="Random 3"
           width={499}
           height={300}
-          className="absolute bottom-0 left-[87.5%] z-0 object-cover collage-img"
+          className="absolute bottom-0 left-87.5 z-0 object-cover collage-img"
         />
         <Image
           src="https://picsum.photos/330/300?grayscale&random=2"
           alt="Random 2"
           width={330}
           height={300}
-          className="absolute top-0 left-[87.5%] z-0 object-cover collage-img"
+          className="absolute top-0 left-87.5 z-0 object-cover collage-img"
         />
       </div>
     </section>
