@@ -28,13 +28,14 @@ export default function RootLayout({ children }) {
     <html lang="da" className={`${dmSans.variable} ${roboto.variable}`}>
       <head>
         <Script src="https://unpkg.com/split-type" strategy="beforeInteractive" />
+        <link rel="icon" href="/photos/spottermaskot.png" />
       </head>
       <body className="antialiased">
-      <ScrollTriggerSetup />
-      <StickyMascot />
-      <Header />
-      {children}
-      <Footer />
+        <ScrollTriggerSetup />
+        <StickyMascot />
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
