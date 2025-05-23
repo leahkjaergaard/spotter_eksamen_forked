@@ -4,6 +4,7 @@ import RunningClub from "./components/RunningClub";
 import TextAnimation from "./components/TextAnnimation";
 import SoMeCarousel from "./components/SoMeCarrussel";
 import BestSellers from "./components/BestSellers"
+import Bundles from "./components/Bundles";
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
       <ProduktGuide />
       <RunningClub />
       <TextAnimation />
+      <Bundles />
       <section className="min-h-screen flex items-center justify-center">
         <div className="w-full">
           <SoMeCarousel />

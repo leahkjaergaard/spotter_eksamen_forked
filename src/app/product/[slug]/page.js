@@ -11,6 +11,7 @@ export default function ProductSlugPage() {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState("Standard");
+  const [mainImage, setMainImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const addItem = useCartStore((state) => state.addItem);
@@ -24,6 +25,7 @@ export default function ProductSlugPage() {
         console.error("Produkt ikke fundet:", error);
       } else {
         setProduct(data);
+        setMainImage(data.image); // sæt hovedbilledet som udgangspunkt
       }
 
       setLoading(false);
@@ -35,15 +37,35 @@ export default function ProductSlugPage() {
   if (loading) return <p className="p-6">Indlæser produkt...</p>;
   if (!product) return <p className="p-6">Produkt ikke fundet.</p>;
 
+  const allImages = [product.image, product.image2, product.image3].filter((img) => img && img !== mainImage);
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 pt-[15%] lg:pt-[10%]">
       <BackButton />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-5">
         <div>
-          <Image src={product.image} alt={product.name} width={800} height={800} className="w-full h-auto object-cover rounded" />
+          {/* STORT BILLEDE */}
+          <Image
+            src={mainImage}
+            alt={product.name}
+            width={800}
+            height={800}
+            className="w-full h-auto object-cover rounded"
+          />
+
+          {/* THUMBNAILS */}
           <div className="mt-4 flex gap-4">
-            <Image src={product.image} alt="thumb" width={100} height={100} className="object-cover rounded cursor-pointer border" />
-            <Image src={product.image} alt="thumb" width={100} height={100} className="object-cover rounded cursor-pointer border" />
+            {allImages.map((img, i) => (
+              <Image
+                key={i}
+                src={img}
+                alt={`thumb-${i}`}
+                width={100}
+                height={100}
+                onClick={() => setMainImage(img)}
+                className="object-cover rounded cursor-pointer border hover:opacity-70 transition"
+              />
+            ))}
           </div>
         </div>
 
@@ -67,7 +89,7 @@ export default function ProductSlugPage() {
                 onChange={(e) => {
                   const selectedSlug = e.target.value;
                   setSelectedVariant(selectedSlug);
-                  window.location.href = `/product/${selectedSlug}`; // 👈 Bruger slug direkte
+                  window.location.href = `/product/${selectedSlug}`;
                 }}
                 className="border border-gray-300 px-4 py-2 rounded w-full"
               >
@@ -94,7 +116,7 @@ export default function ProductSlugPage() {
                     price: product.price,
                   });
                 }}
-                className="w-full bg-[var(--black)] text-[var(--white)] px-6 py-3 rounded hover:bg-white hover:text-black  transition mb-3"
+                className="w-full bg-[var(--black)] text-[var(--white)] px-6 py-3 rounded hover:opacity-90 hover:text-black  transition mb-3"
               >
                 Læg i kurv
               </button>
@@ -108,6 +130,36 @@ export default function ProductSlugPage() {
             <p className="text-sm text-gray-600 leading-relaxed">{product.spottersadvice}</p>
           </div>
         </div>
+      </div>
+
+      {/* Anmeldelser */}
+      <div className="mt-20 px-[clamp(4rem,10vw,20rem)] flex flex-col">
+        <h2 className="text-[clamp(2rem,3.2vw,4rem)] font-bold mb-4 self-center">Hvad synes andre?</h2>
+        {Array.isArray(product.review) && product.review.length > 0 ? (
+          <>
+            <p className="mb-6 text-sm opacity-70 self-center">{product.review.length} reviews</p>
+            {product.review.map((rev, i) => (
+              <div key={i} className="py-6 border-b border-[var(--black)]">
+                <p className="font-semibold mb-1">{rev.name}</p>
+                <div className="flex items-center text-[var(--spotter-green)] mb-2">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <span
+                    key={starIndex}
+                    className={starIndex < Number(rev.stars) ? "opacity-100" : "opacity-40"}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {rev.desc || "Ingen kommentar."}
+                </p>
+              </div>
+            ))}
+          </>
+        ) : (
+          <p className="text-sm text-gray-500">Ingen anmeldelser endnu.</p>
+        )}
       </div>
     </div>
   );
