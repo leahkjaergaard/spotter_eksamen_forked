@@ -5,6 +5,7 @@ import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Basket from "./Basket";
 import gsap from "gsap";
+import BurgerMenu from "./Burgermenu";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 
@@ -36,6 +37,8 @@ export default function Header() {
       }
     );
 
+    let headerTL;
+
     requestAnimationFrame(() => {
       gsap.set(textRef.current, {
         y: "27rem",
@@ -43,13 +46,13 @@ export default function Header() {
         color: "#6DFFB9",
       });
 
-      gsap.to(textRef.current, {
+      headerTL = gsap.to(textRef.current, {
         y: "0rem",
         scale: 1.2,
         color: "#000000",
         ease: "none",
         scrollTrigger: {
-          id: "headerScrollTrigger", 
+          id: "headerScrollTrigger",
           trigger: textRef.current,
           start: "top center",
           end: "top top",
@@ -61,8 +64,8 @@ export default function Header() {
     });
 
     return () => {
-      ScrollTrigger.getById("headerScrollTrigger")?.kill(); 
-      headerTL.kill();
+      ScrollTrigger.getById("headerScrollTrigger")?.kill();
+      headerTL?.kill();
     };
   }, [isIndex]);
 
@@ -76,7 +79,7 @@ export default function Header() {
         </h1>
       )}
 
-      <div className="w-full max-w-[1400px] mx-auto hidden lg:flex justify-between items-center relative z-50">
+      <div className="w-full mx-auto hidden lg:flex justify-between items-center relative z-50">
         {/* VENSTRE */}
         <nav className="flex gap-6 text-lg relative">
           {/* Mega menu til "Produkter" */}
@@ -86,11 +89,11 @@ export default function Header() {
             </Link>
 
             {/* Mega menu */}
-            <div className="hidden group-hover:flex absolute left-0 top-full w-[1000px] bg-white shadow-xl p-10 mb-6 rounded-md z-50 transition-all duration-300 ease-in-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
-              <div className="grid grid-cols-5 gap-8 w-full">
+            <div className="group-hover:flex absolute -left-6 top-full bg-white shadow-xl rounded-md z-50 transition-all duration-300 ease-in-out opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
+              <div className="grid grid-cols-[1fr_1fr_1fr_2fr_2fr] gap-8 w-screen p-6 pt-9 h-[45vh]">
                 {/* Produkter */}
                 <div className="flex flex-col gap-4">
-                  <p className="text-gray-400 text-xs mb-2 font-medium">Produkter</p>
+                  <p className="opacity-70 text-xs mb-2 font-medium">Produkter</p>
                   <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">
                     Proteinpulver
                   </Link>
@@ -104,7 +107,7 @@ export default function Header() {
 
                 {/* Accessories */}
                 <div className="flex flex-col gap-2">
-                  <p className="text-gray-400 mb-3 text-xs">Accessories</p>
+                  <p className="opacity-70 mb-3 text-xs">Accessories</p>
                   <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">
                     Spotter merch
                   </Link>
@@ -115,7 +118,7 @@ export default function Header() {
 
                 {/* Vejledning */}
                 <div className="flex flex-col gap-2">
-                  <p className="text-gray-400 mb-2 text-xs">Vejledning</p>
+                  <p className="opacity-70 mb-2 text-xs">Vejledning</p>
                   <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">
                     Opskrifter
                   </Link>
@@ -126,12 +129,12 @@ export default function Header() {
 
                 {/* Billede 2 – med Next.js Image komponent */}
                 <div>
-                  <Image src="https://picsum.photos/800/600?random=2" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-[120px] object-cover rounded-lg" />
+                  <Image src="https://picsum.photos/800/600?random=2" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-full object-cover rounded-lg" />
                 </div>
 
                 {/* Billede 2 – med Next.js Image komponent */}
                 <div>
-                  <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-[120px] object-cover rounded-lg" />
+                  <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-full object-cover rounded-lg" />
                 </div>
               </div>
             </div>
