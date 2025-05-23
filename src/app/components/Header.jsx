@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Basket from "./Basket";
+import BurgerMenu from "./Burgermenu";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
