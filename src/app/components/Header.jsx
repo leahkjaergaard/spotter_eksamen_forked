@@ -50,7 +50,7 @@ export default function Header() {
         color: "#000000",
         ease: "none",
         scrollTrigger: {
-          id: "headerScrollTrigger", 
+          id: "headerScrollTrigger",
           trigger: textRef.current,
           start: "top center",
           end: "top top",
@@ -62,7 +62,7 @@ export default function Header() {
     });
 
     return () => {
-      ScrollTrigger.getById("headerScrollTrigger")?.kill(); 
+      ScrollTrigger.getById("headerScrollTrigger")?.kill();
       headerTL.kill();
     };
   }, [isIndex]);
@@ -125,14 +125,12 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Billede 2 – med Next.js Image komponent */}
                 <div>
                   <Image src="https://picsum.photos/800/600?random=2" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-[120px] object-cover rounded-lg" />
                 </div>
 
-                {/* Billede 2 – med Next.js Image komponent */}
                 <div>
-                  <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-[120px] object-cover rounded-lg" />
+                  <Image src="https://picsum.photos/800/600?random=6" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-[120px] object-cover rounded-lg" />
                 </div>
               </div>
             </div>
