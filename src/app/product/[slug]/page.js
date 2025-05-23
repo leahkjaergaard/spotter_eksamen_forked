@@ -18,11 +18,7 @@ export default function ProductSlugPage() {
 
   useEffect(() => {
     async function fetchProduct() {
-      const { data, error } = await supabase
-        .from("spotter_produkter")
-        .select("*")
-        .eq("slug", slug)
-        .single();
+      const { data, error } = await supabase.from("spotter_produkter").select("*").eq("slug", slug).single();
 
       if (error) {
         console.error("Produkt ikke fundet:", error);
@@ -44,28 +40,10 @@ export default function ProductSlugPage() {
       <BackButton />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-5">
         <div>
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={800}
-            height={800}
-            className="w-full h-auto object-cover rounded"
-          />
+          <Image src={product.image} alt={product.name} width={800} height={800} className="w-full h-auto object-cover rounded" />
           <div className="mt-4 flex gap-4">
-            <Image
-              src={product.image}
-              alt="thumb"
-              width={100}
-              height={100}
-              className="object-cover rounded cursor-pointer border"
-            />
-            <Image
-              src={product.image}
-              alt="thumb"
-              width={100}
-              height={100}
-              className="object-cover rounded cursor-pointer border"
-            />
+            <Image src={product.image} alt="thumb" width={100} height={100} className="object-cover rounded cursor-pointer border" />
+            <Image src={product.image} alt="thumb" width={100} height={100} className="object-cover rounded cursor-pointer border" />
           </div>
         </div>
 
@@ -74,38 +52,32 @@ export default function ProductSlugPage() {
           <h1 className="text-4xl font-bold mb-2">{product.name}</h1>
           <p className="text-sm text-gray-500 mb-6">{product.category}</p>
 
-          <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-          {product.description}
-          </p>
+          <p className="text-lg text-gray-700 mb-6 leading-relaxed">{product.description}</p>
 
           <hr className="mb-6" />
 
           <div className="mb-6">
-            <label
-              htmlFor="variant"
-              className="block text-sm font-medium mb-2 text-gray-700"
-            >
+            <label htmlFor="variant" className="block text-sm font-medium mb-2 text-gray-700">
               Vælg variant:
             </label>
             {product.variants && product.variants.length > 0 && (
               <select
-              id="variant"
-              value={selectedVariant}
-              onChange={(e) => {
-              const selectedSlug = e.target.value;
-              setSelectedVariant(selectedSlug);
-              window.location.href = `/product/${selectedSlug}`; // 👈 Bruger slug direkte
-              }}
-              className="border border-gray-300 px-4 py-2 rounded w-full"
+                id="variant"
+                value={selectedVariant}
+                onChange={(e) => {
+                  const selectedSlug = e.target.value;
+                  setSelectedVariant(selectedSlug);
+                  window.location.href = `/product/${selectedSlug}`; // 👈 Bruger slug direkte
+                }}
+                className="border border-gray-300 px-4 py-2 rounded w-full"
               >
-              {product.variants.map((variant, i) => (
-               <option key={i} value={variant.slug}>
-               {variant.name}
-              </option>
-            ))}
-        </select>
-
-)}
+                {product.variants.map((variant, i) => (
+                  <option key={i} value={variant.slug}>
+                    {variant.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
 
           <div className="mb-4">
@@ -122,7 +94,7 @@ export default function ProductSlugPage() {
                     price: product.price,
                   });
                 }}
-                className="w-full bg-[var(--black)] text-[var(--white)] px-6 py-3 rounded hover:bg-gray-800 transition mb-3"
+                className="w-full bg-[var(--black)] text-[var(--white)] px-6 py-3 rounded hover:bg-white hover:text-black  transition mb-3"
               >
                 Læg i kurv
               </button>
@@ -133,9 +105,7 @@ export default function ProductSlugPage() {
 
           <div>
             <h3 className="text-md font-semibold mb-2">Spotters råd til dig</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
-            {product.spottersadvice}           
-            </p>
+            <p className="text-sm text-gray-600 leading-relaxed">{product.spottersadvice}</p>
           </div>
         </div>
       </div>

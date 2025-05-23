@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Basket from "./Basket";
+import BurgerMenu from "./Burgermenu";
 import gsap from "gsap";
 import BurgerMenu from "./Burgermenu";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -127,12 +128,10 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Billede 2 – med Next.js Image komponent */}
                 <div>
                   <Image src="https://picsum.photos/800/600?random=2" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-full object-cover rounded-lg" />
                 </div>
 
-                {/* Billede 2 – med Next.js Image komponent */}
                 <div>
                   <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-full object-cover rounded-lg" />
                 </div>
