@@ -58,14 +58,9 @@ export default function ProductCard({ product }) {
     <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-[var(--white)] flex flex-col justify-between w-full max-w-[500px] mx-auto">
       <Link href={`/product/${product.slug}`}>
         <div className="mb-4">
-        <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
-        <Image
-        src={product.image}
-        alt={product.name}
-        fill
-        className="object-cover"
-        />
-    </div>
+          <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
+            <Image src={product.image} alt={product.name} fill className="object-cover" />
+          </div>
         </div>
 
         <div className="text-left">
@@ -88,7 +83,7 @@ export default function ProductCard({ product }) {
             <PiShoppingCartSimple />
           </button>
         )}
-        <Link href={`/product/${product.slug}`} className="text-sm border-b-2 border-[var(--black)] hover:opacity-70">
+        <Link href={`/product/${product.slug}`} className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30">
           Læs mere
         </Link>
       </div>
