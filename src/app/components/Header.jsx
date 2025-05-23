@@ -6,7 +6,6 @@ import Link from "next/link";
 import Basket from "./Basket";
 import BurgerMenu from "./Burgermenu";
 import gsap from "gsap";
-import BurgerMenu from "./Burgermenu";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 
@@ -90,7 +89,7 @@ export default function Header() {
             </Link>
 
             {/* Mega menu */}
-            <div className="group-hover:flex absolute -left-6 top-full bg-white shadow-xl rounded-md z-50 transition-all duration-300 ease-in-out opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
+            <div className="group-hover:flex absolute -left-6 top-full bg-white shadow-xl rounded-md z-50 transition-all duration-500 ease-in-out opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
               <div className="grid grid-cols-[1fr_1fr_1fr_2fr_2fr] gap-8 w-screen p-6 pt-9 h-[45vh]">
                 {/* Produkter */}
                 <div className="flex flex-col gap-4">

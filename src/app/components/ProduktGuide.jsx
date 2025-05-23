@@ -52,7 +52,7 @@ export default function ProduktGuide() {
         );
     }, containerRef2);
 
-    return () => ctx.revert(); // ✅ cleanup
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -67,7 +67,7 @@ export default function ProduktGuide() {
             height={500}
           />
           <Image
-            src={`https://picsum.photos/200/200?grayscale&random=2`}
+            src="/photos/kreatin.png"
             alt={"Random2"}
             width={200}
             height={200}
