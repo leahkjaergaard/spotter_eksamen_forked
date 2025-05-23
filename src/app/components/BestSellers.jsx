@@ -32,29 +32,38 @@ export default function BestSellers() {
 
   useEffect(() => {
     if (products.length === 0) return;
-
-    gsap.from(titleRef.current, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 60%",
-      },
-      opacity: 0,
-      y: 40,
-      duration: 0.7,
-      ease: "power2.out",
-    });
-
-    gsap.from(cardsRef.current, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 50%",
-      },
-      opacity: 0,
-      y: 30,
-      stagger: 0.15,
-      duration: 0.7,
-      ease: "power2.out",
-    });
+  
+    const ctx = gsap.context(() => {
+      gsap.from(titleRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 60%",
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.7,
+        ease: "power2.out",
+      });
+  
+      cardsRef.current.forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+          },
+          opacity: 0,
+          y: 30,
+          delay: i * 0.1,
+          duration: 0.7,
+          ease: "power2.out",
+        });
+      });
+  
+      // 🧠 Dette sikrer korrekt timing
+      ScrollTrigger.refresh();
+    }, sectionRef);
+  
+    return () => ctx.revert();
   }, [products]);
 
   return (

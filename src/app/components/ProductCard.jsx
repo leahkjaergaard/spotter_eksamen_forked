@@ -7,13 +7,13 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 import { useCartStore } from "../lib/useCartStore"; // 🆕 Zustand import
 
 export default function ProductCard({ product }) {
-  const cardRef = useRef();
+  const cardRef2 = useRef();
   const isSoldOut = product.sold_out === true;
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
 
   const handleAddToCart = () => {
-    const originalCard = cardRef.current;
+    const originalCard = cardRef2.current;
     const cartButton = document.getElementById("cart-button");
 
     if (!originalCard || !cartButton) return;
@@ -55,7 +55,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div ref={cardRef} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-[var(--white)] flex flex-col justify-between w-full max-w-[500px] mx-auto">
+    <div ref={cardRef2} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-[var(--white)] flex flex-col justify-between w-full max-w-[500px] mx-auto">
       <Link href={`/product/${product.slug}`}>
         <div className="mb-4">
         <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">

@@ -4,6 +4,7 @@ import { DM_Sans, Roboto } from "next/font/google";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import StickyMascot from "./components/StickyMascot";
+import ScrollTriggerSetup from "./components/ScrollTriggerSetup";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -29,10 +30,11 @@ export default function RootLayout({ children }) {
         <Script src="https://unpkg.com/split-type" strategy="beforeInteractive" />
       </head>
       <body className="antialiased">
-        <StickyMascot />
-        <Header />
-        {children}
-        <Footer />
+      <ScrollTriggerSetup />
+      <StickyMascot />
+      <Header />
+      {children}
+      <Footer />
       </body>
     </html>
   );

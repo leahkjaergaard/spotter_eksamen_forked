@@ -9,51 +9,53 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 export default function TextAnimation() {
   const imageRef = useRef(null);
   const secondTextRef = useRef(null);
-  const btnRef = useRef(null);
+  const btnRef3 = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
+  
+    const triggers = [];
+  
     const lenis = new Lenis({ smooth: true });
-
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-
+  
     // Scroll-triggered skalering af billedet
-    gsap.to(imageRef.current, {
-      scale: 1.26,
-      ease: "none",
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "top+=100 center",
-        end: "top-=100 top",
-        scrub: true,
-      },
+    const scaleTrigger = ScrollTrigger.create({
+      trigger: imageRef.current,
+      start: "top+=100 center",
+      end: "top-=100 top",
+      scrub: true,
+      animation: gsap.to(imageRef.current, { scale: 1.26, ease: "none" }),
+      id: "textanimation-scale"
     });
-
+    triggers.push(scaleTrigger);
+  
     // SplitType animation
     const splitTypes = document.querySelectorAll(".reveal-type");
-
-    splitTypes.forEach((char) => {
+    splitTypes.forEach((char, index) => {
       const text = new SplitType(char, { types: "chars" });
-
-      gsap.from(text.chars, {
+  
+      const splitTrigger = gsap.from(text.chars, {
+        opacity: 0.2,
+        stagger: 0.1,
         scrollTrigger: {
           trigger: char,
           start: "top 80%",
           end: "top-=250 top",
           scrub: true,
+          id: `textanimation-split-${index}`,
         },
-        opacity: 0.2,
-        stagger: 0.1,
       });
+  
+      triggers.push(splitTrigger.scrollTrigger);
     });
-
+  
     // Fade-in tekst 2
-    gsap.from(secondTextRef.current, {
+    const secondTextTrigger = gsap.from(secondTextRef.current, {
       opacity: 0,
       y: 50,
       duration: 2,
@@ -63,38 +65,51 @@ export default function TextAnimation() {
         start: "top 70%",
         end: "bottom",
         toggleActions: "play reverse play reverse",
+        id: "textanimation-secondtext"
       },
     });
-
+    triggers.push(secondTextTrigger.scrollTrigger);
+  
     // Fade-in button
-    gsap.from(btnRef.current, {
+    const btnTrigger = gsap.from(btnRef3.current, {
       opacity: 0,
       y: 50,
       duration: 2,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: btnRef.current,
+        trigger: btnRef3.current,
         start: "top 80%",
         end: "bottom",
         toggleActions: "play reverse play reverse",
+        id: "textanimation-button"
       },
     });
-    
-
- if (typeof window !== "undefined" && window.spotterHeader) {
-  const bg = document.getElementById("header-bg");
-
-  ScrollTrigger.create({
-    trigger: imageRef.current,
-    start: "top-=140",
-    end: "bottom+=70 top",
-    onEnter: () => gsap.set(bg, { opacity: 0 }),
-    onLeave: () => gsap.set(bg, { opacity: 1 }),
-    onEnterBack: () => gsap.set(bg, { opacity: 0 }),
-    onLeaveBack: () => gsap.set(bg, { opacity: 1 }),
-  });
-}
+    triggers.push(btnTrigger.scrollTrigger);
+  
+    // Header background
+    if (typeof window !== "undefined" && window.spotterHeader) {
+      const bg = document.getElementById("header-bg");
+  
+      const headerTrigger = ScrollTrigger.create({
+        trigger: imageRef.current,
+        start: "top-=140",
+        end: "bottom+=70 top",
+        onEnter: () => gsap.set(bg, { opacity: 0 }),
+        onLeave: () => gsap.set(bg, { opacity: 1 }),
+        onEnterBack: () => gsap.set(bg, { opacity: 0 }),
+        onLeaveBack: () => gsap.set(bg, { opacity: 1 }),
+        id: "textanimation-headerbg"
+      });
+  
+      triggers.push(headerTrigger);
+    }
+  
+    // 💣 Cleanup
+    return () => {
+      triggers.forEach(trigger => trigger?.kill());
+    };
   }, []);
+  
 
   return (
     <section>
@@ -123,7 +138,7 @@ export default function TextAnimation() {
           </p>
           <div className="flex justify-center">
           <button
-            ref={btnRef}
+            ref={btnRef3}
             className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-36"
           >
             Læs mere

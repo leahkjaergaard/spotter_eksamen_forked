@@ -25,8 +25,9 @@ export default function Header() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade-in efter delay
-    gsap.fromTo(
+    const headerTL = gsap.timeline();
+
+    headerTL.fromTo(
       textRef.current,
       { opacity: 0 },
       {
@@ -50,6 +51,7 @@ export default function Header() {
         color: "#000000",
         ease: "none",
         scrollTrigger: {
+          id: "headerScrollTrigger", // 👈 unikt ID
           trigger: textRef.current,
           start: "top center",
           end: "top top",
@@ -59,44 +61,35 @@ export default function Header() {
 
       ScrollTrigger.refresh();
     });
+
+    return () => {
+      ScrollTrigger.getById("headerScrollTrigger")?.kill(); // 💥 ryd op
+      headerTL.kill(); // 🧼 kill timeline
+    };
   }, [isIndex]);
 
   return (
     <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${!isIndex ? "bg-[var(--white)]" : ""}`}>
-      {/* Transparent overlay til index */}
       {isIndex && <div id="header-bg" className="absolute inset-0 bg-[var(--white)] z-[-1] transition-opacity duration-0" />}
 
-      {/* TextToHeader animation (kun på index) */}
       {isIndex && (
         <h1 ref={textRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1rem,4vw,1.5rem)] text-center z-30 opacity-0 italic tracking-[-0.08em] pointer-events-none">
           Spotter.
         </h1>
       )}
 
-      {/* Desktop */}
       <div className="w-full max-w-[1400px] mx-auto hidden lg:flex justify-between items-center relative z-50">
-        {/* VENSTRE */}
         <nav className="flex gap-6 text-lg">
-          <Link href="/productlist" className="hover:underline">
-            Produkter
-          </Link>
-          <Link href="/psykiatrifonden" className="hover:underline">
-            Psykiatrifonden
-          </Link>
-          <Link href="/omos" className="hover:underline">
-            Om os
-          </Link>
-          <Link href="/contact" className="hover:underline">
-            Kontakt
-          </Link>
+          <Link href="/productlist" className="hover:underline">Produkter</Link>
+          <Link href="/psykiatrifonden" className="hover:underline">Psykiatrifonden</Link>
+          <Link href="/omos" className="hover:underline">Om os</Link>
+          <Link href="/contact" className="hover:underline">Kontakt</Link>
         </nav>
 
-        {/* HØJRE */}
         <div className="flex items-center">
           <Basket />
         </div>
 
-        {/* CENTER logo – kun hvis ikke på index */}
         {!isIndex && (
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link href="/" className="font-bold italic tracking-[-0.08em] text-[clamp(1rem,4vw,1.5rem)] scale-[1.2]">
@@ -106,17 +99,13 @@ export default function Header() {
         )}
       </div>
 
-      {/* Mobile */}
       <div className="lg:hidden flex items-center justify-end gap-5">
         <Basket />
-
-        {/* CENTER logo – kun hvis ikke på index */}
         {!isIndex && (
           <div className="absolute left-1/2 -translate-x-1/2 font-bold italic tracking-[-0.08em] text-2xl">
             <Link href="/">Spotter.</Link>
           </div>
         )}
-
         <BurgerMenu />
       </div>
     </header>

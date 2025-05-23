@@ -11,23 +11,21 @@ export default function Hero() {
     const images = gsap.utils.toArray(".collage-img");
     const container = containerRef.current;
 
+    if (!container || images.length === 0) return;
+
     const containerBounds = container.getBoundingClientRect();
-    const containerCenterX = containerBounds.width / 2;
-    const containerCenterY = containerBounds.height / 2;
+    const centerX = containerBounds.width / 2;
+    const centerY = containerBounds.height / 2;
 
-    // Timeline
-    const tl = gsap.timeline();
-
-    // Først: flyt hvert billede fysisk til midten
+    // Flyt hvert billede midlertidigt til midten
     images.forEach((img) => {
       const bounds = img.getBoundingClientRect();
       const offsetLeft = bounds.left - containerBounds.left;
       const offsetTop = bounds.top - containerBounds.top;
 
-      const dx = containerCenterX - offsetLeft - bounds.width / 2;
-      const dy = containerCenterY - offsetTop - bounds.height / 2;
+      const dx = centerX - offsetLeft - bounds.width / 2;
+      const dy = centerY - offsetTop - bounds.height / 2;
 
-      // Start hvert billede i midten (forskudt fra dets normale placering)
       gsap.set(img, {
         x: dx,
         y: dy,
@@ -36,17 +34,15 @@ export default function Hero() {
       });
     });
 
-    // Trin 1: fade billederne ind i midten
+    const tl = gsap.timeline();
+
     tl.to(images, {
       opacity: 1,
       scale: 1,
       stagger: 0.3,
       duration: 0.8,
       ease: "power2.out",
-    });
-
-    // Trin 2: flyt dem tilbage til deres normale placering
-    tl.to(
+    }).to(
       images,
       {
         x: 0,
@@ -56,6 +52,10 @@ export default function Hero() {
       },
       "+=0.2"
     );
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -71,7 +71,7 @@ export default function Hero() {
           height={480}
           className="absolute top-15 left-0 z-0 object-cover collage-img"
         />
-         <Image
+        <Image
           src="https://picsum.photos/430/280?grayscale&random=5"
           alt="Random 5"
           width={430}
@@ -90,14 +90,14 @@ export default function Hero() {
           alt="Random 3"
           width={499}
           height={300}
-          className="absolute bottom-0 left-87.5 z-0 object-cover collage-img"
+          className="absolute bottom-0 left-[87.5%] z-0 object-cover collage-img"
         />
         <Image
           src="https://picsum.photos/330/300?grayscale&random=2"
           alt="Random 2"
           width={330}
           height={300}
-          className="absolute top-0 left-87.5 z-0 object-cover collage-img"
+          className="absolute top-0 left-[87.5%] z-0 object-cover collage-img"
         />
       </div>
     </section>

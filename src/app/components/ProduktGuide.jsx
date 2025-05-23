@@ -6,71 +6,86 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 
 export default function ProduktGuide() {
-   const containerRef = useRef(null);
-  const titleRef = useRef(null);
+  const containerRef2 = useRef(null);
+  const titleRef2 = useRef(null);
   const descRef = useRef(null);
   const btnRef = useRef(null);
-  const imagesRef = useRef([]);
-  const cardRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: containerRef.current,
-    start: "top 60%",
-    toggleActions: "play reverse play reverse",
-  },
-});
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          id: "produktguide-trigger",
+          trigger: containerRef2.current,
+          start: "top 60%",
+          toggleActions: "play reverse play reverse",
+        },
+      });
 
-tl.from(titleRef.current, {
-  opacity: 0,
-  y: 30,
-  duration: 0.7,
-  ease: "power2.out",
-})
-.from(descRef.current, {
-  opacity: 0,
-  y: 30,
-  duration: 0.7,
-  ease: "power2.out",
-}, "-=0.5") // starter 0.4 sek før forrige animation er færdig
-.from(btnRef.current, {
-  opacity: 0,
-  y: 20,
-  duration: 0.7,
-  ease: "power2.out",
-}, "-=0.5");
+      tl.from(titleRef2.current, {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        ease: "power2.out",
+      })
+        .from(
+          descRef.current,
+          {
+            opacity: 0,
+            y: 30,
+            duration: 0.7,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        )
+        .from(
+          btnRef.current,
+          {
+            opacity: 0,
+            y: 20,
+            duration: 0.7,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        );
+    }, containerRef2);
+
+    return () => ctx.revert(); // ✅ cleanup
   }, []);
 
   return (
     <section className="h-screen relative px-[clamp(4rem,10vw,20rem)] flex items-center">
-      <div ref={containerRef} className="flex flex-col lg:flex-row w-full gap-8 items-center">
-        {/* Højre billeder + kort */}
+      <div ref={containerRef2} className="flex flex-col lg:flex-row w-full gap-8 items-center">
+        {/* Billeder */}
         <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
-            <Image
-                src={`https://picsum.photos/500/500?grayscale&random=1`}
-                alt={"Random1"}
-                width={500}
-                height={500}
-            />
-            <Image
-                src={`https://picsum.photos/200/200?grayscale&random=2`}
-                alt={"Random2"}
-                width={200}
-                height={200}
-                className="absolute -bottom-10 right-0 w-[40%] h-auto"
-            />
-            <h2 className="absolute top-1/3 left-0 translate-y-1/2 rotate-90 text-[var(--spotter-green)] text-[clamp(2.5rem,7vw,5rem)] font-bold tracking-tight italic w-fit">
-                KREATIN
-            </h2>
+          <Image
+            src={`https://picsum.photos/500/500?grayscale&random=1`}
+            alt={"Random1"}
+            width={500}
+            height={500}
+          />
+          <Image
+            src={`https://picsum.photos/200/200?grayscale&random=2`}
+            alt={"Random2"}
+            width={200}
+            height={200}
+            className="absolute -bottom-10 right-0 w-[40%] h-auto"
+          />
+          <h2 className="absolute top-1/3 left-0 translate-y-1/2 rotate-90 text-[var(--spotter-green)] text-[clamp(2.5rem,7vw,5rem)] font-bold tracking-tight italic w-fit">
+            KREATIN
+          </h2>
         </div>
-        {/* Venstre tekst */}
+
+        {/* Tekst */}
         <div className="flex flex-col w-[99%] md:w-[74%] lg:w-[50%] relative">
-            <h1 ref={titleRef} className="text-[clamp(2rem,3.2vw,4rem)] text-[var(--black)] font-bold tracking-tighter pt-[6%] lg:pt-0">
-              Hvorfor tager man kreatin?
-            </h1>
+          <h1
+            ref={titleRef2}
+            className="text-[clamp(2rem,3.2vw,4rem)] text-[var(--black)] font-bold tracking-tighter pt-[6%] lg:pt-0"
+          >
+            Hvorfor tager man kreatin?
+          </h1>
 
           <p
             ref={descRef}
