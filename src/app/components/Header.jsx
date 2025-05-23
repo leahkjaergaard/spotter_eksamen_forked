@@ -50,7 +50,7 @@ export default function Header() {
         color: "#000000",
         ease: "none",
         scrollTrigger: {
-          id: "headerScrollTrigger", // 👈 unikt ID
+          id: "headerScrollTrigger", 
           trigger: textRef.current,
           start: "top center",
           end: "top top",
@@ -62,8 +62,8 @@ export default function Header() {
     });
 
     return () => {
-      ScrollTrigger.getById("headerScrollTrigger")?.kill(); // 💥 ryd op
-      headerTL.kill(); // 🧼 kill timeline
+      ScrollTrigger.getById("headerScrollTrigger")?.kill(); 
+      headerTL.kill();
     };
   }, [isIndex]);
 
