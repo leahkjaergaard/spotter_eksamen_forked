@@ -1,15 +1,29 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { FiShoppingCart } from "react-icons/fi";
 import { useCartStore } from "../lib/useCartStore";
+import Image from "next/image";
 
 export default function Basket() {
   const basketRef = useRef(null);
-  const items = useCartStore((state) => state.items);
-  const isOpen = useCartStore((state) => state.isOpen);
-  const toggleCart = useCartStore((state) => state.toggleCart);
-  const closeCart = useCartStore((state) => state.closeCart);
+
+  const {
+    items,
+    isOpen,
+    toggleCart,
+    closeCart,
+    addItem,
+    removeItem,
+    decreaseQuantity,
+  } = useCartStore();
+
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = items.reduce(
+    (acc, item) => acc + item.quantity * item.price,
+    0
+  );
+
+  const hasItems = items.length > 0;
 
   useEffect(() => {
     if (basketRef.current) {
@@ -21,18 +35,23 @@ export default function Basket() {
     }
   }, [isOpen]);
 
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice = items.reduce((acc, item) => acc + item.quantity * item.price, 0);
-
   return (
     <>
       {/* Kurven */}
-      <div ref={basketRef} className="fixed top-0 right-0 w-[300px] h-full bg-[var(--white)] shadow-lg p-6 z-[999] translate-x-[400px] overflow-y-auto">
-        <button onClick={closeCart} className="text-gray-500 hover:text-[var(--black)] text-sm">
-          Luk ✕
-        </button>
+      <div
+        ref={basketRef}
+        className="fixed top-0 right-0 w-[300px] h-full bg-[var(--white)] shadow-lg p-6 z-[999] translate-x-[400px] overflow-y-auto"
+      >
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold">Din kurv</h2>
 
-        <h2 className="text-xl font-bold mb-6">Din kurv</h2>
+          <button
+            onClick={closeCart}
+            className="text-gray-500 hover:text-[var(--black)] text-sm"
+          >
+            Luk ✕
+          </button>
+        </div>
 
         {items.length === 0 ? (
           <p className="text-sm text-gray-500">Kurven er tom.</p>
@@ -40,24 +59,73 @@ export default function Basket() {
           <>
             <ul className="space-y-2">
               {items.map((item) => (
-                <li key={item.id} className="text-sm flex justify-between">
-                  <span>
-                    {item.name} × {item.quantity}
-                  </span>
-                  <span>{item.price * item.quantity},–</span>
+                <li
+                  key={item.id}
+                  className="text-sm flex flex-col gap-1 border-b pb-2"
+                >
+                  <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">{item.name}</span>
+                    <span className="font-semibold">
+                      {item.price * item.quantity},–
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => decreaseQuantity(item.id)}
+                        className="px-2 py-1 border rounded hover:bg-gray-100"
+                      >
+                        −
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        onClick={() => addItem(item)}
+                        className="px-2 py-1 border rounded hover:bg-gray-100"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="text-red-500 text-xs underline hover:opacity-70"
+                    >
+                      Slet
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 font-semibold text-right">Total: {totalPrice},–</div>
+            <div className="mt-4 font-semibold text-center">
+              Total: {totalPrice},–
+            </div>
           </>
         )}
       </div>
 
       {/* Kurv ikon */}
-      <button id="cart-button" onClick={toggleCart} className="z-50 text-[var(--black)]">
-        <div className="relative text-3xl">
-          <FiShoppingCart />
-          {totalItems > 0 && (
+      <button
+        id="cart-button"
+        onClick={toggleCart}
+        className="z-50 text-[var(--black)]"
+      >
+        <div className="relative w-8 h-8">
+          <Image
+            src={hasItems ? "/photos/happybasket.png" : "/photos/basket.png"}
+            alt="Kurv ikon"
+            fill
+            className="object-contain"
+          />
+          {hasItems && (
             <span className="bg-red-500 text-[var(--white)] text-xs w-5 h-5 rounded-full flex items-center justify-center absolute -top-1 -right-2">
               {totalItems}
             </span>

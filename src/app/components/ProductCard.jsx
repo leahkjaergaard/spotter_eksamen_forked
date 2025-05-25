@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
-import { PiShoppingCartSimple } from "react-icons/pi";
 import { useCartStore } from "../lib/useCartStore"; // 🆕 Zustand import
 
 export default function ProductCard({ product }) {
@@ -85,9 +84,6 @@ export default function ProductCard({ product }) {
         </div>
           </button>
         )}
-        <Link href={`/product/${product.slug}`} className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30">
-          Læg i kurv
-        </Link>
       </div>
     </div>
   );

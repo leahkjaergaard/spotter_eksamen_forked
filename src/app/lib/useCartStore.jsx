@@ -19,6 +19,15 @@ export const useCartStore = create((set, get) => ({
     }
   },
 
+  decreaseQuantity: (id) => {
+    const items = get().items.map((item) =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+    set({ items });
+  },
+
   removeItem: (id) => {
     set({ items: get().items.filter((item) => item.id !== id) });
   },
