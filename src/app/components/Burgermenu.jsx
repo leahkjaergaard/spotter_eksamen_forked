@@ -7,7 +7,9 @@ import Link from "next/link";
 export default function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
-  const linksRef = useRef([]);
+  const linksRef = useRef([]); // logo + nav links + kontakt
+
+  const navLinks = ["Produkter", "Om os", "Kontakt"];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -44,9 +46,9 @@ export default function BurgerMenu() {
           },
         });
       }
-    }, menuRef); // Scope til denne komponent
+    }, menuRef);
 
-    return () => ctx.revert(); // 🧹 Ryd op når komponent unmountes
+    return () => ctx.revert();
   }, [isOpen]);
 
   return (
@@ -69,19 +71,46 @@ export default function BurgerMenu() {
           Luk
         </button>
 
-        <nav className="flex flex-col space-y-6 text-4xl font-bold mt-20">
-          {["Produkter", "Om os", "Kontakt"].map((text, i) => (
-            <Link
-              key={text}
-              href={`/${text.toLowerCase().replace(/\s/g, "-")}`}
-              ref={(el) => (linksRef.current[i] = el)}
-              onClick={() => setIsOpen(false)}
-              className="opacity-0"
-            >
-              {text}
-            </Link>
-          ))}
-        </nav>
+        {/* Logo med animation */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 top-5 opacity-0"
+          ref={(el) => (linksRef.current[0] = el)}
+        >
+          <Link
+            href="/"
+            className="font-bold italic tracking-[-0.08em] text-[clamp(1.5rem,3.5vw,2rem)]"
+          >
+            Spotter.
+          </Link>
+        </div>
+
+        {/* Nav links med animation */}
+        <div className="flex flex-col items-center justify-center h-full mt-[-6rem]">
+          <nav className="flex flex-col items-center space-y-6 text-4xl font-bold text-center">
+          {navLinks.map((text, i) => (
+          <Link
+          key={text}
+          href={`/${text.toLowerCase().replace(/\s/g, "-")}`}
+          ref={(el) => (linksRef.current[i + 1] = el)}
+          onClick={() => setIsOpen(false)}
+          className="opacity-0"
+        >
+        {text}
+      </Link>
+    ))}
+  </nav>
+</div>
+
+
+        {/* Kontaktinfo med animation */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 bottom-20 text-center w-full opacity-0"
+          ref={(el) => (linksRef.current[navLinks.length + 1] = el)} // sidste element
+        >
+          <p>Nørrebrogade 26, 2200 København N</p>
+          <p>kontakt@spotter.com</p>
+          <p>+45 22 38 42 20</p>
+        </div>
       </div>
     </>
   );
