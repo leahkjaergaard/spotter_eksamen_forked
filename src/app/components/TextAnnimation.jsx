@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 export default function TextAnimation() {
   const imageRef = useRef(null);
@@ -137,12 +138,13 @@ export default function TextAnimation() {
            Når du vælger Spotter, støtter du mere end din egen sundhed. En del af vores overskud går direkte til Psykiatrifondens arbejde med at fremme mental trivsel og støtte mennesker i sårbare livssituationer.
           </p>
           <div className="flex justify-center">
-          <button
-            ref={btnRef3}
-            className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-36"
-          >
-            Læs mere
-          </button>
+          <Link
+  href="/psykiatrifonden"
+  ref={btnRef3}
+  className="inline-block bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-36 text-center"
+>
+  Læs mere
+</Link>
           </div>
         </div>
       </section>

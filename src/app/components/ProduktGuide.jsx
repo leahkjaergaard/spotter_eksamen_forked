@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProduktGuide() {
   const containerRef2 = useRef(null);
@@ -97,12 +98,13 @@ export default function ProduktGuide() {
             løbet byder vi på en kop kaffe og god stemning i butikken.
           </p>
 
-          <button
-            ref={btnRef}
-            className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-32"
-          >
-            Køb her
-          </button>
+          <Link
+  href="/product/biotechkreatin"
+  ref={btnRef}
+  className="inline-block bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-32 text-center"
+>
+  Køb her
+</Link>
         </div>
       </div>
     </section>
