@@ -85,6 +85,9 @@ export default function ProductCard({ product }) {
         </div>
           </button>
         )}
+        <Link href={`/product/${product.slug}`} className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30">
+          Læg i kurv
+        </Link>
       </div>
     </div>
   );
