@@ -68,7 +68,7 @@ export default function ProduktGuide() {
             height={500}
           />
           <Image
-            src="/photos/kreatin.png"
+            src="/photos/creatin.png"
             alt={"Random2"}
             width={200}
             height={200}

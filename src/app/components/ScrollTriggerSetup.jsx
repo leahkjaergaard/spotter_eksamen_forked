@@ -6,16 +6,19 @@ import gsap from "gsap";
 
 export default function ScrollTriggerSetup() {
   useEffect(() => {
+    if (!ScrollTrigger?.refresh) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial refresh for layout shifts
-    ScrollTrigger.refresh();
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500); // Justér om nødvendigt
 
-    // Optional: kill all triggers on unmount if du får problemer
+    // Ryd kun timeout – ikke triggers!
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      clearTimeout(timeout);
     };
   }, []);
 
-  return null; // vi skal ikke vise noget
+  return null; // Ingen visuel rendering
 }

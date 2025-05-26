@@ -18,6 +18,12 @@
   }
 }
 
+body.basket-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
 body {
   background: var(--white);
   color: var(--black);
