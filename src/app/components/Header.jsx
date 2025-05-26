@@ -131,7 +131,7 @@ export default function Header() {
           </h1>
           <h3
             ref={sublineRef}
-            className="text-[clamp(0.5rem,2vw,1rem)] font-black"
+            className="text-[clamp(0.5rem,2vw,1rem)] font-black opacity-0"
           >
             sundhed med mening
           </h3>
