@@ -85,7 +85,7 @@ export default function StickyMascot() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex flex-row items-end gap-2">
+    <div className="fixed bottom-4 right-4 z-40 flex flex-row items-end gap-2 min-h-[64px]">
       {/* Taleboble */}
       {showBubble && (
         <div
@@ -114,19 +114,19 @@ export default function StickyMascot() {
           <div className="flex-1 space-y-1 overflow-y-auto max-h-64">
             {messages.map((msg, i) => (
               <div
-              key={i}
-              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-            >
-              <div
-                className={`px-3 py-2 rounded-xl break-words max-w-[80%] w-fit ${
-                  msg.sender === "mascot"
-                    ? "bg-gray-200 text-left"
-                    : "bg-blue-100 text-right"
-                }`}
+                key={i}
+                className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
               >
-                {msg.text}
+                <div
+                  className={`px-3 py-2 rounded-xl break-words max-w-[80%] w-fit ${
+                    msg.sender === "mascot"
+                      ? "bg-gray-200 text-left"
+                      : "bg-blue-100 text-right"
+                  }`}
+                >
+                  {msg.text}
+                </div>
               </div>
-            </div>
             ))}
           </div>
           <form onSubmit={handleSubmit} className="flex gap-2 mt-2">
@@ -148,15 +148,13 @@ export default function StickyMascot() {
       )}
 
       {/* Klikbar mascot */}
-      <button
-        onClick={toggleChat}
-        className="w-16 h-16 overflow-hidden"
-      >
+      <button onClick={toggleChat} className="w-16 h-16 overflow-hidden">
         <Image
           src="/photos/spottermaskot.png"
           alt="Sticky mascot"
           width={64}
           height={64}
+          priority
           className="object-cover w-full h-full"
         />
       </button>

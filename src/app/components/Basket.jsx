@@ -50,11 +50,11 @@ export default function Basket() {
     <>
       {/* Basket panel */}
       <div
-  ref={basketRef}
-  data-lenis-prevent
-  className="fixed top-0 right-0 w-[400px] h-screen bg-[var(--white)] shadow-lg z-[9999] flex flex-col translate-x-[400px]"
-  style={{ WebkitOverflowScrolling: "touch" }}
->
+        ref={basketRef}
+        data-lenis-prevent
+        className="fixed top-0 right-0 w-[400px] h-screen bg-[var(--white)] shadow-lg z-[9999] flex flex-col translate-x-[400px]"
+      >
+  
   {/* Header */}
   <div className="p-6 border-b flex items-center justify-between">
     <h2 className="text-xl font-bold">Din kurv</h2>
