@@ -45,26 +45,29 @@ export default function ProductSlugPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-5">
         <div>
           {/* STORT BILLEDE */}
-          <Image
+          <div className="relative aspect-square w-full rounded overflow-hidden">
+            <Image
             src={mainImage}
             alt={product.name}
-            width={800}
-            height={800}
-            className="w-full h-auto object-cover rounded"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+            priority
           />
+          </div>
 
           {/* THUMBNAILS */}
           <div className="mt-4 flex gap-4">
             {allImages.map((img, i) => (
+              <div key={i} className="relative w-[100px] h-[100px] rounded overflow-hidden">
               <Image
-                key={i}
                 src={img}
                 alt={`thumb-${i}`}
-                width={100}
-                height={100}
+                fill
                 onClick={() => setMainImage(img)}
-                className="object-cover rounded cursor-pointer border hover:opacity-70 transition"
+                className="object-cover cursor-pointer hover:opacity-70 transition"
               />
+            </div>
             ))}
           </div>
         </div>

@@ -16,43 +16,65 @@ export default function ProductCard({ product }) {
   const handleAddToCart = () => {
     const originalCard = cardRef2.current;
     const cartButton = document.getElementById("cart-button");
-
-    if (!originalCard || !cartButton) return;
-
+  
+    if (!originalCard) return;
+  
+    const img = originalCard.querySelector("img");
+    if (!img) return;
+  
+    const clone = img.cloneNode(true);
+    const imgRect = img.getBoundingClientRect();
+  
+    clone.style.position = "fixed";
+    clone.style.top = `${imgRect.top}px`;
+    clone.style.left = `${imgRect.left}px`;
+    clone.style.width = `${imgRect.width}px`;
+    clone.style.height = `${imgRect.height}px`;
+    clone.style.zIndex = 1000;
+    clone.style.pointerEvents = "none";
+    clone.style.borderRadius = "0.5rem";
+    document.body.appendChild(clone);
+  
     addItem({
       id: product.id,
       name: product.name,
       price: isOnSale ? salePrice : product.price,
       image: product.image,
     });
-
-    const clone = originalCard.cloneNode(true);
-    const originalRect = originalCard.getBoundingClientRect();
-    const targetRect = cartButton.getBoundingClientRect();
-
-    clone.style.position = "fixed";
-    clone.style.top = `${originalRect.top}px`;
-    clone.style.left = `${originalRect.left}px`;
-    clone.style.width = `${originalRect.width}px`;
-    clone.style.height = `${originalRect.height}px`;
-    clone.style.zIndex = 1000;
-    clone.style.pointerEvents = "none";
-    clone.style.margin = 0;
-    clone.style.transformOrigin = "top left";
-    clone.classList.add("bg-[var(--white)]", "rounded", "shadow");
-    document.body.appendChild(clone);
-
+  
+    // Brug cartRect hvis den findes og er synlig – ellers fallback
+    let targetTop = 20;
+    let targetLeft = window.innerWidth - 115; // top-right corner by default
+  
+    if (cartButton) {
+      const cartRect = cartButton.getBoundingClientRect();
+      const cartVisible =
+        cartRect.width > 0 &&
+        cartRect.height > 0 &&
+        window.getComputedStyle(cartButton).display !== "none";
+  
+      if (cartVisible) {
+        targetTop = cartRect.top + cartRect.height / 2 - 20;
+        targetLeft = cartRect.left + cartRect.width / 2 - 20;
+      }
+    }
+  
     gsap.to(clone, {
-      top: targetRect.top,
-      left: targetRect.left,
-      scale: 0.1,
-      duration: 0.8,
+      top: targetTop,
+      left: targetLeft,
+      width: 40,
+      height: 40,
+      opacity: 0,
+      duration: 0.75,
       ease: "power2.inOut",
       onComplete: () => {
         document.body.removeChild(clone);
       },
     });
   };
+  
+  
+  
 
   return (
     <div

@@ -124,7 +124,7 @@ export default function Basket() {
             className="object-contain"
           />
           {hasItems && (
-            <span className="bg-red-500 text-[var(--white)] text-xs w-5 h-5 rounded-full flex items-center justify-center absolute -top-1 -right-2">
+            <span className="bg-[var(--spotter-green)] text-[var(--white)] text-xs w-5 h-5 rounded-full flex items-center justify-center absolute -top-1 -right-2">
               {totalItems}
             </span>
           )}

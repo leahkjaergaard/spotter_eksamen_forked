@@ -74,9 +74,6 @@ export default function ProduktGuide() {
             height={200}
             className="absolute -bottom-10 right-0 w-[40%] h-auto"
           />
-          <h2 className="absolute top-1/3 left-0 translate-y-1/2 rotate-90 text-[var(--spotter-green)] text-[clamp(2.5rem,7vw,5rem)] font-bold tracking-tight italic w-fit">
-            KREATIN
-          </h2>
         </div>
 
         {/* Tekst */}
