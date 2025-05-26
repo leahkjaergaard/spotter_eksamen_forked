@@ -15,7 +15,6 @@ export default function Header() {
   const isIndex = pathname === "/";
   const headerRef = useRef(null);
   const textRef = useRef(null);
-  const sublineRef = useRef(null);
 
   useEffect(() => {
     if (isIndex && typeof window !== "undefined") {
@@ -24,7 +23,7 @@ export default function Header() {
   }, [isIndex]);
 
   useEffect(() => {
-    if (!isIndex || !textRef.current || !sublineRef.current) return;
+    if (!isIndex || !textRef.current) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -40,57 +39,38 @@ export default function Header() {
       }
     );
 
-    gsap.fromTo(
-      sublineRef.current,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        delay: 2.5,
-        duration: 1,
-        ease: "power2.out",
-      }
-    );
-
     let headerTL;
 
     requestAnimationFrame(() => {
       // Init state
-      gsap.set(textRef.current, {
-        y: "24rem",
-        scale: 10,
-        color: "#4D6A4E",
-      });
-      gsap.set(sublineRef.current, {
-        y: "29rem",
-        scale: 2.5,
-        opacity: 1,
-      });
+      const mm = gsap.matchMedia();
+
+mm.add("(max-width: 900px)", () => {
+  gsap.set(textRef.current, {
+    y: "22rem",
+    scale: 6.2,
+    color: "#4D6A4E",
+  });
+});
+
+mm.add("(min-width: 900px)", () => {
+  gsap.set(textRef.current, {
+    y: "22rem",
+    scale: 10,
+    color: "#4D6A4E",
+  });
+});
 
       // Spotter scroll animation
       headerTL = gsap.to(textRef.current, {
-        y: "1rem",
+        y: "0.2rem",
         scale: 1.2,
         color: "#000000",
         ease: "none",
         scrollTrigger: {
           id: "headerScrollTrigger",
           trigger: textRef.current,
-          start: "center-=20 center",
-          end: "top top",
-          scrub: true,
-        },
-      });
-
-      // Subline scroll animation
-      gsap.to(sublineRef.current, {
-        y: "1rem",
-        scale: 1,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          id: "sublineScrollTrigger",
-          trigger: textRef.current,
-          start: "center-=20 center",
+          start: "center center",
           end: "top top",
           scrub: true,
         },
@@ -101,7 +81,6 @@ export default function Header() {
 
     return () => {
       ScrollTrigger.getById("headerScrollTrigger")?.kill();
-      ScrollTrigger.getById("sublineScrollTrigger")?.kill();
       headerTL?.kill();
     };
   }, [isIndex]);
@@ -120,7 +99,7 @@ export default function Header() {
         />
       )}
 
-      {/* Animeret logo + slogan */}
+      {/* Animeret logo */}
       {isIndex && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none">
           <h1
@@ -129,12 +108,6 @@ export default function Header() {
           >
             Spotter.
           </h1>
-          <h3
-            ref={sublineRef}
-            className="text-[clamp(0.5rem,2vw,1rem)] font-black opacity-0"
-          >
-            sundhed med mening
-          </h3>
         </div>
       )}
 

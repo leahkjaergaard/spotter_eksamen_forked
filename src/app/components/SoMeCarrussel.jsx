@@ -2,12 +2,24 @@
 
 export default function SoMeCarousel() {
   const items = [
-    { type: "image", src: "https://picsum.photos/300/500?grayscale&random=1" },
-    { type: "image", src: "https://picsum.photos/300/300?grayscale&random=2" },
+    { type: "image", src: "/photos/SoMe1.webp" },
+    { type: "image", src: "/photos/SoMe2.webp" },
     { type: "box" },
-    { type: "image", src: "https://picsum.photos/300/400?grayscale&random=3" },
-    { type: "image", src: "https://picsum.photos/300/400?grayscale&random=4" },
-    { type: "image", src: "https://picsum.photos/300/400?grayscale&random=5" },
+    { type: "image", src: "/photos/SoMe3.webp" },
+    { type: "image", src: "/photos/SoMe4.webp" },
+    { type: "image", src: "/photos/SoMe6.webp" },
+    { type: "image", src: "/photos/SoMe1.webp" },
+    { type: "image", src: "/photos/SoMe2.webp" },
+    { type: "box" },
+    { type: "image", src: "/photos/SoMe3.webp" },
+    { type: "image", src: "/photos/SoMe4.webp" },
+    { type: "image", src: "/photos/SoMe6.webp" },
+    { type: "image", src: "/photos/SoMe1.webp" },
+    { type: "image", src: "/photos/SoMe2.webp" },
+    { type: "box" },
+    { type: "image", src: "/photos/SoMe3.webp" },
+    { type: "image", src: "/photos/SoMe4.webp" },
+    { type: "image", src: "/photos/SoMe6.webp" },
   ];
 
   const duplicatedItems = [...items, ...items, ...items, ...items];

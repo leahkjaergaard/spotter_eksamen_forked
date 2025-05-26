@@ -100,6 +100,11 @@ export default function Hero() {
           className="absolute top-0 left-87.5 z-0 object-cover collage-img"
         />
       </div>
+      <div>
+      <h3 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 text-[clamp(0.5rem,2vw,1rem)] font-black">
+            sundhed med mening
+          </h3>
+      </div>
     </section>
   );
 }

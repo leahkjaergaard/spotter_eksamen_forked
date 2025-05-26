@@ -12,7 +12,7 @@ export default function concact() {
         {/* Venstre billede */}
         <div className="relative w-full lg:w-1/2">
           <Image
-            src="https://picsum.photos/600/400?grayscale"
+            src="/photos/SoMe1.webp"
             alt="Kontakt os billede"
             width={600}
             height={400}

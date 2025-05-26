@@ -12,9 +12,9 @@ export default function Page() {
       <Hero />
       <BestSellers />
       <ProduktGuide />
-      <RunningClub />
-      <TextAnimation />
       <Bundles />
+      <TextAnimation />
+      <RunningClub />
       <section className="min-h-screen flex items-center justify-center">
         <div className="w-full">
           <SoMeCarousel />

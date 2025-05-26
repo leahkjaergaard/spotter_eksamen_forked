@@ -29,11 +29,16 @@ export default function PsykiatriFonden() {
   }, []);
 
   return (
-    <section className="bg-[var(--white)] text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16 space-y-32">
+    <section className="bg-[var(--white)] text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16 space-y-32 pt-40">
       {/* Introsektion i midten */}
       <div className="max-w-4xl mx-auto text-center psy-section">
         <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">DERES ARBEJDE</h2>
+        <div className="flex justify-center pl-[5%] items-center">
         <h1 className="text-5xl font-bold mb-6">Psykiatrifonden</h1>
+        <div>
+          <Image src="/photos/psykiatrifondenlogo.png" alt="Mentalt helbred billede" width={50} height={50} className="h-auto mb-10" />
+        </div>
+        </div>
         <p className="text-lg leading-relaxed mb-6">Psykiatrifonden arbejder for et samfund, hvor alle har mulighed for et godt liv uanset psykisk sygdom. De tilbyder rådgivning, oplysning og undervisning for at nedbryde fordomme og skabe bedre forståelse for mental sundhed. </p>
         <button className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-sm tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-32">LÆS MERE</button>
       </div>

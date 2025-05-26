@@ -29,7 +29,7 @@ export default function Omos() {
   }, []);
 
   return (
-    <section className="bg-[var(--white)] text-[#2c2c2c] py-24 px-4 sm:px-6 lg:px-16 space-y-32">
+    <section className="bg-[var(--white)] text-[#2c2c2c] py-24 px-4 sm:px-6 lg:px-16 space-y-32 pt-40">
       {/* Introsektion */}
       <div className="max-w-4xl mx-auto text-center psy-section">
         <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">Spotter</h2>

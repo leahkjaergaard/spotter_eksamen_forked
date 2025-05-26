@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import StickyMascot from "./components/StickyMascot";
 import ScrollTriggerSetup from "./components/ScrollTriggerSetup";
-import Basket from "./components/Basket";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],

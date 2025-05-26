@@ -54,7 +54,7 @@ export default function RunningClub() {
         );
     }, containerRef);
 
-    return () => ctx.revert(); // 🔥 cleanup
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -93,46 +93,58 @@ export default function RunningClub() {
         </div>
 
         {/* Højre billeder + kort */}
-        <div className="w-[99%] md:w-[74%] lg:w-[50%] grid grid-cols-2 order-1 lg:order-2">
-          {[1, 2, 3].map((n, i) => (
-            <Image
-              key={n}
-              ref={(el) => (imagesRef.current[i] = el)}
-              src={`https://picsum.photos/300/300?grayscale&random=${n}`}
-              alt={`Random ${n}`}
-              width={300}
-              height={300}
-            />
-          ))}
+        <div className="w-[99%] md:w-[72%] lg:w-[48%] grid grid-cols-2 order-1 lg:order-2">
+  <Image
+    ref={(el) => (imagesRef.current[0] = el)}
+    src="/photos/Runningclub3.webp"
+    alt="Running Club 1"
+    width={300}
+    height={300}
+  />
+  <Image
+    ref={(el) => (imagesRef.current[1] = el)}
+    src="/photos/Runningclub2.webp"
+    alt="Running Club 2"
+    width={300}
+    height={300}
+  />
+  <Image
+    ref={(el) => (imagesRef.current[2] = el)}
+    src="/photos/Runningclub1.webp"
+    alt="Running Club 3"
+    width={300}
+    height={300}
+  />
 
-          <div
-            ref={cardRef}
-            className="aspect-square w-full bg-[var(--spotter-green)] text-[var(--white)] flex flex-col justify-between font-sans"
-          >
-            <div className="text-right leading-tight text-[clamp(1.5rem,2vw,2rem)] md:text-[clamp(1.5rem,3vw,4rem)] lg:text-[clamp(1.5rem,2vw,2rem)] font-extrabold uppercase pr-[5%]">
-              <p className="italic">Spotter</p>
-              <p className="-mt-3 italic">Runner</p>
-              <p className="-mt-3 italic">Club</p>
-            </div>
+  <div
+    ref={cardRef}
+    className="aspect-square w-full bg-[var(--spotter-green)] text-[var(--white)] flex flex-col justify-between font-sans"
+  >
+    <div className="text-right leading-tight text-[clamp(1.5rem,2vw,2rem)] md:text-[clamp(1.5rem,3vw,4rem)] lg:text-[clamp(1.5rem,2vw,2rem)] font-extrabold uppercase pr-[5%]">
+      <p className="italic">Spotter</p>
+      <p className="-mt-3 italic">Runner</p>
+      <p className="-mt-3 italic">Club</p>
+    </div>
 
-            <div className="text-left text-[clamp(0.5rem,1.5vw,1rem)] md:text-[clamp(0.5rem,2vw,2rem)] lg:text-[clamp(0.5rem,1vw,1rem)] font-semibold flex pt-[3%] pr-[5%] pl-[5%] justify-between">
-              <div>
-                <p>Tuesdays</p>
-                <p>7:15am</p>
-              </div>
-              <p className="text-base italic font-semibold">@Spotter</p>
-            </div>
+    <div className="text-left text-[clamp(0.5rem,1.5vw,1rem)] md:text-[clamp(0.5rem,2vw,2rem)] lg:text-[clamp(0.5rem,1vw,1rem)] font-semibold flex pt-[3%] pr-[5%] pl-[5%] justify-between">
+      <div>
+        <p>Tuesdays</p>
+        <p>7:15am</p>
+      </div>
+      <p className="text-base italic font-semibold">@Spotter</p>
+    </div>
 
-            <div className="pt-[1%]">
-              <h2 className="text-[clamp(3rem,10vw,15rem)] md:text-[clamp(2rem,7vw,10rem)] lg:text-[clamp(1.5rem,5vw,4.5rem)] font-extrabold leading-none italic">
-                RUN
-              </h2>
-              <h2 className="text-[clamp(3rem,10vw,15rem)] md:text-[clamp(2rem,7vw,10rem)] lg:text-[clamp(1.5rem,5vw,4.5rem)] font-extrabold leading-none italic -mt-[6%] text-right pr-[5%]">
-                CLUB
-              </h2>
-            </div>
-          </div>
-        </div>
+    <div className="pt-[1%]">
+      <h2 className="text-[clamp(3rem,10vw,15rem)] md:text-[clamp(2rem,7vw,10rem)] lg:text-[clamp(1.5rem,5vw,4.5rem)] font-extrabold leading-none italic">
+        RUN
+      </h2>
+      <h2 className="text-[clamp(3rem,10vw,15rem)] md:text-[clamp(2rem,7vw,10rem)] lg:text-[clamp(1.5rem,5vw,4.5rem)] font-extrabold leading-none italic -mt-[6%] text-right pr-[5%]">
+        CLUB
+      </h2>
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
   );

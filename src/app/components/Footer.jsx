@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="pt-10 min-h-[120px]">
       <div className="overflow-hidden h-[20rem] lg:h-[30rem] flex items-center justify-center">
-  <h1 className="text-[clamp(2rem,30.5vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em]">
+  <h1 className="text-[clamp(2rem,30.5vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em] mr-[8%]">
     Spotter
   </h1>
 </div>
