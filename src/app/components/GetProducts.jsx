@@ -5,6 +5,7 @@ import ProductCard from "./ProductCard";
 import ProductFilter from "./ProductFilter";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,7 +54,22 @@ export default function GetProducts({ openBasket, addToBasket }) {
       {/* Hero + Overskrift */}
       <div className="grid md:grid-cols-2 items-center gap-8 mb-16">
         <div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-7xl mt-25 font-black">Alle produkter</h1>
+        <nav className="text-sm text-gray-500 mb-6 mt-25">
+      <ol className="flex space-x-2">
+        <li>
+          <Link href="/" className="hover:underline">
+            Forside
+          </Link>
+        </li>
+        <li>/</li>
+        <li>
+          <Link href="/productlist" className="hover:underline">
+            Produkter
+          </Link>
+        </li>
+        </ol>
+    </nav>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-7xl font-black">Alle produkter</h1>
         </div>
       </div>
 

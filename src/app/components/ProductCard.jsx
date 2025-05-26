@@ -3,13 +3,15 @@ import Image from "next/image";
 import { useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
-import { useCartStore } from "../lib/useCartStore"; // 🆕 Zustand import
+import { useCartStore } from "../lib/useCartStore";
 
 export default function ProductCard({ product }) {
   const cardRef2 = useRef();
   const isSoldOut = product.sold_out === true;
+  const isOnSale = product.sale === true;
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
+  const salePrice = Math.round(product.price * 0.7);
 
   const handleAddToCart = () => {
     const originalCard = cardRef2.current;
@@ -17,11 +19,10 @@ export default function ProductCard({ product }) {
 
     if (!originalCard || !cartButton) return;
 
-    // 🛒 Add to cart
     addItem({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: isOnSale ? salePrice : product.price,
       image: product.image,
     });
 
@@ -54,18 +55,55 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div ref={cardRef2} className="relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-[var(--white)] flex flex-col justify-between w-full max-w-[500px] mx-auto">
+    <div
+      ref={cardRef2}
+      className="group relative product-card border p-4 rounded shadow hover:shadow-lg transition-all bg-[var(--white)] flex flex-col justify-between w-full max-w-[500px] mx-auto"
+    >
       <Link href={`/product/${product.slug}`}>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
-            <Image src={product.image} alt={product.name} fill className="object-cover" />
+            {/* Første billede */}
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover transition-opacity duration-500 group-hover:opacity-0"
+            />
+            {/* Hover billede hvis det findes */}
+            {product.image2 && (
+              <Image
+                src={product.image2}
+                alt={`${product.name} alternativt billede`}
+                fill
+                className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+            )}
           </div>
+
+          {/* SALE badge */}
+          {isOnSale && (
+            <div className="absolute top-2 left-2 bg-[var(--spotter-green)] text-white text-xs font-bold px-2 py-1 rounded">
+              TILBUD
+            </div>
+          )}
         </div>
 
         <div className="text-left">
           <h3 className="font-bold uppercase text-base mb-1">{product.name}</h3>
           <p className="text-xs text-gray-500 mb-1">{product.category}</p>
-          {isSoldOut ? <p className="text-red-600 font-semibold">Ikke på lager</p> : <p className="text-base font-semibold">{product.price},–</p>}
+
+          {isSoldOut ? (
+            <p className="text-red-600 font-semibold">Ikke på lager</p>
+          ) : isOnSale ? (
+            <div className="flex gap-2 items-baseline">
+              <span className="text-gray-400 line-through text-sm">{product.price},–</span>
+              <span className="text-base font-semibold text-[var(--spotter-green)]">
+                {salePrice},–
+              </span>
+            </div>
+          ) : (
+            <p className="text-base font-semibold">{product.price},–</p>
+          )}
         </div>
       </Link>
 
@@ -80,8 +118,8 @@ export default function ProductCard({ product }) {
             aria-label="Læg i kurv"
           >
             <div className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30">
-          Læg i kurv
-        </div>
+              Læg i kurv
+            </div>
           </button>
         )}
       </div>

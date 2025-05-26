@@ -8,12 +8,14 @@ import BurgerMenu from "./Burgermenu";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { IoIosSearch } from "react-icons/io";
 
 export default function Header() {
   const pathname = usePathname();
   const isIndex = pathname === "/";
   const headerRef = useRef(null);
   const textRef = useRef(null);
+  const sublineRef = useRef(null);
 
   useEffect(() => {
     if (isIndex && typeof window !== "undefined") {
@@ -22,10 +24,11 @@ export default function Header() {
   }, [isIndex]);
 
   useEffect(() => {
-    if (!isIndex || !textRef.current) return;
+    if (!isIndex || !textRef.current || !sublineRef.current) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Fade ind ved load
     gsap.fromTo(
       textRef.current,
       { opacity: 0 },
@@ -37,24 +40,57 @@ export default function Header() {
       }
     );
 
+    gsap.fromTo(
+      sublineRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        delay: 2.5,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
     let headerTL;
 
     requestAnimationFrame(() => {
+      // Init state
       gsap.set(textRef.current, {
-        y: "27rem",
+        y: "24rem",
         scale: 10,
-        color: "#6DFFB9",
+        color: "#4D6A4E",
+      });
+      gsap.set(sublineRef.current, {
+        y: "29rem",
+        scale: 2.5,
+        opacity: 1,
       });
 
+      // Spotter scroll animation
       headerTL = gsap.to(textRef.current, {
-        y: "0rem",
+        y: "1rem",
         scale: 1.2,
         color: "#000000",
         ease: "none",
         scrollTrigger: {
           id: "headerScrollTrigger",
           trigger: textRef.current,
-          start: "top center",
+          start: "center-=20 center",
+          end: "top top",
+          scrub: true,
+        },
+      });
+
+      // Subline scroll animation
+      gsap.to(sublineRef.current, {
+        y: "1rem",
+        scale: 1,
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          id: "sublineScrollTrigger",
+          trigger: textRef.current,
+          start: "center-=20 center",
           end: "top top",
           scrub: true,
         },
@@ -65,93 +101,81 @@ export default function Header() {
 
     return () => {
       ScrollTrigger.getById("headerScrollTrigger")?.kill();
+      ScrollTrigger.getById("sublineScrollTrigger")?.kill();
       headerTL?.kill();
     };
   }, [isIndex]);
 
   return (
-    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${!isIndex ? "bg-[var(--white)]" : ""}`}>
-      {isIndex && <div id="header-bg" className="absolute inset-0 bg-[var(--white)] z-[-1] transition-opacity duration-0" />}
-
+    <header
+      ref={isIndex ? headerRef : null}
+      className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${
+        !isIndex ? "bg-[var(--white)]" : ""
+      }`}
+    >
       {isIndex && (
-        <h1 ref={textRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1rem,4vw,1.5rem)] text-center z-30 opacity-0 italic tracking-[-0.08em] pointer-events-none">
-          Spotter.
-        </h1>
+        <div
+          id="header-bg"
+          className="absolute inset-0 bg-[var(--white)] z-[-1] transition-opacity duration-0"
+        />
+      )}
+
+      {/* Animeret logo + slogan */}
+      {isIndex && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none">
+          <h1
+            ref={textRef}
+            className="text-[clamp(1rem,4vw,1.5rem)] italic tracking-[-0.08em] opacity-0"
+          >
+            Spotter.
+          </h1>
+          <h3
+            ref={sublineRef}
+            className="text-[clamp(0.5rem,2vw,1rem)] font-black"
+          >
+            sundhed med mening
+          </h3>
+        </div>
       )}
 
       <div className="w-full mx-auto hidden lg:flex justify-between items-center relative z-50">
         {/* VENSTRE */}
         <nav className="flex gap-6 text-lg relative">
-          {/* Mega menu til "Produkter" */}
           <div className="relative group">
             <Link href="/productlist" className="hover:underline">
               Produkter
             </Link>
-
-            {/* Mega menu */}
             <div className="group-hover:flex absolute -left-6 top-full bg-white shadow-xl rounded-md z-50 transition-all duration-500 ease-in-out opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
               <div className="grid grid-cols-[1fr_1fr_1fr_2fr_2fr] gap-8 w-screen p-6 pt-9 h-[45vh]">
-                {/* Produkter */}
                 <div className="flex flex-col gap-4">
                   <p className="opacity-70 text-xs mb-2 font-medium">Produkter</p>
-                  <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">
-                    Proteinpulver
-                  </Link>
-                  <Link href="/productlist?category=kreatin" className="text-sm font-normal hover:underline">
-                    Kreatin
-                  </Link>
-                  <Link href="/productlist?category=vegansk" className="text-sm font-normal hover:underline">
-                    Vegansk
-                  </Link>
+                  <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">Proteinpulver</Link>
+                  <Link href="/productlist?category=kreatin" className="text-sm font-normal hover:underline">Kreatin</Link>
+                  <Link href="/productlist?category=vegansk" className="text-sm font-normal hover:underline">Vegansk</Link>
                 </div>
-
-                {/* Accessories */}
                 <div className="flex flex-col gap-2">
                   <p className="opacity-70 mb-3 text-xs">Accessories</p>
-                  <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">
-                    Spotter merch
-                  </Link>
-                  <Link href="/productlist?category=udstyr" className="text-sm font-normal hover:underline">
-                    Udstyr
-                  </Link>
+                  <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">Spotter merch</Link>
+                  <Link href="/productlist?category=udstyr" className="text-sm font-normal hover:underline">Udstyr</Link>
                 </div>
-
-                {/* Vejledning */}
                 <div className="flex flex-col gap-2">
                   <p className="opacity-70 mb-2 text-xs">Vejledning</p>
-                  <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">
-                    Opskrifter
-                  </Link>
-                  <Link href="/guides/ny" className="text-sm font-normal hover:underline">
-                    Ny til træning?
-                  </Link>
+                  <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">Opskrifter</Link>
+                  <Link href="/guides/ny" className="text-sm font-normal hover:underline">Ny til træning?</Link>
                 </div>
-
-                <div>
-                  <Image src="https://picsum.photos/800/600?random=2" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-full object-cover rounded-lg" />
-                </div>
-
-                <div>
-                  <Image src="https://picsum.photos/800/600?random=3" alt="Mentalt helbred billede" width={300} height={200} className="w-full h-full object-cover rounded-lg" />
-                </div>
+                <div><Image src="https://picsum.photos/800/600?random=2" alt="Billede 1" width={300} height={200} className="w-full h-full object-cover rounded-lg" /></div>
+                <div><Image src="https://picsum.photos/800/600?random=3" alt="Billede 2" width={300} height={200} className="w-full h-full object-cover rounded-lg" /></div>
               </div>
             </div>
           </div>
 
-          <Link href="/psykiatrifonden" className="hover:underline">
-            Psykiatrifonden
-          </Link>
-          
-          <Link href="/omos" className="hover:underline">
-            Om os
-          </Link>
-          
-          <Link href="/contact" className="hover:underline">
-            Kontakt
-          </Link>
+          <Link href="/psykiatrifonden" className="hover:underline">Psykiatrifonden</Link>
+          <Link href="/omos" className="hover:underline">Om os</Link>
+          <Link href="/contact" className="hover:underline">Kontakt</Link>
         </nav>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <IoIosSearch className="text-[35px]" />
           <Basket />
         </div>
 
@@ -164,7 +188,8 @@ export default function Header() {
         )}
       </div>
 
-      <div className="lg:hidden flex items-center justify-end gap-5">
+      <div className="lg:hidden flex items-center justify-end gap-4">
+        <IoIosSearch className="text-[35px]" />
         <Basket />
         {!isIndex && (
           <div className="absolute left-1/2 -translate-x-1/2 font-bold italic tracking-[-0.08em] text-2xl">
