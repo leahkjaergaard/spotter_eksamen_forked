@@ -85,11 +85,11 @@ export default function RunningClub() {
           </p>
 
           <button
-            ref={btnRef}
-            className="bg-[var(--black)] text-[var(--white)] font-bold text-lg px-6 py-2 rounded-xl w-28"
-          >
-            Tilmeld
-          </button>
+  ref={btnRef}
+  className="bg-[var(--black)] text-[var(--white)] border border-[var(--black)] hover:bg-[var(--white)] hover:text-[var(--black)] font-bold text-lg px-6 py-2 rounded-xl w-28"
+>
+  Tilmeld
+</button>
         </div>
 
         {/* Højre billeder + kort */}

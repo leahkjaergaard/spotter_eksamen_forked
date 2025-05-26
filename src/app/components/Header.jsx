@@ -138,12 +138,14 @@ export default function Header() {
             </div>
           </div>
 
-          <Link href="/omos" className="hover:underline">
-            Om os
-          </Link>
           <Link href="/psykiatrifonden" className="hover:underline">
             Psykiatrifonden
           </Link>
+          
+          <Link href="/omos" className="hover:underline">
+            Om os
+          </Link>
+          
           <Link href="/contact" className="hover:underline">
             Kontakt
           </Link>

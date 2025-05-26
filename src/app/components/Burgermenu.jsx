@@ -9,7 +9,12 @@ export default function BurgerMenu() {
   const menuRef = useRef();
   const linksRef = useRef([]); // logo + nav links + kontakt
 
-  const navLinks = ["Produkter", "Om os", "Kontakt"];
+  const navLinks = [
+    { label: "Produkter", href: "/productlist" },
+    { label: "Psykiatrifonden", href: "/psykiatrifonden" },
+    { label: "Om os", href: "/omos" },
+    { label: "Kontakt", href: "/contact" },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -87,25 +92,24 @@ export default function BurgerMenu() {
         {/* Nav links med animation */}
         <div className="flex flex-col items-center justify-center h-full mt-[-6rem]">
           <nav className="flex flex-col items-center space-y-6 text-4xl font-bold text-center">
-          {navLinks.map((text, i) => (
-          <Link
-          key={text}
-          href={`/${text.toLowerCase().replace(/\s/g, "-")}`}
-          ref={(el) => (linksRef.current[i + 1] = el)}
-          onClick={() => setIsOpen(false)}
-          className="opacity-0"
-        >
-        {text}
-      </Link>
-    ))}
-  </nav>
-</div>
-
+            {navLinks.map((link, i) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                ref={(el) => (linksRef.current[i + 1] = el)}
+                onClick={() => setIsOpen(false)}
+                className="opacity-0"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
         {/* Kontaktinfo med animation */}
         <div
           className="absolute left-1/2 -translate-x-1/2 bottom-20 text-center w-full opacity-0"
-          ref={(el) => (linksRef.current[navLinks.length + 1] = el)} // sidste element
+          ref={(el) => (linksRef.current[navLinks.length + 1] = el)}
         >
           <p>Nørrebrogade 26, 2200 København N</p>
           <p>kontakt@spotter.com</p>

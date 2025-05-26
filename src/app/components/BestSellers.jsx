@@ -32,42 +32,47 @@ export default function BestSellers() {
 
   useEffect(() => {
     if (products.length === 0) return;
-  
+
     const ctx = gsap.context(() => {
-      gsap.from(titleRef.current, {
+      const tl = gsap.timeline({
         scrollTrigger: {
+          id: "bestsellers-trigger",
           trigger: sectionRef.current,
           start: "top 60%",
+          toggleActions: "play reverse play reverse",
         },
+      });
+
+      // Produktkort
+      tl.from(cardsRef.current, {
         opacity: 0,
-        y: 40,
+        y: 30,
         duration: 0.7,
         ease: "power2.out",
+        stagger: 0.1,
       });
-  
-      cardsRef.current.forEach((card, i) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-          },
+
+      // Titel samtidig
+      tl.from(
+        titleRef.current,
+        {
           opacity: 0,
           y: 30,
-          delay: i * 0.1,
           duration: 0.7,
           ease: "power2.out",
-        });
-      });
-  
-      // 🧠 Dette sikrer korrekt timing
-      ScrollTrigger.refresh();
+        },
+        "<"
+      );
     }, sectionRef);
-  
+
     return () => ctx.revert();
   }, [products]);
 
   return (
-    <section ref={sectionRef} className="px-[clamp(4rem,10vw,20rem)] py-10 flex flex-col items-center">
+    <section
+      ref={sectionRef}
+      className="px-[clamp(4rem,10vw,20rem)] py-10 flex flex-col items-center"
+    >
       <h1
         ref={titleRef}
         className="text-[clamp(2rem,3.2vw,5rem)] text-[var(--black)] font-bold tracking-tighter mb-8"
