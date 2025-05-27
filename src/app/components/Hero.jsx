@@ -8,54 +8,54 @@ export default function Hero() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const images = gsap.utils.toArray(".collage-img");
-    const container = containerRef.current;
-
-    if (!container || images.length === 0) return;
-
-    const containerBounds = container.getBoundingClientRect();
-    const centerX = containerBounds.width / 2;
-    const centerY = containerBounds.height / 2;
-
-    // Flyt hvert billede midlertidigt til midten
-    images.forEach((img) => {
-      const bounds = img.getBoundingClientRect();
-      const offsetLeft = bounds.left - containerBounds.left;
-      const offsetTop = bounds.top - containerBounds.top;
-
-      const dx = centerX - offsetLeft - bounds.width / 2;
-      const dy = centerY - offsetTop - bounds.height / 2;
-
-      gsap.set(img, {
-        x: dx,
-        y: dy,
-        scale: 0.5,
-        opacity: 0,
+    const ctx = gsap.context(() => {
+      const images = gsap.utils.toArray(".collage-img");
+      const container = containerRef.current;
+  
+      if (!container || images.length === 0) return;
+  
+      const containerBounds = container.getBoundingClientRect();
+      const centerX = containerBounds.width / 2;
+      const centerY = containerBounds.height / 2;
+  
+      // Flyt hvert billede midlertidigt til midten
+      images.forEach((img) => {
+        const bounds = img.getBoundingClientRect();
+        const offsetLeft = bounds.left - containerBounds.left;
+        const offsetTop = bounds.top - containerBounds.top;
+  
+        const dx = centerX - offsetLeft - bounds.width / 2;
+        const dy = centerY - offsetTop - bounds.height / 2;
+  
+        gsap.set(img, {
+          x: dx,
+          y: dy,
+          scale: 0.5,
+          opacity: 0,
+        });
       });
-    });
-
-    const tl = gsap.timeline();
-
-    tl.to(images, {
-      opacity: 1,
-      scale: 1,
-      stagger: 0.3,
-      duration: 0.8,
-      ease: "power2.out",
-    }).to(
-      images,
-      {
-        x: 0,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out",
-      },
-      "+=0.2"
-    );
-
-    return () => {
-      tl.kill();
-    };
+  
+      const tl = gsap.timeline();
+  
+      tl.to(images, {
+        opacity: 1,
+        scale: 1,
+        stagger: 0.3,
+        duration: 0.8,
+        ease: "power2.out",
+      }).to(
+        images,
+        {
+          x: 0,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        "+=0.2"
+      );
+    }, containerRef); // scoper animationerne til container
+  
+    return () => ctx.revert(); // rydder timeline + set animations
   }, []);
 
   return (
