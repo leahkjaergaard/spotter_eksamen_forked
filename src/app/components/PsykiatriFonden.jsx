@@ -52,14 +52,26 @@ export default function PsykiatriFonden() {
           <button className="mt-6 border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
         </div>
         <div className="order-1 md:order-2">
-          <Image src="https://picsum.photos/800/600?random=2" alt="Workshop billede" width={800} height={600} className="w-full h-auto rounded-lg object-cover" />
+        <Image
+              src="/photos/workshopogoplysning.webp"
+              alt="Workshop billede"
+              width={400}
+              height={400}
+              className="rounded-lg mx-auto"
+            />
         </div>
       </div>
 
       {/* Sektion 2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center psy-section">
         <div>
-          <Image src="https://picsum.photos/800/600?random=12" alt="Mentalt helbred billede" width={800} height={600} className="w-full h-auto rounded-lg object-cover" />
+          <Image
+              src="/photos/maskotmedhjerte.png"
+              alt="Workshop billede"
+              width={400}
+              height={400}
+              className="rounded-lg mx-auto"
+            />
         </div>
         <div>
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">STØT OG GØR EN FORSKEL</h2>

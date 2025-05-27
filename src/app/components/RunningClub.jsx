@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
+import "../../app/globals.css";
 
 export default function RunningClub() {
   const containerRef = useRef(null);
@@ -95,12 +96,14 @@ export default function RunningClub() {
             Efter løbet byder vi på en kop kaffe og god stemning i butikken.
           </p>
 
-          <button
-            ref={btnRef}
-            className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center"
-          >
-            Tilmeld
-          </button>
+          <div ref={btnRef}>
+            <button
+              href="/product/biotechkreatin"
+              className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center inline-block"
+            >
+            Køb her
+           </button>
+          </div>
         </div>
 
         {/* Højre billeder + kort */}

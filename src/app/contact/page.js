@@ -12,7 +12,7 @@ export default function concact() {
         {/* Venstre billede */}
         <div className="relative w-full lg:w-1/2">
           <Image
-            src="/photos/SoMe1.webp"
+            src="/photos/kontaktbutik.webp"
             alt="Kontakt os billede"
             width={600}
             height={400}

@@ -140,10 +140,9 @@ export default function TextAnimation() {
             fremme mental trivsel og støtte mennesker i sårbare
             livssituationer.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center" ref={btnRef3}>
             <Link
               href="/psykiatrifonden"
-              ref={btnRef3}
               className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center"
             >
               Læs mere

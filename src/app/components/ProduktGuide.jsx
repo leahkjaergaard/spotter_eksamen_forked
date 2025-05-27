@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
+import "../../app/globals.css";
 
 export default function ProduktGuide() {
   const containerRef2 = useRef(null);
@@ -77,14 +78,14 @@ export default function ProduktGuide() {
         <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
           <Image
             ref={largeImageRef}
-            src={`https://picsum.photos/500/500?grayscale&random=1`}
+            src={`/photos/kreatin.webp`}
             alt={"Random1"}
             width={500}
             height={500}
           />
           <Image
             ref={smallImageRef}
-            src="/photos/creatin.png"
+            src="/photos/maskotderdrikker.png"
             alt={"Random2"}
             width={200}
             height={200}
@@ -111,13 +112,15 @@ export default function ProduktGuide() {
             løbet byder vi på en kop kaffe og god stemning i butikken.
           </p>
 
-          <Link
-            href="/product/biotechkreatin"
-            ref={btnRef}
-            className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center"
-          >
+          <div ref={btnRef}>
+            <Link
+              href="/product/biotechkreatin"
+              className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center inline-block"
+            >
             Køb her
-          </Link>
+           </Link>
+          </div>
+
         </div>
       </div>
     </section>
