@@ -13,10 +13,11 @@ export default function ScrollTriggerSetup() {
 
     const timeout = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 100); // Justér hvis nødvendigt
+    }, 100);
 
     return () => clearTimeout(timeout);
-  }, [pathname]); // <-- kør hver gang ruten ændrer sig (altså ved navigation)
+  }, [pathname]);
 
   return null;
 }
+

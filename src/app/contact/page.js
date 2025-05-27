@@ -48,7 +48,7 @@ export default function concact() {
   ></textarea>
   <button
   type="submit"
-  className="bg-[var(--black)] text-[var(--white)] border border-[var(--black)] hover:bg-[var(--white)] hover:text-[var(--black)] font-bold text-lg px-6 py-2 rounded-xl transition"
+  className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center"
 >
   Send
 </button>

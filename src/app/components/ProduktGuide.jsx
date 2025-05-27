@@ -114,7 +114,7 @@ export default function ProduktGuide() {
           <Link
             href="/product/biotechkreatin"
             ref={btnRef}
-            className="inline-block bg-[var(--black)] text-[var(--white)] border border-[var(--black)] hover:bg-[var(--white)] hover:text-[var(--black)] font-bold text-lg px-6 py-2 rounded-xl w-32 text-center"
+            className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center"
           >
             Køb her
           </Link>
