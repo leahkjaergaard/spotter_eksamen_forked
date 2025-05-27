@@ -92,7 +92,7 @@ export default function Bundles() {
   }, [products]);
 
   return (
-    <section className="w-full flex justify-center px-5 h-screen pt-20">
+    <section className="w-full flex justify-center px-5 lg:h-screen py-[clamp(4rem,5vw,10rem)]">
       <div ref={sectionRef} className="max-w-[1350px]">
         <div className="grid lg:grid-cols-[1fr_1fr] mb-16 gap-7">
           {/* VENSTRE SIDE */}

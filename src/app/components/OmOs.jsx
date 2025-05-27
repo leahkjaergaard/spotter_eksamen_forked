@@ -43,7 +43,7 @@ export default function Omos() {
         <div>
           <h2 className="text-3xl font-bold mb-4">Sundhed med mening</h2>
           <p className="text-base leading-relaxed mb-4">Hos Spotter ønsker vi at adskille os fra mange andre i branchen. Vi forhandler kosttilskud, men henvender os til den almindelige dansker, og ikke fitnessverdenen. Det handler om at tage hånd om både krop og sind. Til dagligt møder du Frederik og Kristian, som til dagligt arbejder i butikken og vil tage imod dig med åbne arme og vejledning. </p>
-          <button className="mt-4 border rounded-xl bg-[var(--black)] text-[var(--white)] px-6 py-2 text-sm uppercase tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition">Læs mere</button>
+          <button className="mt-6 border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
         </div>
       </div>
 
@@ -52,7 +52,7 @@ export default function Omos() {
         <div>
           <h2 className="text-3xl font-bold mb-4">Samarbejde med Psykiatrifonden</h2>
           <p className="text-base leading-relaxed mb-4">Hos Spotter samarbejder vi med Psykiatrifonden, hvor vi har skabt tøj og afholdt events, i samarbejde med Psykiatrifonden, og så donerer vi overskuddet til deres arbejde. Vi tror på, at alle har brug for støtte, og vi vil gerne være dem, der hjælper.</p>
-          <button className="mt-4 border rounded-xl bg-[var(--black)] text-[var(--white)] px-6 py-2 text-sm uppercase tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition">Læs mere</button>
+          <button className="mt-6 border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
         </div>
         <Image src="https://picsum.photos/800/600?random=2" alt="Workshop billede" width={800} height={600} className="w-full h-auto object-cover rounded-lg" />
       </div>

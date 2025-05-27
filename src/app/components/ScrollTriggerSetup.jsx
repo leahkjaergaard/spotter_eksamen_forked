@@ -1,24 +1,23 @@
 "use client";
 
 import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ScrollTriggerSetup() {
-  useEffect(() => {
-    if (!ScrollTrigger?.refresh) return;
+  const pathname = usePathname();
 
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const timeout = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 500); // Justér om nødvendigt
+    }, 100);
 
-    // Ryd kun timeout – ikke triggers!
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [pathname]);
 
-  return null; // Ingen visuel rendering
+  return null;
 }
+

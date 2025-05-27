@@ -38,3 +38,5 @@ export const useCartStore = create((set, get) => ({
   openCart: () => set({ isOpen: true }),
   closeCart: () => set({ isOpen: false }),
 }));
+
+

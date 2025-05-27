@@ -2,60 +2,80 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const headingRef = useRef(null); // Ref til h3
 
   useEffect(() => {
-    const images = gsap.utils.toArray(".collage-img");
-    const container = containerRef.current;
+    gsap.registerPlugin(ScrollTrigger);
 
-    if (!container || images.length === 0) return;
+    const ctx = gsap.context(() => {
+      const images = gsap.utils.toArray(".collage-img");
+      const container = containerRef.current;
 
-    const containerBounds = container.getBoundingClientRect();
-    const centerX = containerBounds.width / 2;
-    const centerY = containerBounds.height / 2;
+      if (!container || images.length === 0) return;
 
-    // Flyt hvert billede midlertidigt til midten
-    images.forEach((img) => {
-      const bounds = img.getBoundingClientRect();
-      const offsetLeft = bounds.left - containerBounds.left;
-      const offsetTop = bounds.top - containerBounds.top;
+      const containerBounds = container.getBoundingClientRect();
+      const centerX = containerBounds.width / 2;
+      const centerY = containerBounds.height / 2;
 
-      const dx = centerX - offsetLeft - bounds.width / 2;
-      const dy = centerY - offsetTop - bounds.height / 2;
+      // Midlertidigt placer billeder i midten
+      images.forEach((img) => {
+        const bounds = img.getBoundingClientRect();
+        const offsetLeft = bounds.left - containerBounds.left;
+        const offsetTop = bounds.top - containerBounds.top;
 
-      gsap.set(img, {
-        x: dx,
-        y: dy,
-        scale: 0.5,
-        opacity: 0,
+        const dx = centerX - offsetLeft - bounds.width / 2;
+        const dy = centerY - offsetTop - bounds.height / 2;
+
+        gsap.set(img, {
+          x: dx,
+          y: dy,
+          scale: 0.5,
+          opacity: 0,
+        });
       });
-    });
 
-    const tl = gsap.timeline();
+      const tl = gsap.timeline();
 
-    tl.to(images, {
-      opacity: 1,
-      scale: 1,
-      stagger: 0.3,
-      duration: 0.8,
-      ease: "power2.out",
-    }).to(
-      images,
-      {
-        x: 0,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out",
-      },
-      "+=0.2"
-    );
+      tl.to(images, {
+        opacity: 1,
+        scale: 1,
+        stagger: 0.3,
+        duration: 0.8,
+        ease: "power2.out",
+      }).to(
+        images,
+        {
+          x: 0,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        "+=0.2"
+      );
 
-    return () => {
-      tl.kill();
-    };
+      // Scroll fade out af h3
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "center center",
+        end: "top top",
+        scrub: true,
+        animation: gsap.fromTo(
+          headingRef.current,
+          { opacity: 1,
+           },
+          { ease: "none",
+            opacity: 0,
+           }
+        ),
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -71,7 +91,7 @@ export default function Hero() {
           height={480}
           className="absolute top-15 left-0 z-0 object-cover collage-img"
         />
-         <Image
+        <Image
           src="https://picsum.photos/430/280?grayscale&random=5"
           alt="Random 5"
           width={430}
@@ -100,11 +120,14 @@ export default function Hero() {
           className="absolute top-0 left-87.5 z-0 object-cover collage-img"
         />
       </div>
-      <div>
-      <h3 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 text-[clamp(0.5rem,2vw,1rem)] font-black">
-            sundhed med mening
-          </h3>
-      </div>
+
+      {/* Fader ud når du scroller */}
+      <h3
+        ref={headingRef}
+        className="absolute top-[58%] min-[900px]:top-[64%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 text-xl min-[900px]:text-4xl font-black"
+      >
+        sundhed med mening
+      </h3>
     </section>
   );
 }

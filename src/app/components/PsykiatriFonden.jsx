@@ -40,7 +40,7 @@ export default function PsykiatriFonden() {
         </div>
         </div>
         <p className="text-lg leading-relaxed mb-6">Psykiatrifonden arbejder for et samfund, hvor alle har mulighed for et godt liv uanset psykisk sygdom. De tilbyder rådgivning, oplysning og undervisning for at nedbryde fordomme og skabe bedre forståelse for mental sundhed. </p>
-        <button className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-sm tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-32">LÆS MERE</button>
+        <button className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
       </div>
 
       {/* Sektion 1 */}
@@ -49,7 +49,7 @@ export default function PsykiatriFonden() {
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">HVORDAN ARBEJDER DE</h2>
           <h1 className="text-4xl font-semibold mb-4">Workshops & Oplysning</h1>
           <p className="text-base leading-relaxed mb-6">Gennem undervisning og oplysningskampagner arbejder Psykiatrifonden på at udbrede viden om psykisk sundhed, så vi sammen kan skabe en mere inkluderende fremtid. Du kan melde dig på hold, workshops ved at klikke på "læs mere". </p>
-          <button className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-sm tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-32">LÆS MERE</button>
+          <button className="mt-6 border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
         </div>
         <div className="order-1 md:order-2">
           <Image src="https://picsum.photos/800/600?random=2" alt="Workshop billede" width={800} height={600} className="w-full h-auto rounded-lg object-cover" />
@@ -65,7 +65,7 @@ export default function PsykiatriFonden() {
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">STØT OG GØR EN FORSKEL</h2>
           <h1 className="text-4xl font-semibold mb-4">Støt Psykiatrifonden</h1>
           <p className="text-base leading-relaxed mb-6">Vil du støtte Psykiatrifondens arbejde for bedre mental trivsel i Danmark? Din støtte går direkte til rådgivning, kampagner og undervisning. Du kan læse mere om hvad du støtter og hvordan du støtter, ved at trykke på knappen herunder. </p>
-          <button className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-sm tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-32">LÆS MERE</button>
+          <button className="mt-6 border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
         </div>
       </div>
     </section>

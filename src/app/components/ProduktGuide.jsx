@@ -11,6 +11,8 @@ export default function ProduktGuide() {
   const titleRef2 = useRef(null);
   const descRef = useRef(null);
   const btnRef = useRef(null);
+  const largeImageRef = useRef(null);
+  const smallImageRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -25,49 +27,63 @@ export default function ProduktGuide() {
         },
       });
 
-      tl.from(titleRef2.current, {
+      // Titel og stort billede samtidig
+      tl.from([titleRef2.current, largeImageRef.current], {
         opacity: 0,
         y: 30,
         duration: 0.7,
         ease: "power2.out",
+        stagger: 0.1,
       })
-        .from(
-          descRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          "-=0.5"
-        )
-        .from(
-          btnRef.current,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-          "-=0.5"
-        );
+
+      // Beskrivelse og knap
+      .from(
+        [descRef.current, btnRef.current],
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.7,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.4"
+      )
+
+      // Lille billede: fade + scale pop-in, starter lidt før resten slutter
+      .fromTo(
+        smallImageRef.current,
+        {
+          opacity: 0,
+          y: 10,
+          scale: 0.8,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.6" // starter lidt før den forrige animation slutter
+      );
     }, containerRef2);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="h-screen relative px-[clamp(4rem,10vw,20rem)] flex items-center">
+    <section className="relative px-[clamp(4rem,10vw,20rem)] flex items-center lg:h-screen">
       <div ref={containerRef2} className="flex flex-col lg:flex-row w-full gap-8 items-center">
         {/* Billeder */}
         <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
           <Image
+            ref={largeImageRef}
             src={`https://picsum.photos/500/500?grayscale&random=1`}
             alt={"Random1"}
             width={500}
             height={500}
           />
           <Image
+            ref={smallImageRef}
             src="/photos/creatin.png"
             alt={"Random2"}
             width={200}
@@ -96,14 +112,12 @@ export default function ProduktGuide() {
           </p>
 
           <Link
-  href="/product/biotechkreatin"
-  ref={btnRef}
-  className="inline-block bg-[var(--black)] text-[var(--white)] border border-[var(--black)] hover:bg-[var(--white)] hover:text-[var(--black)] font-bold text-lg px-6 py-2 rounded-xl w-32 text-center"
->
-  Køb her
-</Link>
-
-
+            href="/product/biotechkreatin"
+            ref={btnRef}
+            className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center"
+          >
+            Køb her
+          </Link>
         </div>
       </div>
     </section>
