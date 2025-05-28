@@ -39,8 +39,8 @@ export default function Hero() {
           { opacity: 0 },
           {
             opacity: 1,
-            delay: 0.4,
-            duration: 1.4,
+            delay: 0,
+            duration: 1,
             ease: "power2.out",
           }
         );
@@ -53,8 +53,8 @@ export default function Hero() {
           { opacity: 0 },
           {
             opacity: 1,
-            delay: 0.4,
-            duration: 1.4,
+            delay: 0,
+            duration: 1,
             ease: "power2.out",
           }
         );

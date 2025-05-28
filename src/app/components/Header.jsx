@@ -34,7 +34,7 @@ export default function Header() {
       { opacity: 0 },
       {
         opacity: 1,
-        delay: 1,
+        delay: 0.5,
         duration: 1.9,
         ease: "power2.out",
       }
