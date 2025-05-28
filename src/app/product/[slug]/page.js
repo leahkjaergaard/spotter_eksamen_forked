@@ -25,7 +25,7 @@ export default function ProductSlugPage() {
         console.error("Produkt ikke fundet:", error);
       } else {
         setProduct(data);
-        setMainImage(data.image); // sæt hovedbilledet som udgangspunkt
+        setMainImage(data.image);
       }
 
       setLoading(false);
@@ -44,7 +44,6 @@ export default function ProductSlugPage() {
       <BackButton />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-5">
         <div>
-          {/* STORT BILLEDE */}
           <div className="relative aspect-square w-full rounded overflow-hidden">
             <Image
             src={mainImage}
@@ -56,7 +55,6 @@ export default function ProductSlugPage() {
           />
           </div>
 
-          {/* THUMBNAILS */}
           <div className="mt-4 flex gap-4">
             {allImages.map((img, i) => (
               <div key={i} className="relative w-[100px] h-[100px] rounded overflow-hidden">
@@ -135,7 +133,6 @@ export default function ProductSlugPage() {
         </div>
       </div>
 
-      {/* Anmeldelser */}
       <div className="mt-20 px-[clamp(4rem,10vw,20rem)] flex flex-col">
         <h2 className="text-[clamp(2rem,3.2vw,4rem)] font-bold mb-4 self-center">Hvad synes andre?</h2>
         {Array.isArray(product.review) && product.review.length > 0 ? (

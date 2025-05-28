@@ -28,7 +28,6 @@ export default function Header() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade ind begge logoer
     gsap.fromTo(
       [textDesktopRef.current, textMobileRef.current],
       { opacity: 0 },
@@ -114,7 +113,6 @@ export default function Header() {
         />
       )}
 
-      {/* Animeret logo – Desktop */}
       {isIndex && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none hidden lg:block">
           <h1
@@ -126,7 +124,6 @@ export default function Header() {
         </div>
       )}
 
-      {/* Animeret logo – Mobil */}
       {isIndex && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none lg:hidden">
           <h1
@@ -139,7 +136,6 @@ export default function Header() {
       )}
 
       <div className="w-full mx-auto hidden lg:flex justify-between items-center relative z-50">
-        {/* VENSTRE */}
         <nav className="flex gap-6 text-lg relative">
           <div className="relative group">
             <Link href="/productlist" className="hover:underline">Produkter</Link>

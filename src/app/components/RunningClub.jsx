@@ -30,7 +30,6 @@ export default function RunningClub() {
         },
       });
   
-      // Venstre side: overskrift, beskrivelse, knap (i rækkefølge)
       const leftSide = [titleRef.current, descRef.current, btnRef.current];
       tl.from(leftSide, {
         opacity: 0,
@@ -40,7 +39,6 @@ export default function RunningClub() {
         stagger: 0.15,
       });
   
-      // Højre side: billeder og kort (starter samtidig som venstre side)
       tl.from(
         [...imagesRef.current, cardRef.current],
         {
@@ -49,10 +47,9 @@ export default function RunningClub() {
           duration: 1,
           ease: "power2.out",
         },
-        0 // starter samtidig som venstre side
+        0
       )
   
-      // Tekst inde i kortet — efter alt andet
       .from(
         cardRef.current.querySelectorAll("p, h2"),
         {
@@ -75,7 +72,7 @@ export default function RunningClub() {
         ref={containerRef}
         className="flex flex-col lg:flex-row w-full gap-8 items-center"
       >
-        {/* Venstre tekst */}
+
         <div className="w-[99%] md:w-[74%] lg:w-[50%] flex flex-col order-2 lg:order-1">
           <div ref={titleRef}>
             <h1 className="text-[clamp(2rem,3.2vw,5rem)] text-[var(--black)] font-bold tracking-tighter">
@@ -106,7 +103,6 @@ export default function RunningClub() {
           </div>
         </div>
 
-        {/* Højre billeder + kort */}
         <div className="w-[99%] md:w-[72%] lg:w-[48%] grid grid-cols-2 order-1 lg:order-2">
           <Image
             ref={(el) => (imagesRef.current[0] = el)}

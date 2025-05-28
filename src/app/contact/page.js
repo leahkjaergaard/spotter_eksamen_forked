@@ -9,7 +9,6 @@ export default function concact() {
         <Header />
         <section className="min-h-screen flex flex-col items-center justify-center px-6 lg:px-32 py-16 bg-[var(--white)]">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-6xl">
-        {/* Venstre billede */}
         <div className="relative w-full lg:w-1/2">
           <Image
             src="/photos/kontaktbutik.webp"
@@ -20,7 +19,6 @@ export default function concact() {
           />
         </div>
 
-        {/* Højre tekst + form */}
         <div className="lg:w-1/2 text-left space-y-6 w-full">
           <h1 className="text-[clamp(2rem,3.2vw,4rem)] text-black font-bold tracking-tighter">Kontakt os</h1>
           <p className="text-[clamp(0.2rem,4vw,1.2rem)]">

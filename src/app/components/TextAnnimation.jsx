@@ -25,7 +25,6 @@ export default function TextAnimation() {
         }
         requestAnimationFrame(raf);
 
-        // Scale image
         gsap.to(imageRef.current, {
           scale: 1.26,
           ease: "none",
@@ -38,7 +37,6 @@ export default function TextAnimation() {
           },
         });
 
-        // SplitType animation
         const splitTypes = document.querySelectorAll(".reveal-type");
         splitTypes.forEach((char, index) => {
           const text = new SplitType(char, { types: "chars" });
@@ -55,7 +53,6 @@ export default function TextAnimation() {
           });
         });
 
-        // Second text
         gsap.from(secondTextRef.current, {
           opacity: 0,
           y: 50,
@@ -70,7 +67,6 @@ export default function TextAnimation() {
           },
         });
 
-        // Button
         gsap.from(btnRef3.current, {
           opacity: 0,
           y: 50,
@@ -85,7 +81,6 @@ export default function TextAnimation() {
           },
         });
 
-        // Header fade
         if (typeof window !== "undefined" && window.spotterHeader) {
           const bg = document.getElementById("header-bg");
           ScrollTrigger.create({
@@ -113,7 +108,6 @@ export default function TextAnimation() {
   return (
     <section>
       <section className="relative">
-        {/* Sticky billede */}
         <div className="sticky top-0 h-[97vh] flex justify-center z-10">
           <div
             ref={imageRef}
@@ -124,7 +118,6 @@ export default function TextAnimation() {
           />
         </div>
 
-        {/* Tekst */}
         <div className="grid place-content-center px-[clamp(4rem,11vw,20rem)] relative bg-[var(--white)] gap-10 pt-50 z-20">
           <p className="reveal-type text-[clamp(2rem,4.9vw,8rem)] text-[var(--spotter-green)] leading-tight italic text-center font-bold">
             Hver gang du køber Spotter, er du med til at støtte{" "}

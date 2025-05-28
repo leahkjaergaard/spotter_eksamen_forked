@@ -95,7 +95,6 @@ export default function Bundles() {
     <section className="w-full flex justify-center px-5 lg:h-screen py-[clamp(4rem,5vw,10rem)] bp-10">
       <div ref={sectionRef} className="max-w-[1350px]">
         <div className="grid lg:grid-cols-[1fr_1fr] mb-16 gap-7">
-          {/* VENSTRE SIDE */}
           <div className="flex flex-col-reverse lg:flex-col">
             <div>
               <h2
@@ -121,7 +120,6 @@ export default function Bundles() {
             />
           </div>
 
-          {/* HØJRE SIDE - PRODUKTER */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {products.length === 0 ? (
               <p>Ingen produkter fundet.</p>

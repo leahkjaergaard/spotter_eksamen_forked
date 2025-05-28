@@ -48,14 +48,12 @@ export default function Basket() {
 
   return (
     <>
-      {/* Basket panel */}
       <div
         ref={basketRef}
         data-lenis-prevent
         className="fixed top-0 right-0 w-[400px] h-screen bg-[var(--white)] shadow-lg z-[9999] flex flex-col translate-x-[400px]"
       >
   
-  {/* Header */}
   <div className="p-6 border-b flex items-center justify-between">
     <h2 className="text-xl font-bold">Din kurv</h2>
     <button
@@ -66,7 +64,6 @@ export default function Basket() {
     </button>
   </div>
 
-  {/* Scrollable item list */}
   <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
     {items.length === 0 ? (
       <p className="text-sm text-gray-500">Kurven er tom.</p>
@@ -100,7 +97,6 @@ export default function Basket() {
     )}
   </div>
 
-  {/* Footer */}
   <div className="p-6 border-t">
     <div className="font-semibold text-lg mb-4 text-center">
       Total: {totalPrice},–
@@ -110,7 +106,6 @@ export default function Basket() {
   </div>
 </div>
 
-      {/* Basket icon */}
       <button
         id="cart-button"
         onClick={toggleCart}

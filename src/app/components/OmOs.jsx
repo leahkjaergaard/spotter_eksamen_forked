@@ -30,14 +30,12 @@ export default function Omos() {
 
   return (
     <section className="bg-[var(--white)] text-[#2c2c2c] py-24 px-4 sm:px-6 lg:px-16 space-y-32 pt-40">
-      {/* Introsektion */}
       <div className="max-w-4xl mx-auto text-center psy-section">
         <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">Spotter</h2>
         <h1 className="text-5xl font-bold mb-6">OM OS</h1>
         <p className="text-lg leading-relaxed">Spotter er grundlagt af Frederik og Kristian, som begge lever med bipolar lidelse og ADHD. Netop det faktum har været en naturlig del af rejsen og inspirationen bag navnet Spotter, som betyder “hjælper”. At hjælpe for Spotter sker både i butikken med ærlig vejledning, til vores events og gennem vores samarbejde med Psykiatrifonden. </p>
       </div>
 
-      {/* Sektion 1 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center psy-section">
       <Image
         src="/photos/om_os_frederik.webp"
@@ -53,9 +51,7 @@ export default function Omos() {
         </div>
       </div>
 
-      {/* Sektion 2 */}
 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center psy-section">
-  {/* Billedet skal være øverst på mobil, nederst på desktop */}
   <Image
     src="/photos/helping.webp"
     alt="Workshop billede"
@@ -64,7 +60,6 @@ export default function Omos() {
     className="rounded-lg mx-auto order-1 md:order-2"
   />
 
-  {/* Tekst skal være under billede på mobil, til venstre på desktop */}
   <div className="order-2 md:order-1">
     <h2 className="text-3xl font-bold mb-4">Samarbejde med Psykiatrifonden</h2>
     <p className="text-base leading-relaxed mb-4">

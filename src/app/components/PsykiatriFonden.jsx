@@ -30,7 +30,6 @@ export default function PsykiatriFonden() {
 
   return (
     <section className="bg-[var(--white)] text-[#2c2c2c] py-20 px-4 sm:px-6 lg:px-16 space-y-32 pt-40">
-      {/* Introsektion i midten */}
       <div className="max-w-4xl mx-auto text-center psy-section">
         <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">DERES ARBEJDE</h2>
         <div className="flex justify-center pl-[5%] items-center">
@@ -43,7 +42,6 @@ export default function PsykiatriFonden() {
         <button className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center">Læs mere</button>
       </div>
 
-      {/* Sektion 1 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 psy-section">
         <div className="order-2 md:order-1">
           <h2 className="text-sm uppercase text-[#4D6A4E] tracking-widest mb-2">HVORDAN ARBEJDER DE</h2>
@@ -62,7 +60,6 @@ export default function PsykiatriFonden() {
         </div>
       </div>
 
-      {/* Sektion 2 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center psy-section">
         <div>
           <Image

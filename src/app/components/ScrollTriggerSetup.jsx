@@ -17,7 +17,7 @@ export default function ScrollTriggerSetup() {
 
     return () => {
       clearTimeout(timeout);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Oprydning af gamle triggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, [pathname]);
 

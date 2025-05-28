@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
-  const linksRef = useRef([]); // logo + nav links + kontakt
+  const linksRef = useRef([]);
 
   const navLinks = [
     { label: "Produkter", href: "/productlist" },
@@ -76,7 +76,6 @@ export default function BurgerMenu() {
           Luk
         </button>
 
-        {/* Logo med animation */}
         <div
           className="absolute left-1/2 -translate-x-1/2 top-5 opacity-0"
           ref={(el) => (linksRef.current[0] = el)}
@@ -89,7 +88,6 @@ export default function BurgerMenu() {
           </Link>
         </div>
 
-        {/* Nav links med animation */}
         <div className="flex flex-col items-center justify-center h-full mt-[-6rem]">
           <nav className="flex flex-col items-center space-y-6 text-4xl font-bold text-center">
             {navLinks.map((link, i) => (
@@ -106,7 +104,6 @@ export default function BurgerMenu() {
           </nav>
         </div>
 
-        {/* Kontaktinfo med animation */}
         <div
           className="absolute left-1/2 -translate-x-1/2 bottom-20 text-center w-full opacity-0"
           ref={(el) => (linksRef.current[navLinks.length + 1] = el)}

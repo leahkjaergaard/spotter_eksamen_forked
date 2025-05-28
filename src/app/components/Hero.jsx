@@ -14,7 +14,6 @@ export default function Hero() {
     gsap.registerPlugin(ScrollTrigger);
   
     const ctx = gsap.context(() => {
-      // Scroll-fade på tagline
       if (taglineRef.current) {
         gsap.fromTo(
           taglineRef.current,
@@ -32,7 +31,6 @@ export default function Hero() {
         );
       }
   
-      // Fade-in på mobilbillede
       if (mobileImageRef.current) {
         gsap.fromTo(
           mobileImageRef.current,
@@ -46,7 +44,6 @@ export default function Hero() {
         );
       }
   
-      // Fade-in på desktopbillede
       if (desktopImageRef.current) {
         gsap.fromTo(
           desktopImageRef.current,
@@ -73,7 +70,6 @@ export default function Hero() {
         sundhed med mening
       </h3>
 
-      {/* Mobile & Tablet version */}
       <div ref={mobileImageRef} className="absolute inset-0 z-0 lg:hidden opacity-0">
         <Image
           src="/photos/hero.webp"
@@ -84,7 +80,6 @@ export default function Hero() {
         />
       </div>
 
-      {/* Desktop version */}
       <div ref={desktopImageRef} className="hidden lg:block z-0 opacity-0">
         <Image
           src="/photos/hero.webp"

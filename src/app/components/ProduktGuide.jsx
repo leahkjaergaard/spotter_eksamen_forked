@@ -17,7 +17,7 @@ export default function ProduktGuide() {
   const [loadedImages, setLoadedImages] = useState(0);
 
   useEffect(() => {
-    if (loadedImages < 2) return; // Vent til begge billeder er loadet
+    if (loadedImages < 2) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -31,7 +31,6 @@ export default function ProduktGuide() {
         },
       });
 
-      // Titel og stort billede samtidig
       tl.from([titleRef2.current, largeImageRef.current], {
         opacity: 0,
         y: 30,
@@ -40,7 +39,6 @@ export default function ProduktGuide() {
         stagger: 0.1,
       })
 
-      // Beskrivelse og knap
       .from(
         [descRef.current, btnRef.current],
         {
@@ -53,7 +51,6 @@ export default function ProduktGuide() {
         "-=0.4"
       )
 
-      // Lille billede: fade + scale pop-in
       .fromTo(
         smallImageRef.current,
         {
@@ -77,7 +74,6 @@ export default function ProduktGuide() {
   return (
     <section className="relative px-[clamp(4rem,10vw,20rem)] flex items-center lg:h-screen">
       <div ref={containerRef2} className="flex flex-col lg:flex-row w-full gap-8 items-center">
-        {/* Billeder */}
         <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
           <Image
             ref={largeImageRef}
@@ -98,7 +94,6 @@ export default function ProduktGuide() {
           />
         </div>
 
-        {/* Tekst */}
         <div className="flex flex-col w-[99%] md:w-[74%] lg:w-[50%] relative">
           <h1
             ref={titleRef2}

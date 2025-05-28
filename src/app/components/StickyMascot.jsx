@@ -147,7 +147,6 @@ export default function StickyMascot() {
         </div>
       )}
 
-      {/* Klikbar mascot */}
       <button onClick={toggleChat} className="w-16 h-16 overflow-hidden">
         <Image
           src="/photos/spottermaskot.png"

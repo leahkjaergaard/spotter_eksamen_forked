@@ -50,14 +50,12 @@ export default function GetProducts() {
 
   return (
     <section className="px-4 sm:px-6 lg:px-16 py-10">
-      {/* Hero + Overskrift */}
       <div className="grid md:grid-cols-2 items-center gap-8 mb-16">
         <div>
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black mt-10">Produkter</h1>
         </div>
       </div>
 
-      {/* Filter + produkter */}
       <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-10">
         <ProductFilter categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 

@@ -42,9 +42,8 @@ export default function ProductCard({ product }) {
       image: product.image,
     });
   
-    // Brug cartRect hvis den findes og er synlig – ellers fallback
     let targetTop = 20;
-    let targetLeft = window.innerWidth - 115; // top-right corner by default
+    let targetLeft = window.innerWidth - 115;
   
     if (cartButton) {
       const cartRect = cartButton.getBoundingClientRect();
@@ -84,14 +83,12 @@ export default function ProductCard({ product }) {
       <Link href={`/product/${product.slug}`}>
         <div className="mb-4 relative">
           <div className="relative w-full aspect-[1/1] mb-4 overflow-hidden rounded">
-            {/* Første billede */}
             <Image
               src={product.image}
               alt={product.name}
               fill
               className="object-cover transition-opacity duration-500 group-hover:opacity-0"
             />
-            {/* Hover billede hvis det findes */}
             {product.image2 && (
               <Image
                 src={product.image2}
@@ -102,7 +99,6 @@ export default function ProductCard({ product }) {
             )}
           </div>
 
-          {/* SALE badge */}
           {isOnSale && (
             <div className="absolute top-2 left-2 bg-[var(--spotter-green)] text-white text-xs font-bold px-2 py-1 rounded">
               TILBUD
