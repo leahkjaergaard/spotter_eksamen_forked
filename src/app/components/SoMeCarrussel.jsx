@@ -2,19 +2,19 @@
 
 export default function SoMeCarousel() {
   const items = [
-    { type: "image", src: "/photos/SoMe1.webp" },
+    { type: "image", src: "/photos/soMe1.webp" },
     { type: "image", src: "/photos/SoMe2.webp" },
     { type: "box" },
     { type: "image", src: "/photos/SoMe3.webp" },
     { type: "image", src: "/photos/SoMe4.webp" },
     { type: "image", src: "/photos/SoMe6.webp" },
-    { type: "image", src: "/photos/SoMe1.webp" },
+    { type: "image", src: "/photos/soMe1.webp" },
     { type: "image", src: "/photos/SoMe2.webp" },
     { type: "box" },
     { type: "image", src: "/photos/SoMe3.webp" },
     { type: "image", src: "/photos/SoMe4.webp" },
     { type: "image", src: "/photos/SoMe6.webp" },
-    { type: "image", src: "/photos/SoMe1.webp" },
+    { type: "image", src: "/photos/soMe1.webp" },
     { type: "image", src: "/photos/SoMe2.webp" },
     { type: "box" },
     { type: "image", src: "/photos/SoMe3.webp" },
