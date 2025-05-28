@@ -1,133 +1,95 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Image from "next/image";
 
 export default function Hero() {
-  const containerRef = useRef(null);
-  const headingRef = useRef(null); // Ref til h3
+  const taglineRef = useRef(null);
+  const mobileImageRef = useRef(null);
+  const desktopImageRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      const images = gsap.utils.toArray(".collage-img");
-      const container = containerRef.current;
-
-      if (!container || images.length === 0) return;
-
-      const containerBounds = container.getBoundingClientRect();
-      const centerX = containerBounds.width / 2;
-      const centerY = containerBounds.height / 2;
-
-      // Midlertidigt placer billeder i midten
-      images.forEach((img) => {
-        const bounds = img.getBoundingClientRect();
-        const offsetLeft = bounds.left - containerBounds.left;
-        const offsetTop = bounds.top - containerBounds.top;
-
-        const dx = centerX - offsetLeft - bounds.width / 2;
-        const dy = centerY - offsetTop - bounds.height / 2;
-
-        gsap.set(img, {
-          x: dx,
-          y: dy,
-          scale: 0.5,
-          opacity: 0,
-        });
-      });
-
-      const tl = gsap.timeline();
-
-      tl.to(images, {
-        opacity: 1,
-        scale: 1,
-        stagger: 0.3,
-        duration: 0.8,
-        ease: "power2.out",
-      }).to(
-        images,
+    // Scroll-fade på tagline
+    if (taglineRef.current) {
+      gsap.fromTo(
+        taglineRef.current,
+        { opacity: 1 },
         {
-          x: 0,
-          y: 0,
-          duration: 1.2,
-          ease: "power3.out",
-        },
-        "+=0.2"
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: taglineRef.current,
+            start: "top-=70 center",
+            end: "center center",
+            scrub: true,
+          },
+        }
       );
+    }
 
-      // Scroll fade out af h3
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "center center",
-        end: "top top",
-        scrub: true,
-        animation: gsap.fromTo(
-          headingRef.current,
-          { opacity: 1,
-           },
-          { ease: "none",
-            opacity: 0,
-           }
-        ),
-      });
-    }, containerRef);
+    // Fade-in på mobilbillede
+    if (mobileImageRef.current) {
+      gsap.fromTo(
+        mobileImageRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          delay: 0.4,
+          duration: 1.4,
+          ease: "power2.out",
+        }
+      );
+    }
 
-    return () => ctx.revert();
+    // Fade-in på desktopbillede
+    if (desktopImageRef.current) {
+      gsap.fromTo(
+        desktopImageRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          delay: 0.4,
+          duration: 1.4,
+          ease: "power2.out",
+        }
+      );
+    }
   }, []);
 
   return (
-    <section className="h-screen relative px-[clamp(4rem,12vw,20rem)] flex items-center justify-center">
-      <div
-        ref={containerRef}
-        className="relative w-full max-w-[1600px] h-[600px]"
-      >
-        <Image
-          src="https://picsum.photos/350/480?grayscale&random=1"
-          alt="Random 1"
-          width={350}
-          height={480}
-          className="absolute top-15 left-0 z-0 object-cover collage-img"
-        />
-        <Image
-          src="https://picsum.photos/430/280?grayscale&random=5"
-          alt="Random 5"
-          width={430}
-          height={280}
-          className="absolute top-5 right-10 z-0 object-cover collage-img"
-        />
-        <Image
-          src="https://picsum.photos/300/280?grayscale&random=4"
-          alt="Random 4"
-          width={300}
-          height={280}
-          className="absolute bottom-5 right-0 z-0 object-cover collage-img"
-        />
-        <Image
-          src="https://picsum.photos/499/300?grayscale&random=3"
-          alt="Random 3"
-          width={499}
-          height={300}
-          className="absolute bottom-0 left-87.5 z-0 object-cover collage-img"
-        />
-        <Image
-          src="https://picsum.photos/330/300?grayscale&random=2"
-          alt="Random 2"
-          width={330}
-          height={300}
-          className="absolute top-0 left-87.5 z-0 object-cover collage-img"
-        />
-      </div>
-
-      {/* Fader ud når du scroller */}
+    <section className="h-screen relative flex items-center justify-center px-6 lg:px-[clamp(4rem,12vw,20rem)] overflow-hidden">
       <h3
-        ref={headingRef}
-        className="absolute top-[58%] min-[900px]:top-[64%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 text-xl min-[900px]:text-4xl font-black"
+        ref={taglineRef}
+        className="absolute top-[56%] lg:top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 text-xl text-[var(--white)] lg:text-4xl font-black"
       >
         sundhed med mening
       </h3>
+
+      {/* Mobile & Tablet version */}
+      <div ref={mobileImageRef} className="absolute inset-0 z-0 lg:hidden opacity-0">
+        <Image
+          src="/photos/hero.jpg"
+          alt="Workshop billede"
+          fill
+          priority
+          className="object-cover"
+        />
+      </div>
+
+      {/* Desktop version */}
+      <div ref={desktopImageRef} className="hidden lg:block z-0 opacity-0">
+        <Image
+          src="/photos/hero.jpg"
+          alt="Workshop billede"
+          width={1920}
+          height={1080}
+          className="rounded-lg"
+        />
+      </div>
     </section>
   );
 }

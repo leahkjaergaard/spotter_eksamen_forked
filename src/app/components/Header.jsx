@@ -14,7 +14,8 @@ export default function Header() {
   const pathname = usePathname();
   const isIndex = pathname === "/";
   const headerRef = useRef(null);
-  const textRef = useRef(null);
+  const textDesktopRef = useRef(null);
+  const textMobileRef = useRef(null);
 
   useEffect(() => {
     if (isIndex && typeof window !== "undefined") {
@@ -23,64 +24,78 @@ export default function Header() {
   }, [isIndex]);
 
   useEffect(() => {
-    if (!isIndex || !textRef.current) return;
+    if (!isIndex) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade ind ved load
+    // Fade ind begge logoer
     gsap.fromTo(
-      textRef.current,
+      [textDesktopRef.current, textMobileRef.current],
       { opacity: 0 },
       {
         opacity: 1,
-        delay: 2.3,
-        duration: 1,
+        delay: 1,
+        duration: 1.9,
         ease: "power2.out",
       }
     );
 
     let headerTL;
+    const mm = gsap.matchMedia();
 
-    requestAnimationFrame(() => {
-      // Init state
-      const mm = gsap.matchMedia();
+    mm.add("(max-width: 1025px)", () => {
+      const el = textMobileRef.current;
+      if (!el) return;
 
-mm.add("(max-width: 900px)", () => {
-  gsap.set(textRef.current, {
-    y: "22rem",
-    scale: 6.2,
-    color: "#4D6A4E",
-  });
-});
+      gsap.set(el, {
+        y: "22rem",
+        scale: 4.2,
+        color: "#FFFFFF",
+      });
 
-mm.add("(min-width: 900px)", () => {
-  gsap.set(textRef.current, {
-    y: "22rem",
-    scale: 10,
-    color: "#4D6A4E",
-  });
-});
-
-      // Spotter scroll animation
-      headerTL = gsap.to(textRef.current, {
+      headerTL = gsap.to(el, {
         y: "0.2rem",
-        scale: 1.2,
+        scale: 1,
         color: "#000000",
         ease: "none",
         scrollTrigger: {
-          id: "headerScrollTrigger",
-          trigger: textRef.current,
+          id: "headerScrollTriggerMobile",
+          trigger: el,
           start: "center center",
           end: "top top",
           scrub: true,
         },
       });
+    });
 
-      ScrollTrigger.refresh();
+    mm.add("(min-width: 1025px)", () => {
+      const el = textDesktopRef.current;
+      if (!el) return;
+
+      gsap.set(el, {
+        y: "22rem",
+        scale: 10,
+        color: "#FFFFFF",
+      });
+
+      headerTL = gsap.to(el, {
+        y: "0.2rem",
+        scale: 1.2,
+        color: "#000000",
+        ease: "none",
+        scrollTrigger: {
+          id: "headerScrollTriggerDesktop",
+          trigger: el,
+          start: "center center",
+          end: "top top",
+          scrub: true,
+        },
+      });
     });
 
     return () => {
-      ScrollTrigger.getById("headerScrollTrigger")?.kill();
+      ScrollTrigger.getById("headerScrollTriggerMobile")?.kill();
+      ScrollTrigger.getById("headerScrollTriggerDesktop")?.kill();
       headerTL?.kill();
     };
   }, [isIndex]);
@@ -88,7 +103,7 @@ mm.add("(min-width: 900px)", () => {
   return (
     <header
       ref={isIndex ? headerRef : null}
-      className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${
+      className={`w-full px-6 py-3 fixed z-50 text-[var(--black)] ${
         !isIndex ? "bg-[var(--white)]" : ""
       }`}
     >
@@ -99,12 +114,24 @@ mm.add("(min-width: 900px)", () => {
         />
       )}
 
-      {/* Animeret logo */}
+      {/* Animeret logo – Desktop */}
       {isIndex && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none hidden lg:block">
           <h1
-            ref={textRef}
-            className="text-[clamp(1rem,4vw,1.5rem)] italic tracking-[-0.08em] opacity-0"
+            ref={textDesktopRef}
+            className="text-[clamp(1rem,4vw,1.5rem)] italic tracking-[-0.08em] opacity-0 drop-shadow-2xl"
+          >
+            Spotter.
+          </h1>
+        </div>
+      )}
+
+      {/* Animeret logo – Mobil */}
+      {isIndex && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none lg:hidden">
+          <h1
+            ref={textMobileRef}
+            className="text-[clamp(1rem,6vw,2rem)] italic tracking-[-0.08em] opacity-0 drop-shadow-2xl"
           >
             Spotter.
           </h1>
@@ -115,9 +142,7 @@ mm.add("(min-width: 900px)", () => {
         {/* VENSTRE */}
         <nav className="flex gap-6 text-lg relative">
           <div className="relative group">
-            <Link href="/productlist" className="hover:underline">
-              Produkter
-            </Link>
+            <Link href="/productlist" className="hover:underline">Produkter</Link>
             <div className="group-hover:flex absolute -left-6 top-full bg-white shadow-xl rounded-md z-50 transition-all duration-500 ease-in-out opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto">
               <div className="grid grid-cols-[1fr_1fr_1fr_2fr_2fr] gap-8 w-screen p-6 pt-9 h-[45vh]">
                 <div className="flex flex-col gap-4">
