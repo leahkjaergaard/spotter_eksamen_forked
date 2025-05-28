@@ -119,8 +119,7 @@ export default function TextAnimation() {
             ref={imageRef}
             className="w-[80%] h-[85%] bg-cover bg-center bg-no-repeat rounded-xl transform"
             style={{
-              backgroundImage:
-                "url('https://picsum.photos/1000/600?grayscale&random=4')",
+              backgroundImage: "url('photos/animationsbilled.webp')",
             }}
           />
         </div>
