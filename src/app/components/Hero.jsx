@@ -12,52 +12,56 @@ export default function Hero() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    // Scroll-fade på tagline
-    if (taglineRef.current) {
-      gsap.fromTo(
-        taglineRef.current,
-        { opacity: 1 },
-        {
-          opacity: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: taglineRef.current,
-            start: "top-=70 center",
-            end: "center center",
-            scrub: true,
-          },
-        }
-      );
-    }
-
-    // Fade-in på mobilbillede
-    if (mobileImageRef.current) {
-      gsap.fromTo(
-        mobileImageRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          delay: 0.4,
-          duration: 1.4,
-          ease: "power2.out",
-        }
-      );
-    }
-
-    // Fade-in på desktopbillede
-    if (desktopImageRef.current) {
-      gsap.fromTo(
-        desktopImageRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          delay: 0.4,
-          duration: 1.4,
-          ease: "power2.out",
-        }
-      );
-    }
+  
+    const ctx = gsap.context(() => {
+      // Scroll-fade på tagline
+      if (taglineRef.current) {
+        gsap.fromTo(
+          taglineRef.current,
+          { opacity: 1 },
+          {
+            opacity: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: taglineRef.current,
+              start: "top-=70 center",
+              end: "center center",
+              scrub: true,
+            },
+          }
+        );
+      }
+  
+      // Fade-in på mobilbillede
+      if (mobileImageRef.current) {
+        gsap.fromTo(
+          mobileImageRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            delay: 0.4,
+            duration: 1.4,
+            ease: "power2.out",
+          }
+        );
+      }
+  
+      // Fade-in på desktopbillede
+      if (desktopImageRef.current) {
+        gsap.fromTo(
+          desktopImageRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            delay: 0.4,
+            duration: 1.4,
+            ease: "power2.out",
+          }
+        );
+      }
+    });
+  
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -72,7 +76,7 @@ export default function Hero() {
       {/* Mobile & Tablet version */}
       <div ref={mobileImageRef} className="absolute inset-0 z-0 lg:hidden opacity-0">
         <Image
-          src="/photos/hero.jpg"
+          src="/photos/hero.webp"
           alt="Workshop billede"
           fill
           priority
@@ -83,7 +87,7 @@ export default function Hero() {
       {/* Desktop version */}
       <div ref={desktopImageRef} className="hidden lg:block z-0 opacity-0">
         <Image
-          src="/photos/hero.jpg"
+          src="/photos/hero.webp"
           alt="Workshop billede"
           width={1920}
           height={1080}
