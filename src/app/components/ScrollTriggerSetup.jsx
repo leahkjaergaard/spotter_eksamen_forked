@@ -15,9 +15,11 @@ export default function ScrollTriggerSetup() {
       ScrollTrigger.refresh();
     }, 100);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Oprydning af gamle triggers
+    };
   }, [pathname]);
 
   return null;
 }
-

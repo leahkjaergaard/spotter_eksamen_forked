@@ -31,8 +31,8 @@ export default function TextAnimation() {
           ease: "none",
           scrollTrigger: {
             trigger: imageRef.current,
-            start: "top+=100 center",
-            end: "top-=100 top",
+            start: "bottom center",
+            end: "bottom top",
             scrub: true,
             id: "textanimation-scale",
           },
@@ -47,8 +47,8 @@ export default function TextAnimation() {
             stagger: 0.1,
             scrollTrigger: {
               trigger: char,
-              start: "top 80%",
-              end: "top-=250 top",
+              start: "bottom center",
+            end: "bottom top",
               scrub: true,
               id: `textanimation-split-${index}`,
             },
@@ -63,8 +63,8 @@ export default function TextAnimation() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: secondTextRef.current,
-            start: "top 70%",
-            end: "bottom",
+            start: "bottom center",
+            end: "bottom top",
             toggleActions: "play reverse play reverse",
             id: "textanimation-secondtext",
           },
@@ -78,8 +78,8 @@ export default function TextAnimation() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: btnRef3.current,
-            start: "top 80%",
-            end: "bottom",
+            start: "bottom center",
+            end: "bottom top",
             toggleActions: "play reverse play reverse",
             id: "textanimation-button",
           },
@@ -90,8 +90,8 @@ export default function TextAnimation() {
           const bg = document.getElementById("header-bg");
           ScrollTrigger.create({
             trigger: imageRef.current,
-            start: "top-=140",
-            end: "bottom+=70 top",
+            start: "bottom-=50 center",
+            end: "bottom+=500 top",
             onEnter: () => gsap.set(bg, { opacity: 0 }),
             onLeave: () => gsap.set(bg, { opacity: 1 }),
             onEnterBack: () => gsap.set(bg, { opacity: 0 }),

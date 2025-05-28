@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -14,8 +14,11 @@ export default function ProduktGuide() {
   const btnRef = useRef(null);
   const largeImageRef = useRef(null);
   const smallImageRef = useRef(null);
+  const [loadedImages, setLoadedImages] = useState(0);
 
   useEffect(() => {
+    if (loadedImages < 2) return; // Vent til begge billeder er loadet
+
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
@@ -23,7 +26,7 @@ export default function ProduktGuide() {
         scrollTrigger: {
           id: "produktguide-trigger",
           trigger: containerRef2.current,
-          start: "top 60%",
+          start: "bottom 60%",
           toggleActions: "play reverse play reverse",
         },
       });
@@ -50,7 +53,7 @@ export default function ProduktGuide() {
         "-=0.4"
       )
 
-      // Lille billede: fade + scale pop-in, starter lidt før resten slutter
+      // Lille billede: fade + scale pop-in
       .fromTo(
         smallImageRef.current,
         {
@@ -64,12 +67,12 @@ export default function ProduktGuide() {
           duration: 1,
           ease: "back.out(1.7)",
         },
-        "-=0.6" // starter lidt før den forrige animation slutter
+        "-=0.6"
       );
     }, containerRef2);
 
     return () => ctx.revert();
-  }, []);
+  }, [loadedImages]);
 
   return (
     <section className="relative px-[clamp(4rem,10vw,20rem)] flex items-center lg:h-screen">
@@ -82,6 +85,7 @@ export default function ProduktGuide() {
             alt={"Random1"}
             width={500}
             height={500}
+            onLoadingComplete={() => setLoadedImages((count) => count + 1)}
           />
           <Image
             ref={smallImageRef}
@@ -90,6 +94,7 @@ export default function ProduktGuide() {
             width={200}
             height={200}
             className="absolute -bottom-10 right-0 w-[40%] h-auto"
+            onLoadingComplete={() => setLoadedImages((count) => count + 1)}
           />
         </div>
 
@@ -117,10 +122,9 @@ export default function ProduktGuide() {
               href="/product/biotechkreatin"
               className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center inline-block"
             >
-            Køb her
-           </Link>
+              Køb her
+            </Link>
           </div>
-
         </div>
       </div>
     </section>
