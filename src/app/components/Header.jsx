@@ -43,39 +43,20 @@ export default function Header() {
     let headerTL;
     const mm = gsap.matchMedia();
 
-    mm.add("(max-width: 1025px)", () => {
-      const el = textMobileRef.current;
-      if (!el) return;
+mm.add("(max-width: 900px)", () => {
+  gsap.set(textRef.current, {
+    y: "22rem",
+    scale: 6.2,
+    color: "#4D6A4E",
+  });
+});
 
-      gsap.set(el, {
-        y: "22rem",
-        scale: 4.2,
-        color: "#FFFFFF",
-      });
-
-      headerTL = gsap.to(el, {
-        y: "0.2rem",
-        scale: 1,
-        color: "#000000",
-        ease: "none",
-        scrollTrigger: {
-          id: "headerScrollTriggerMobile",
-          trigger: el,
-          start: "center center",
-          end: "top top",
-          scrub: true,
-        },
-      });
-    });
-
-    mm.add("(min-width: 1025px)", () => {
-      const el = textDesktopRef.current;
-      if (!el) return;
-
-      gsap.set(el, {
-        y: "22rem",
-        scale: 10,
-        color: "#FFFFFF",
+      mm.add("(min-width: 900px)", () => {
+        gsap.set(textRef.current, {
+          y: "22rem",
+          scale: 10,
+          color: "#4D6A4E",
+        });
       });
 
       headerTL = gsap.to(el, {
@@ -103,7 +84,7 @@ export default function Header() {
   return (
     <header
       ref={isIndex ? headerRef : null}
-      className={`w-full px-6 py-3 fixed z-50 text-[var(--black)] ${
+      className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${
         !isIndex ? "bg-[var(--white)]" : ""
       }`}
     >
@@ -128,10 +109,10 @@ export default function Header() {
 
       {/* Animeret logo – Mobil */}
       {isIndex && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none lg:hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none">
           <h1
-            ref={textMobileRef}
-            className="text-[clamp(1rem,6vw,2rem)] italic tracking-[-0.08em] opacity-0 drop-shadow-2xl"
+            ref={textRef}
+            className="text-[clamp(1rem,4vw,1.5rem)] italic tracking-[-0.08em] opacity-0"
           >
             Spotter.
           </h1>
@@ -147,29 +128,53 @@ export default function Header() {
               <div className="grid grid-cols-[1fr_1fr_1fr_2fr_2fr] gap-8 w-screen p-6 pt-9 h-[45vh]">
                 <div className="flex flex-col gap-4">
                   <p className="opacity-70 text-xs mb-2 font-medium">Produkter</p>
-                  <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">Proteinpulver</Link>
-                  <Link href="/productlist?category=kreatin" className="text-sm font-normal hover:underline">Kreatin</Link>
-                  <Link href="/productlist?category=vegansk" className="text-sm font-normal hover:underline">Vegansk</Link>
+                  <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">
+                    Proteinpulver
+                  </Link>
+                  <Link href="/productlist?category=kreatin" className="text-sm font-normal hover:underline">
+                    Kreatin
+                  </Link>
+                  <Link href="/productlist?category=vegansk" className="text-sm font-normal hover:underline">
+                    Vegansk
+                  </Link>
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="opacity-70 mb-3 text-xs">Accessories</p>
-                  <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">Spotter merch</Link>
-                  <Link href="/productlist?category=udstyr" className="text-sm font-normal hover:underline">Udstyr</Link>
+                  <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">
+                    Spotter merch
+                  </Link>
+                  <Link href="/productlist?category=udstyr" className="text-sm font-normal hover:underline">
+                    Udstyr
+                  </Link>
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="opacity-70 mb-2 text-xs">Vejledning</p>
-                  <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">Opskrifter</Link>
-                  <Link href="/guides/ny" className="text-sm font-normal hover:underline">Ny til træning?</Link>
+                  <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">
+                    Opskrifter
+                  </Link>
+                  <Link href="/guides/ny" className="text-sm font-normal hover:underline">
+                    Ny til træning?
+                  </Link>
                 </div>
-                <div><Image src="https://picsum.photos/800/600?random=2" alt="Billede 1" width={300} height={200} className="w-full h-full object-cover rounded-lg" /></div>
-                <div><Image src="https://picsum.photos/800/600?random=3" alt="Billede 2" width={300} height={200} className="w-full h-full object-cover rounded-lg" /></div>
+                <div>
+                  <Image src="/photos/smoothie.webp" alt="smoothie" width={300} height={200} className="object-cover rounded-lg" />
+                </div>
+                <div>
+                  <Image src="/photos/flasker.webp" alt="flaske" width={300} height={200} className="object-cover rounded-lg" />
+                </div>
               </div>
             </div>
           </div>
 
-          <Link href="/psykiatrifonden" className="hover:underline">Psykiatrifonden</Link>
-          <Link href="/omos" className="hover:underline">Om os</Link>
-          <Link href="/contact" className="hover:underline">Kontakt</Link>
+          <Link href="/psykiatrifonden" className="hover:underline">
+            Psykiatrifonden
+          </Link>
+          <Link href="/omos" className="hover:underline">
+            Om os
+          </Link>
+          <Link href="/contact" className="hover:underline">
+            Kontakt
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
