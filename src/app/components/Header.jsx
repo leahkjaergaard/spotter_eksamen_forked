@@ -45,21 +45,21 @@ export default function Header() {
       // Init state
       const mm = gsap.matchMedia();
 
-mm.add("(max-width: 900px)", () => {
-  gsap.set(textRef.current, {
-    y: "22rem",
-    scale: 6.2,
-    color: "#4D6A4E",
-  });
-});
+      mm.add("(max-width: 900px)", () => {
+        gsap.set(textRef.current, {
+          y: "22rem",
+          scale: 6.2,
+          color: "#4D6A4E",
+        });
+      });
 
-mm.add("(min-width: 900px)", () => {
-  gsap.set(textRef.current, {
-    y: "22rem",
-    scale: 10,
-    color: "#4D6A4E",
-  });
-});
+      mm.add("(min-width: 900px)", () => {
+        gsap.set(textRef.current, {
+          y: "22rem",
+          scale: 10,
+          color: "#4D6A4E",
+        });
+      });
 
       // Spotter scroll animation
       headerTL = gsap.to(textRef.current, {
@@ -86,26 +86,13 @@ mm.add("(min-width: 900px)", () => {
   }, [isIndex]);
 
   return (
-    <header
-      ref={isIndex ? headerRef : null}
-      className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${
-        !isIndex ? "bg-[var(--white)]" : ""
-      }`}
-    >
-      {isIndex && (
-        <div
-          id="header-bg"
-          className="absolute inset-0 bg-[var(--white)] z-[-1] transition-opacity duration-0"
-        />
-      )}
+    <header ref={isIndex ? headerRef : null} className={`w-full px-6 py-5 fixed z-50 text-[var(--black)] ${!isIndex ? "bg-[var(--white)]" : ""}`}>
+      {isIndex && <div id="header-bg" className="absolute inset-0 bg-[var(--white)] z-[-1] transition-opacity duration-0" />}
 
       {/* Animeret logo */}
       {isIndex && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-30 pointer-events-none">
-          <h1
-            ref={textRef}
-            className="text-[clamp(1rem,4vw,1.5rem)] italic tracking-[-0.08em] opacity-0"
-          >
+          <h1 ref={textRef} className="text-[clamp(1rem,4vw,1.5rem)] italic tracking-[-0.08em] opacity-0">
             Spotter.
           </h1>
         </div>
@@ -122,29 +109,53 @@ mm.add("(min-width: 900px)", () => {
               <div className="grid grid-cols-[1fr_1fr_1fr_2fr_2fr] gap-8 w-screen p-6 pt-9 h-[45vh]">
                 <div className="flex flex-col gap-4">
                   <p className="opacity-70 text-xs mb-2 font-medium">Produkter</p>
-                  <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">Proteinpulver</Link>
-                  <Link href="/productlist?category=kreatin" className="text-sm font-normal hover:underline">Kreatin</Link>
-                  <Link href="/productlist?category=vegansk" className="text-sm font-normal hover:underline">Vegansk</Link>
+                  <Link href="/productlist?category=proteinpulver" className="text-sm font-normal hover:underline">
+                    Proteinpulver
+                  </Link>
+                  <Link href="/productlist?category=kreatin" className="text-sm font-normal hover:underline">
+                    Kreatin
+                  </Link>
+                  <Link href="/productlist?category=vegansk" className="text-sm font-normal hover:underline">
+                    Vegansk
+                  </Link>
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="opacity-70 mb-3 text-xs">Accessories</p>
-                  <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">Spotter merch</Link>
-                  <Link href="/productlist?category=udstyr" className="text-sm font-normal hover:underline">Udstyr</Link>
+                  <Link href="/productlist?category=merch" className="text-sm font-normal hover:underline">
+                    Spotter merch
+                  </Link>
+                  <Link href="/productlist?category=udstyr" className="text-sm font-normal hover:underline">
+                    Udstyr
+                  </Link>
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="opacity-70 mb-2 text-xs">Vejledning</p>
-                  <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">Opskrifter</Link>
-                  <Link href="/guides/ny" className="text-sm font-normal hover:underline">Ny til træning?</Link>
+                  <Link href="/guides/opskrifter" className="text-sm font-normal hover:underline">
+                    Opskrifter
+                  </Link>
+                  <Link href="/guides/ny" className="text-sm font-normal hover:underline">
+                    Ny til træning?
+                  </Link>
                 </div>
-                <div><Image src="https://picsum.photos/800/600?random=2" alt="Billede 1" width={300} height={200} className="w-full h-full object-cover rounded-lg" /></div>
-                <div><Image src="https://picsum.photos/800/600?random=3" alt="Billede 2" width={300} height={200} className="w-full h-full object-cover rounded-lg" /></div>
+                <div>
+                  <Image src="/photos/smoothie.webp" alt="smoothie" width={300} height={200} className="object-cover rounded-lg" />
+                </div>
+                <div>
+                  <Image src="/photos/flasker.webp" alt="flaske" width={300} height={200} className="object-cover rounded-lg" />
+                </div>
               </div>
             </div>
           </div>
 
-          <Link href="/psykiatrifonden" className="hover:underline">Psykiatrifonden</Link>
-          <Link href="/omos" className="hover:underline">Om os</Link>
-          <Link href="/contact" className="hover:underline">Kontakt</Link>
+          <Link href="/psykiatrifonden" className="hover:underline">
+            Psykiatrifonden
+          </Link>
+          <Link href="/omos" className="hover:underline">
+            Om os
+          </Link>
+          <Link href="/contact" className="hover:underline">
+            Kontakt
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
