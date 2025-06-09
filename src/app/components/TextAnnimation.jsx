@@ -34,6 +34,7 @@ export default function TextAnimation() {
             end: "bottom top",
             scrub: true,
             id: "textanimation-scale",
+            // markers: true,
           },
         });
 

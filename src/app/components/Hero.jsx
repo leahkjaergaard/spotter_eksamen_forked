@@ -28,6 +28,7 @@ export default function Hero() {
               start: "top-=70 center",
               end: "center center",
               scrub: true,
+              // markers: true,
             },
           }
         );

@@ -27,6 +27,7 @@ export default function RunningClub() {
           trigger: containerRef.current,
           start: "top 60%",
           toggleActions: "play none none reverse",
+          // markers: true,
         },
       });
   

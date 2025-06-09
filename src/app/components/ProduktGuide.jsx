@@ -29,6 +29,7 @@ export default function ProduktGuide() {
           trigger: containerRef2.current,
           start: "bottom 60%",
           toggleActions: "play none none reverse",
+          // markers: true,
         },
       });
 
