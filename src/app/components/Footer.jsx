@@ -1,18 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="pt-10 min-h-[120px]">
       <div className="overflow-hidden h-[20rem] lg:h-[30rem] flex items-center justify-center">
-  <h1 className="text-[clamp(2rem,30.5vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em] mr-[8%]">
-    Spotter
-  </h1>
-</div>
+        <h1 className="text-[clamp(2rem,30.5vw,30rem)] font-bold italic text-center leading-none tracking-[-0.08em] mr-[8%]">Spotter</h1>
+      </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-12 px-[clamp(4rem,10vw,20rem)] text-sm pt-20">
+        {/* KONTAKT */}
         <div className="flex justify-center">
           <div>
             <h3 className="font-bold pb-2 justify-center min-w-[175px] lg:min-w-fit">KONTAKT</h3>
@@ -36,10 +36,11 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* INFORMATION */}
         <div className="flex justify-center">
           <div>
             <h3 className="font-bold pb-2 min-w-[150px] lg:min-w-fit">INFORMATION</h3>
-            <ul className="space-y-1">
+            <ul className="space-y-1 mb-2">
               <li>
                 <Link href="/terms" className="hover:underline">
                   Handelsbetingelser
@@ -51,9 +52,15 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+
+            <div className="flex gap-2 mt-2">
+              <Image src="/photos/visa.png" alt="Visa" width={45} height={28} className="object-contain" />
+              <Image src="/photos/applepay.png" alt="Apple Pay" width={45} height={28} className="object-contain" />
+            </div>
           </div>
         </div>
 
+        {/* FØLG MED */}
         <div className="flex justify-center">
           <div>
             <h3 className="font-bold pb-2 min-w-[175px] lg:min-w-fit">FØLG MED</h3>
@@ -68,6 +75,7 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* SPOTTER */}
         <div className="flex justify-center">
           <div>
             <h3 className="font-bold pb-2 min-w-[150px] lg:min-w-fit">SPOTTER</h3>
