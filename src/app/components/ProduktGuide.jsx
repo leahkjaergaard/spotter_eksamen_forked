@@ -27,7 +27,7 @@ export default function ProduktGuide() {
         scrollTrigger: {
           id: "produktguide-trigger",
           trigger: containerRef2.current,
-          start: "bottom 60%",
+          start: "top 60%",
           toggleActions: "play none none reverse",
         },
       });
@@ -74,53 +74,23 @@ export default function ProduktGuide() {
 
   return (
     <section className="relative px-[clamp(4rem,10vw,20rem)] flex items-center lg:h-screen">
-      <div
-        ref={containerRef2}
-        className="flex flex-col lg:flex-row w-full gap-8 items-center"
-      >
+      <div ref={containerRef2} className="flex flex-col lg:flex-row w-full gap-8 items-center">
         <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
-          <Image
-            ref={largeImageRef}
-            src={`/photos/kreatin.webp`}
-            alt={"Random1"}
-            width={500}
-            height={500}
-            onLoadingComplete={() => setLoadedImages((count) => count + 1)}
-          />
-          <Image
-            ref={smallImageRef}
-            src="/photos/maskotderdrikker.png"
-            alt={"Random2"}
-            width={200}
-            height={200}
-            className="absolute -bottom-10 right-0 w-[40%] h-auto"
-            onLoadingComplete={() => setLoadedImages((count) => count + 1)}
-          />
+          <Image ref={largeImageRef} src={`/photos/kreatin.webp`} alt={"Random1"} width={500} height={500} onLoadingComplete={() => setLoadedImages((count) => count + 1)} />
+          <Image ref={smallImageRef} src="/photos/maskotderdrikker.png" alt={"Random2"} width={200} height={200} className="absolute -bottom-10 right-0 w-[40%] h-auto" onLoadingComplete={() => setLoadedImages((count) => count + 1)} />
         </div>
 
         <div className="flex flex-col w-[99%] md:w-[74%] lg:w-[50%] relative">
-          <h1
-            ref={titleRef2}
-            className="text-[clamp(2rem,3.2vw,4rem)] text-[var(--black)] font-bold tracking-tighter pt-[6%] lg:pt-0"
-          >
+          <h1 ref={titleRef2} className="text-[clamp(2rem,3.2vw,4rem)] text-[var(--black)] font-bold tracking-tighter pt-[6%] lg:pt-0">
             Hvorfor tager man kreatin?
           </h1>
 
-          <p
-            ref={descRef}
-            className="text-[clamp(0.2rem,4vw,1.2rem)] pt-[5%] pb-[5%] lg:pt-[10%] lg:pb-[10%]"
-          >
-            Hver tirsdag kl. 7:30 løber vi fra vores butik på Nørrebrogade 26.
-            Alle niveauer er velkomne – uanset om du er nybegynder eller
-            erfaren løber. Vi deler os op i tempo-grupper, så alle kan være med.
-            Efter løbet byder vi på en kop kaffe og god stemning i butikken.
+          <p ref={descRef} className="text-[clamp(0.2rem,4vw,1.2rem)] pt-[5%] pb-[5%] lg:pt-[10%] lg:pb-[10%]">
+            Hver tirsdag kl. 7:30 løber vi fra vores butik på Nørrebrogade 26. Alle niveauer er velkomne – uanset om du er nybegynder eller erfaren løber. Vi deler os op i tempo-grupper, så alle kan være med. Efter løbet byder vi på en kop kaffe og god stemning i butikken.
           </p>
 
           <div ref={btnRef}>
-            <Link
-              href="/product/biotechkreatin"
-              className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center inline-block"
-            >
+            <Link href="/product/biotechkreatin" className="border bg-[var(--black)] text-[var(--white)] px-6 py-2 text-xs tracking-wider hover:bg-[var(--white)] hover:text-[var(--black)] transition rounded-xl w-30 text-center inline-block">
               Køb her
             </Link>
           </div>
