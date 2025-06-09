@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import "../../app/globals.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProduktGuide() {
   const containerRef2 = useRef(null);
@@ -16,18 +19,16 @@ export default function ProduktGuide() {
   const smallImageRef = useRef(null);
   const [loadedImages, setLoadedImages] = useState(0);
 
-  useEffect(() => {
-    if (loadedImages < 2) return;
+  useGSAP(
+    () => {
+      if (loadedImages < 2) return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "produktguide-trigger",
           trigger: containerRef2.current,
           start: "bottom 60%",
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play none none reverse",
         },
       });
 
@@ -38,42 +39,45 @@ export default function ProduktGuide() {
         ease: "power2.out",
         stagger: 0.1,
       })
-
-      .from(
-        [descRef.current, btnRef.current],
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.7,
-          ease: "power2.out",
-          stagger: 0.1,
-        },
-        "-=0.4"
-      )
-
-      .fromTo(
-        smallImageRef.current,
-        {
-          opacity: 0,
-          y: 10,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "back.out(1.7)",
-        },
-        "-=0.6"
-      );
-    }, containerRef2);
-
-    return () => ctx.revert();
-  }, [loadedImages]);
+        .from(
+          [descRef.current, btnRef.current],
+          {
+            opacity: 0,
+            y: 30,
+            duration: 0.7,
+            ease: "power2.out",
+            stagger: 0.1,
+          },
+          "-=0.4"
+        )
+        .fromTo(
+          smallImageRef.current,
+          {
+            opacity: 0,
+            y: 10,
+            scale: 0.8,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "back.out(1.7)",
+          },
+          "-=0.6"
+        );
+    },
+    {
+      scope: containerRef2,
+      dependencies: [loadedImages],
+    }
+  );
 
   return (
     <section className="relative px-[clamp(4rem,10vw,20rem)] flex items-center lg:h-screen">
-      <div ref={containerRef2} className="flex flex-col lg:flex-row w-full gap-8 items-center">
+      <div
+        ref={containerRef2}
+        className="flex flex-col lg:flex-row w-full gap-8 items-center"
+      >
         <div className="w-[99%] md:w-[74%] lg:w-[50%] relative p-8">
           <Image
             ref={largeImageRef}
@@ -107,9 +111,9 @@ export default function ProduktGuide() {
             className="text-[clamp(0.2rem,4vw,1.2rem)] pt-[5%] pb-[5%] lg:pt-[10%] lg:pb-[10%]"
           >
             Hver tirsdag kl. 7:30 løber vi fra vores butik på Nørrebrogade 26.
-            Alle niveauer er velkomne – uanset om du er nybegynder eller erfaren
-            løber. Vi deler os op i tempo-grupper, så alle kan være med. Efter
-            løbet byder vi på en kop kaffe og god stemning i butikken.
+            Alle niveauer er velkomne – uanset om du er nybegynder eller
+            erfaren løber. Vi deler os op i tempo-grupper, så alle kan være med.
+            Efter løbet byder vi på en kop kaffe og god stemning i butikken.
           </p>
 
           <div ref={btnRef}>

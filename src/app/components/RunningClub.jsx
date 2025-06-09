@@ -25,8 +25,8 @@ export default function RunningClub() {
         scrollTrigger: {
           id: "runningclub-trigger",
           trigger: containerRef.current,
-          start: "bottom 60%",
-          toggleActions: "play reverse play reverse",
+          start: "top 60%",
+          toggleActions: "play none none reverse",
         },
       });
   

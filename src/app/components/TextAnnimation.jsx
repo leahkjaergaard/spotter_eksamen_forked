@@ -62,7 +62,7 @@ export default function TextAnimation() {
             trigger: secondTextRef.current,
             start: "bottom center",
             end: "bottom top",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none reverse",
             id: "textanimation-secondtext",
           },
         });
@@ -76,7 +76,7 @@ export default function TextAnimation() {
             trigger: btnRef3.current,
             start: "bottom center",
             end: "bottom top",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none reverse",
             id: "textanimation-button",
           },
         });
