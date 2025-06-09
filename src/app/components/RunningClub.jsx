@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import "../../app/globals.css";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function RunningClub() {
   const containerRef = useRef(null);

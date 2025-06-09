@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../../app/globals.css";
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function ProduktGuide() {
   const containerRef2 = useRef(null);

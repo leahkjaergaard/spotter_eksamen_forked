@@ -2,11 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCartStore } from "../lib/useCartStore";
 import Image from "next/image";
-
-gsap.registerPlugin(ScrollTrigger);
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function Basket() {
   const basketRef = useRef(null);

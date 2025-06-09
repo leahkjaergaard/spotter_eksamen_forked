@@ -2,9 +2,8 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function PsykiatriFonden() {
   useEffect(() => {

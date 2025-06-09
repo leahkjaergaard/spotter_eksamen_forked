@@ -6,9 +6,10 @@ import Link from "next/link";
 import Basket from "./Basket";
 import BurgerMenu from "./Burgermenu";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { IoIosSearch } from "react-icons/io";
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function Header() {
   const pathname = usePathname();
@@ -25,8 +26,6 @@ export default function Header() {
 
   useEffect(() => {
     if (!isIndex) return;
-
-    gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
       [textDesktopRef.current, textMobileRef.current],

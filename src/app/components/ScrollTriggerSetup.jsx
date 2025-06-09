@@ -2,22 +2,22 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
 
 export default function ScrollTriggerSetup() {
   const pathname = usePathname();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    registerGsapPlugins(); // sikrer kun ét kald
 
     const timeout = setTimeout(() => {
-      ScrollTrigger.refresh();
+      ScrollTrigger.refresh(); // genberegn triggers
     }, 100);
 
     return () => {
       clearTimeout(timeout);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // ryd op ved sideskift
     };
   }, [pathname]);
 

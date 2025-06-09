@@ -4,8 +4,10 @@ import "../../app/globals.css";
 import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function TextAnimation() {
   const imageRef = useRef(null);
@@ -13,12 +15,13 @@ export default function TextAnimation() {
   const btnRef3 = useRef(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     let ctx;
-    const rafId = requestAnimationFrame(() => {
+    const rafId = requestAnimationFrame(async () => {
+      const SplitType = (await import("split-type")).default;
+
       ctx = gsap.context(() => {
         const lenis = new Lenis({ smooth: true });
+
         function raf(time) {
           lenis.raf(time);
           requestAnimationFrame(raf);
@@ -30,10 +33,11 @@ export default function TextAnimation() {
           ease: "none",
           scrollTrigger: {
             trigger: imageRef.current,
-            start: "bottom center",
-            end: "bottom top",
+           start: "top+=20 center",
+            end: "top-=100 top",
             scrub: true,
             id: "textanimation-scale",
+            markers: true,
           },
         });
 
@@ -46,7 +50,7 @@ export default function TextAnimation() {
             scrollTrigger: {
               trigger: char,
               start: "bottom center",
-            end: "bottom top",
+              end: "bottom top",
               scrub: true,
               id: `textanimation-split-${index}`,
             },
@@ -83,16 +87,18 @@ export default function TextAnimation() {
 
         if (typeof window !== "undefined" && window.spotterHeader) {
           const bg = document.getElementById("header-bg");
-          ScrollTrigger.create({
-            trigger: imageRef.current,
-            start: "bottom-=50 center",
-            end: "bottom+=500 top",
-            onEnter: () => gsap.set(bg, { opacity: 0 }),
-            onLeave: () => gsap.set(bg, { opacity: 1 }),
-            onEnterBack: () => gsap.set(bg, { opacity: 0 }),
-            onLeaveBack: () => gsap.set(bg, { opacity: 1 }),
-            id: "textanimation-headerbg",
-          });
+          if (bg) {
+            ScrollTrigger.create({
+              trigger: imageRef.current,
+              start: "bottom-=50 center",
+              end: "bottom+=500 top",
+              onEnter: () => gsap.set(bg, { opacity: 0 }),
+              onLeave: () => gsap.set(bg, { opacity: 1 }),
+              onEnterBack: () => gsap.set(bg, { opacity: 0 }),
+              onLeaveBack: () => gsap.set(bg, { opacity: 1 }),
+              id: "textanimation-headerbg",
+            });
+          }
         }
 
         ScrollTrigger.refresh();

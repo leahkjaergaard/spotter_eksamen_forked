@@ -4,10 +4,10 @@ import { supabase } from "../lib/supabase";
 import ProductCard from "./ProductCard";
 import ProductFilter from "./ProductFilter";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function GetProducts({ openBasket, addToBasket }) {
   const [products, setProducts] = useState([]);

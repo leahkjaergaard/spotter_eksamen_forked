@@ -3,9 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { supabase } from "../lib/supabase";
 import ProductCard from "./ProductCard";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { registerGsapPlugins } from "../lib/registerGsapPlugins";
+registerGsapPlugins();
 
 export default function BestSellers() {
   const [products, setProducts] = useState([]);
